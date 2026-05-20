@@ -1,0 +1,63 @@
+RUNBOOK: High CPU Utilization on Network Device
+Category: Device Health
+Severity: P2/P3
+Last Updated: 2024-01-10
+
+OVERVIEW
+--------
+High CPU on routers/switches can cause control plane failures, BGP drops, and slow packet processing. Usually caused by routing instability, DDoS, or misconfiguration.
+
+SYMPTOMS
+--------
+- CPU > 85% sustained for > 5 minutes
+- BGP sessions starting to flap
+- Slow CLI response on device
+- Alert: cpu_utilization_pct threshold breached
+
+STEP 1 — IDENTIFY TOP PROCESS
+-------------------------------
+   show processes cpu sorted | head 20
+Common culprits:
+  - BGP Scanner: routing table instability
+  - IP Input: high traffic volume (possible DDoS)
+  - OSPF/ISIS: topology changes / flapping
+  - Crypto: if IPSec is configured
+
+STEP 2 — BGP SCANNER HIGH
+---------------------------
+If BGP Scanner is top process:
+  → Routing table churning due to BGP instability
+  → Check for route flapping: show bgp flap-statistics
+  → Apply route dampening if excessive:
+    router bgp <ASN>
+     bgp dampening
+
+STEP 3 — IP INPUT HIGH (possible DDoS)
+----------------------------------------
+If IP Input process is high:
+  → Check for traffic anomalies: show interfaces rate
+  → Check for small packet flood (common in DDoS):
+    show ip traffic | include fragments
+  → Apply rate-limiting ACL on edge interfaces if attack confirmed
+
+STEP 4 — OSPF/ISIS HIGH
+-------------------------
+  show ip ospf statistics
+  show isis statistics
+Excessive LSA flooding indicates topology instability.
+  → Check for interface flapping upstream
+  → Increase OSPF/ISIS timers to reduce churn
+
+STEP 5 — REMEDIATION
+----------------------
+Option A — Process restart (non-disruptive for some):
+  Consult vendor documentation before restarting
+Option B — Redistribute load if possible (second supervisor)
+Option C — Rate-limit control plane traffic:
+  control-plane
+   service-policy input COPP-POLICY
+
+ESCALATION
+----------
+- Sustained > 15 mins: escalate to L2 Network Engineering
+- DDoS suspected: notify Security Operations team

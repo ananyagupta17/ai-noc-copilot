@@ -1,0 +1,12 @@
+Mar 03 18:17:18 MUM-PE-08 : %SYS-5-CONFIG_I: Configured from console by admin
+Mar 03 18:19:18 MUM-PE-08 : %SYS-5-CONFIG_I: Configured from console by admin
+Mar 03 18:22:18 MUM-PE-08 : %SYS-5-CONFIG_I: Configured from console by admin
+Mar 03 18:22:18 MUM-PE-08 : %SYS-5-CONFIG_I: Configured from console by admin
+Mar 03 18:24:18 MUM-PE-08 : %SYS-5-CONFIG_I: Configured from console by admin
+Mar 03 18:25:18 MUM-PE-08 : %ERRORS-3-RX_CRC: CRC errors on GigabitEthernet0/2: 2548 errors/min
+Mar 03 18:26:02 MUM-PE-08 : %PLATFORM-4-ELEMENT_WARNING: Interface Gi0/2 CRC error threshold exceeded
+Mar 03 18:26:18 MUM-PE-08 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Mar 03 18:26:52 MUM-PE-08 : %ERRORS-3-RX_CRC: CRC errors on GigabitEthernet0/2: 49240 errors/min
+Mar 03 18:28:18 MUM-PE-08 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Mar 03 18:28:18 MUM-PE-08 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Mar 03 18:39:18 MUM-PE-08 : %SYS-5-RELOAD: Reload requested by NOC engineer

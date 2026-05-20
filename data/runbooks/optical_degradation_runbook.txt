@@ -1,0 +1,61 @@
+RUNBOOK: Optical Signal Degradation
+Category: Physical Layer
+Severity: P1/P2
+Last Updated: 2024-03-01
+
+OVERVIEW
+--------
+Optical degradation indicates issues with fiber, connectors, amplifiers, or transceivers. Left unresolved it leads to complete link failure.
+
+SYMPTOMS
+--------
+- CRC errors escalating on interface
+- Rx optical power below threshold (typically < -23 dBm)
+- Alert: optical_degradation
+- Intermittent packet loss that worsens over time
+
+STEP 1 — CHECK OPTICAL POWER LEVELS
+--------------------------------------
+   show interfaces GigabitEthernet0/1 transceiver
+   show controllers GigabitEthernet0/1
+Record:
+  - Tx power (should be within spec, e.g. -3 to +2 dBm)
+  - Rx power (should be > -23 dBm for most transceivers)
+  - Temperature (high temp causes performance issues)
+
+STEP 2 — IDENTIFY FAULT LOCATION
+----------------------------------
+Is Tx normal but Rx low?
+  → Problem is on the incoming fiber or far-end transmitter
+Is Tx also low?
+  → Problem is the local transceiver — replace it
+Compare readings at both ends of the link.
+
+STEP 3 — CHECK FOR FIBER CONTAMINATION
+----------------------------------------
+Dirty connectors are the #1 cause of optical issues.
+  → Request field team to inspect and clean connectors with IEC 61300-3-35 standard cleaner
+  → Do not use compressed air alone
+
+STEP 4 — CHECK OTDR (if available)
+------------------------------------
+OTDR trace will show:
+  - Exact location of splice loss or break
+  - Connector losses
+  - Bend radius violations
+Escalate OTDR results to fiber operations team.
+
+STEP 5 — INTERIM REMEDIATION
+------------------------------
+While fiber is being repaired:
+  - Reroute traffic to backup path immediately
+  - Reduce interface speed (if partial signal): may stabilize
+  - Replace transceiver if that is identified as fault
+
+STEP 6 — ESCALATION
+---------------------
+- Field team dispatch for physical inspection
+- Fiber operations for OTDR and repair
+- Vendor support if transceiver under warranty
+
+DO NOT attempt fiber repair without certified field team.

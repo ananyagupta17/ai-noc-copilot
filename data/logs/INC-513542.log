@@ -1,0 +1,14 @@
+May 07 23:50:01 MUM-PE-02 : %SYS-5-CONFIG_I: Configured from console by admin
+May 07 23:50:01 MUM-PE-02 : %SYS-5-CONFIG_I: Configured from console by admin
+May 07 23:52:01 MUM-PE-02 : %SYS-5-CONFIG_I: Configured from console by admin
+May 07 23:55:01 MUM-PE-02 : %SYS-5-CONFIG_I: Configured from console by admin
+May 07 23:57:01 MUM-PE-02 : %SYS-5-CONFIG_I: Configured from console by admin
+May 07 23:59:01 MUM-PE-02 : %SYS-5-CONFIG_I: Configured from console by admin
+May 08 00:00:01 MUM-PE-02 : %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to down
+May 08 00:00:32 MUM-PE-02 : %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to down
+May 08 00:00:40 MUM-PE-02 : %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to down
+May 08 00:01:01 MUM-PE-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 08 00:01:55 MUM-PE-02 : %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up
+May 08 00:02:01 MUM-PE-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 08 00:07:01 MUM-PE-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 08 00:15:01 MUM-PE-02 : %SYS-5-RELOAD: Reload requested by NOC engineer

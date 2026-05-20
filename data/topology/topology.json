@@ -1,0 +1,503 @@
+{
+  "nodes": [
+    {
+      "id": "SIN-CR-01",
+      "type": "core-router",
+      "region": "Singapore",
+      "ip": "10.140.125.58",
+      "vendor": "Cisco"
+    },
+    {
+      "id": "SIN-ER-01",
+      "type": "edge-router",
+      "region": "Singapore",
+      "ip": "10.52.44.152",
+      "vendor": "Juniper"
+    },
+    {
+      "id": "SIN-ER-02",
+      "type": "edge-router",
+      "region": "Singapore",
+      "ip": "10.16.15.24",
+      "vendor": "Cisco"
+    },
+    {
+      "id": "MUM-CR-01",
+      "type": "core-router",
+      "region": "Mumbai",
+      "ip": "10.112.229.151",
+      "vendor": "Juniper"
+    },
+    {
+      "id": "MUM-ER-01",
+      "type": "edge-router",
+      "region": "Mumbai",
+      "ip": "10.3.81.179",
+      "vendor": "Juniper"
+    },
+    {
+      "id": "MUM-ER-02",
+      "type": "edge-router",
+      "region": "Mumbai",
+      "ip": "10.174.142.40",
+      "vendor": "Cisco"
+    },
+    {
+      "id": "MUM-ER-03",
+      "type": "edge-router",
+      "region": "Mumbai",
+      "ip": "10.172.52.24",
+      "vendor": "Juniper"
+    },
+    {
+      "id": "LON-CR-01",
+      "type": "core-router",
+      "region": "London",
+      "ip": "10.235.63.250",
+      "vendor": "Juniper"
+    },
+    {
+      "id": "LON-CR-02",
+      "type": "core-router",
+      "region": "London",
+      "ip": "10.40.150.213",
+      "vendor": "Nokia"
+    },
+    {
+      "id": "LON-ER-01",
+      "type": "edge-router",
+      "region": "London",
+      "ip": "10.185.98.181",
+      "vendor": "Cisco"
+    },
+    {
+      "id": "LON-ER-02",
+      "type": "edge-router",
+      "region": "London",
+      "ip": "10.23.116.198",
+      "vendor": "Juniper"
+    },
+    {
+      "id": "FRA-CR-01",
+      "type": "core-router",
+      "region": "Frankfurt",
+      "ip": "10.142.232.163",
+      "vendor": "Juniper"
+    },
+    {
+      "id": "FRA-ER-01",
+      "type": "edge-router",
+      "region": "Frankfurt",
+      "ip": "10.83.189.91",
+      "vendor": "Cisco"
+    },
+    {
+      "id": "FRA-ER-02",
+      "type": "edge-router",
+      "region": "Frankfurt",
+      "ip": "10.136.36.156",
+      "vendor": "Nokia"
+    },
+    {
+      "id": "FRA-ER-03",
+      "type": "edge-router",
+      "region": "Frankfurt",
+      "ip": "10.87.125.42",
+      "vendor": "Juniper"
+    },
+    {
+      "id": "NEW-CR-01",
+      "type": "core-router",
+      "region": "New York",
+      "ip": "10.117.16.207",
+      "vendor": "Juniper"
+    },
+    {
+      "id": "NEW-CR-02",
+      "type": "core-router",
+      "region": "New York",
+      "ip": "10.205.137.17",
+      "vendor": "Cisco"
+    },
+    {
+      "id": "NEW-ER-01",
+      "type": "edge-router",
+      "region": "New York",
+      "ip": "10.161.108.168",
+      "vendor": "Juniper"
+    },
+    {
+      "id": "NEW-ER-02",
+      "type": "edge-router",
+      "region": "New York",
+      "ip": "10.202.234.37",
+      "vendor": "Juniper"
+    },
+    {
+      "id": "TOK-CR-01",
+      "type": "core-router",
+      "region": "Tokyo",
+      "ip": "10.204.185.57",
+      "vendor": "Cisco"
+    },
+    {
+      "id": "TOK-CR-02",
+      "type": "core-router",
+      "region": "Tokyo",
+      "ip": "10.252.46.194",
+      "vendor": "Cisco"
+    },
+    {
+      "id": "TOK-ER-01",
+      "type": "edge-router",
+      "region": "Tokyo",
+      "ip": "10.56.78.161",
+      "vendor": "Cisco"
+    },
+    {
+      "id": "TOK-ER-02",
+      "type": "edge-router",
+      "region": "Tokyo",
+      "ip": "10.216.32.99",
+      "vendor": "Juniper"
+    },
+    {
+      "id": "TOK-ER-03",
+      "type": "edge-router",
+      "region": "Tokyo",
+      "ip": "10.239.128.249",
+      "vendor": "Nokia"
+    },
+    {
+      "id": "SYD-CR-01",
+      "type": "core-router",
+      "region": "Sydney",
+      "ip": "10.150.222.41",
+      "vendor": "Juniper"
+    },
+    {
+      "id": "SYD-CR-02",
+      "type": "core-router",
+      "region": "Sydney",
+      "ip": "10.1.134.249",
+      "vendor": "Nokia"
+    },
+    {
+      "id": "SYD-ER-01",
+      "type": "edge-router",
+      "region": "Sydney",
+      "ip": "10.91.54.223",
+      "vendor": "Nokia"
+    },
+    {
+      "id": "SYD-ER-02",
+      "type": "edge-router",
+      "region": "Sydney",
+      "ip": "10.152.101.40",
+      "vendor": "Juniper"
+    },
+    {
+      "id": "DUB-CR-01",
+      "type": "core-router",
+      "region": "Dubai",
+      "ip": "10.9.57.238",
+      "vendor": "Juniper"
+    },
+    {
+      "id": "DUB-CR-02",
+      "type": "core-router",
+      "region": "Dubai",
+      "ip": "10.157.122.15",
+      "vendor": "Cisco"
+    },
+    {
+      "id": "DUB-ER-01",
+      "type": "edge-router",
+      "region": "Dubai",
+      "ip": "10.40.43.188",
+      "vendor": "Juniper"
+    },
+    {
+      "id": "DUB-ER-02",
+      "type": "edge-router",
+      "region": "Dubai",
+      "ip": "10.35.64.33",
+      "vendor": "Nokia"
+    },
+    {
+      "id": "DUB-ER-03",
+      "type": "edge-router",
+      "region": "Dubai",
+      "ip": "10.243.84.68",
+      "vendor": "Nokia"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SIN-CR-01",
+      "target": "SIN-ER-01",
+      "link_type": "access",
+      "capacity_gbps": 10,
+      "region": "Singapore"
+    },
+    {
+      "source": "SIN-CR-01",
+      "target": "SIN-ER-02",
+      "link_type": "access",
+      "capacity_gbps": 10,
+      "region": "Singapore"
+    },
+    {
+      "source": "SIN-CR-01",
+      "target": "LON-CR-02",
+      "link_type": "backbone",
+      "capacity_gbps": 400,
+      "region": "Singapore-London"
+    },
+    {
+      "source": "SIN-CR-01",
+      "target": "FRA-CR-01",
+      "link_type": "backbone",
+      "capacity_gbps": 400,
+      "region": "Singapore-Frankfurt"
+    },
+    {
+      "source": "SIN-CR-01",
+      "target": "NEW-CR-01",
+      "link_type": "backbone",
+      "capacity_gbps": 100,
+      "region": "Singapore-New York"
+    },
+    {
+      "source": "SIN-CR-01",
+      "target": "TOK-CR-01",
+      "link_type": "backbone",
+      "capacity_gbps": 100,
+      "region": "Singapore-Tokyo"
+    },
+    {
+      "source": "MUM-CR-01",
+      "target": "MUM-ER-01",
+      "link_type": "access",
+      "capacity_gbps": 10,
+      "region": "Mumbai"
+    },
+    {
+      "source": "MUM-CR-01",
+      "target": "MUM-ER-02",
+      "link_type": "access",
+      "capacity_gbps": 10,
+      "region": "Mumbai"
+    },
+    {
+      "source": "MUM-CR-01",
+      "target": "MUM-ER-03",
+      "link_type": "access",
+      "capacity_gbps": 10,
+      "region": "Mumbai"
+    },
+    {
+      "source": "MUM-CR-01",
+      "target": "LON-CR-02",
+      "link_type": "backbone",
+      "capacity_gbps": 400,
+      "region": "Mumbai-London"
+    },
+    {
+      "source": "MUM-CR-01",
+      "target": "FRA-CR-01",
+      "link_type": "backbone",
+      "capacity_gbps": 100,
+      "region": "Mumbai-Frankfurt"
+    },
+    {
+      "source": "MUM-CR-01",
+      "target": "SYD-CR-02",
+      "link_type": "backbone",
+      "capacity_gbps": 400,
+      "region": "Mumbai-Sydney"
+    },
+    {
+      "source": "MUM-CR-01",
+      "target": "DUB-CR-01",
+      "link_type": "backbone",
+      "capacity_gbps": 100,
+      "region": "Mumbai-Dubai"
+    },
+    {
+      "source": "LON-CR-01",
+      "target": "LON-ER-01",
+      "link_type": "access",
+      "capacity_gbps": 10,
+      "region": "London"
+    },
+    {
+      "source": "LON-CR-01",
+      "target": "LON-ER-02",
+      "link_type": "access",
+      "capacity_gbps": 10,
+      "region": "London"
+    },
+    {
+      "source": "LON-CR-01",
+      "target": "SYD-CR-01",
+      "link_type": "backbone",
+      "capacity_gbps": 100,
+      "region": "London-Sydney"
+    },
+    {
+      "source": "LON-CR-02",
+      "target": "FRA-CR-01",
+      "link_type": "backbone",
+      "capacity_gbps": 100,
+      "region": "London-Frankfurt"
+    },
+    {
+      "source": "LON-CR-02",
+      "target": "NEW-CR-01",
+      "link_type": "backbone",
+      "capacity_gbps": 400,
+      "region": "London-New York"
+    },
+    {
+      "source": "LON-CR-02",
+      "target": "TOK-CR-01",
+      "link_type": "backbone",
+      "capacity_gbps": 100,
+      "region": "London-Tokyo"
+    },
+    {
+      "source": "FRA-CR-01",
+      "target": "FRA-ER-01",
+      "link_type": "access",
+      "capacity_gbps": 10,
+      "region": "Frankfurt"
+    },
+    {
+      "source": "FRA-CR-01",
+      "target": "FRA-ER-02",
+      "link_type": "access",
+      "capacity_gbps": 10,
+      "region": "Frankfurt"
+    },
+    {
+      "source": "FRA-CR-01",
+      "target": "FRA-ER-03",
+      "link_type": "access",
+      "capacity_gbps": 10,
+      "region": "Frankfurt"
+    },
+    {
+      "source": "FRA-CR-01",
+      "target": "SYD-CR-02",
+      "link_type": "backbone",
+      "capacity_gbps": 100,
+      "region": "Frankfurt-Sydney"
+    },
+    {
+      "source": "NEW-CR-01",
+      "target": "NEW-ER-01",
+      "link_type": "access",
+      "capacity_gbps": 10,
+      "region": "New York"
+    },
+    {
+      "source": "NEW-CR-01",
+      "target": "NEW-ER-02",
+      "link_type": "access",
+      "capacity_gbps": 10,
+      "region": "New York"
+    },
+    {
+      "source": "NEW-CR-01",
+      "target": "SYD-CR-02",
+      "link_type": "backbone",
+      "capacity_gbps": 400,
+      "region": "New York-Sydney"
+    },
+    {
+      "source": "TOK-CR-01",
+      "target": "TOK-ER-01",
+      "link_type": "access",
+      "capacity_gbps": 10,
+      "region": "Tokyo"
+    },
+    {
+      "source": "TOK-CR-01",
+      "target": "TOK-ER-02",
+      "link_type": "access",
+      "capacity_gbps": 10,
+      "region": "Tokyo"
+    },
+    {
+      "source": "TOK-CR-02",
+      "target": "TOK-ER-03",
+      "link_type": "access",
+      "capacity_gbps": 10,
+      "region": "Tokyo"
+    },
+    {
+      "source": "TOK-CR-02",
+      "target": "DUB-CR-01",
+      "link_type": "backbone",
+      "capacity_gbps": 100,
+      "region": "Tokyo-Dubai"
+    },
+    {
+      "source": "SYD-CR-01",
+      "target": "SYD-ER-01",
+      "link_type": "access",
+      "capacity_gbps": 10,
+      "region": "Sydney"
+    },
+    {
+      "source": "SYD-CR-01",
+      "target": "SYD-ER-02",
+      "link_type": "access",
+      "capacity_gbps": 10,
+      "region": "Sydney"
+    },
+    {
+      "source": "SYD-CR-01",
+      "target": "DUB-CR-01",
+      "link_type": "backbone",
+      "capacity_gbps": 400,
+      "region": "Sydney-Dubai"
+    },
+    {
+      "source": "DUB-CR-01",
+      "target": "DUB-ER-02",
+      "link_type": "access",
+      "capacity_gbps": 10,
+      "region": "Dubai"
+    },
+    {
+      "source": "DUB-CR-01",
+      "target": "DUB-ER-03",
+      "link_type": "access",
+      "capacity_gbps": 10,
+      "region": "Dubai"
+    },
+    {
+      "source": "DUB-CR-02",
+      "target": "DUB-ER-01",
+      "link_type": "access",
+      "capacity_gbps": 10,
+      "region": "Dubai"
+    }
+  ],
+  "summary": {
+    "total_nodes": 33,
+    "total_edges": 36,
+    "regions": [
+      "Singapore",
+      "Mumbai",
+      "London",
+      "Frankfurt",
+      "New York",
+      "Tokyo",
+      "Sydney",
+      "Dubai"
+    ]
+  }
+}

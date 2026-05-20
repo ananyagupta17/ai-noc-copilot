@@ -1,0 +1,56 @@
+RUNBOOK: Interface Down Investigation
+Category: Physical/Link Layer
+Severity: P1/P2
+Last Updated: 2024-02-10
+
+OVERVIEW
+--------
+An interface going down can cause immediate traffic loss. Investigation must be fast to minimize MTTR.
+
+SYMPTOMS
+--------
+- Alert: interface_status = DOWN
+- Logs: %LINK-3-UPDOWN changed state to down
+- Customer traffic loss on that segment
+
+STEP 1 — IDENTIFY INTERFACE
+-----------------------------
+   show interfaces GigabitEthernet0/1
+Check:
+  - Line protocol: up or down?
+  - Input/output errors
+  - Last clearing of counters
+
+STEP 2 — PHYSICAL vs PROTOCOL
+-------------------------------
+Interface down + line protocol down:
+  → Physical issue (cable, transceiver, far-end device)
+Interface up + line protocol down:
+  → Encapsulation mismatch, keepalive failure, or far-end config issue
+
+STEP 3 — CHECK FAR END
+------------------------
+  - Can you reach far-end device via out-of-band?
+  - Is far-end interface also showing down?
+  - Check far-end logs for errors
+
+STEP 4 — OPTICAL CHECK (for fiber links)
+------------------------------------------
+Check transceiver Rx power:
+   show interfaces GigabitEthernet0/1 transceiver
+If Rx power is low: refer to optical degradation runbook
+
+STEP 5 — REMEDIATION
+----------------------
+Option A — Interface reset:
+  interface GigabitEthernet0/1
+   shutdown
+   no shutdown
+Option B — Replace cable/transceiver if physical fault
+Option C — Reroute traffic to alternate interface
+Option D — Dispatch field team for physical inspection
+
+ESCALATION
+----------
+- Physical fault confirmed: field operations team
+- Backbone link: senior network engineer immediately

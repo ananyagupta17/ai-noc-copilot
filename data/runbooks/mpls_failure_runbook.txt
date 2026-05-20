@@ -1,0 +1,57 @@
+RUNBOOK: MPLS / LDP Failure
+Category: MPLS
+Severity: P1/P2
+Last Updated: 2024-02-15
+
+OVERVIEW
+--------
+MPLS failures cause enterprise VPN traffic to drop or blackhole. LDP session loss is the most common trigger.
+
+SYMPTOMS
+--------
+- Enterprise MPLS customers report complete loss
+- Alert: mpls_failure or LDP session DOWN
+- Logs: %MPLS-3-LDP_NBR_DOWN
+
+STEP 1 — CHECK LDP SESSIONS
+-----------------------------
+   show mpls ldp neighbor
+All PE-to-P and PE-to-PE sessions should be UP.
+If session is DOWN:
+  - Check IGP reachability to LDP peer (ping loopback)
+  - LDP uses TCP 646 — check for ACL blocking this port
+
+STEP 2 — CHECK LABEL FORWARDING TABLE
+---------------------------------------
+   show mpls forwarding-table
+Entries should exist for all VPN prefixes.
+Missing entries indicate LDP or BGP VPN failure.
+
+STEP 3 — CHECK BGP VPN (L3VPN)
+---------------------------------
+   show bgp vpnv4 unicast all summary
+If BGP VPN sessions are down:
+  → Refer to BGP flap runbook
+If sessions are up but routes missing:
+  → Check route-target import/export config on PE
+
+STEP 4 — CHECK VRF TABLE
+--------------------------
+   show ip vrf
+   show ip route vrf <customer-vrf>
+Customer routes should be present. If missing:
+  → Route leak or redistribution issue
+  → Check route-map applied to VRF
+
+STEP 5 — REMEDIATION
+----------------------
+Option A — LDP session reset:
+  clear mpls ldp neighbor <peer-ip>
+Option B — Redistribute check:
+  Verify that customer CE routes are being redistributed into VRF
+Option C — Traffic reroute via backup PE if available
+
+ESCALATION
+----------
+- MPLS core issues: escalate to Network Engineering
+- Customer VRF issues: check with account team for recent changes

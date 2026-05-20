@@ -1,0 +1,8 @@
+Mar 05 08:34:39 NEW-AGG-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Mar 05 08:35:39 NEW-AGG-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Mar 05 08:35:39 NEW-AGG-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Mar 05 08:38:39 NEW-AGG-02 : %CPU-4-HIGH: CPU utilization: 95%; 5min: 81%
+Mar 05 08:38:53 NEW-AGG-02 : Scheduler: process BGP Scanner at 65% CPU
+Mar 05 08:39:37 NEW-AGG-02 : %SYS-3-CPUHOG: Task ran for 2487ms
+Mar 05 08:40:39 NEW-AGG-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Mar 05 08:51:39 NEW-AGG-02 : %SYS-5-RELOAD: Reload requested by NOC engineer

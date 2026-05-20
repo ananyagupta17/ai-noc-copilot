@@ -1,0 +1,56 @@
+RUNBOOK: DNS Resolution Failure
+Category: Services
+Severity: P2/P3
+Last Updated: 2024-01-25
+
+OVERVIEW
+--------
+DNS outages affect all hostname-based services for customers. Can be caused by DNS server failure, misconfiguration, or network reachability issues.
+
+SYMPTOMS
+--------
+- Customers report websites/services unreachable
+- DNS queries timing out
+- Alert: dns_outage on DNS forwarder device
+
+STEP 1 — VERIFY DNS FAILURE
+-----------------------------
+From NOC workstation:
+   nslookup google.com <affected-dns-server-ip>
+If timeout:
+  → DNS server not responding — check server health
+If NXDOMAIN for valid domains:
+  → DNS server responding but resolution failing (upstream issue)
+
+STEP 2 — CHECK DNS SERVER REACHABILITY
+----------------------------------------
+   ping <dns-server-ip> repeat 100
+If ping fails:
+  → Network reachability issue — check routing to DNS server
+  → Check if ACL is blocking UDP/TCP 53
+
+STEP 3 — CHECK UPSTREAM RESOLVERS
+-----------------------------------
+DNS forwarder relies on upstream resolvers (e.g. 8.8.8.8 or internal root).
+   dig @<dns-server-ip> google.com
+   dig @8.8.8.8 google.com
+Compare results. If upstream works but local doesn't:
+  → Forwarder misconfiguration
+  → Restart DNS service on forwarder
+
+STEP 4 — FAILOVER TO SECONDARY DNS
+------------------------------------
+If primary DNS is confirmed down:
+  → Update DHCP scope to point to secondary DNS server
+  → Notify customers to flush DNS cache: ipconfig /flushdns
+
+STEP 5 — REMEDIATION
+----------------------
+Option A — Restart DNS service on affected server
+Option B — Point customers to secondary/tertiary DNS
+Option C — If root cause is upstream: wait or use alternate resolver
+
+ESCALATION
+----------
+- Server team for DNS server health
+- Security team if DNS hijacking suspected

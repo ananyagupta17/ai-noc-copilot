@@ -1,0 +1,10 @@
+Mar 29 02:03:37 MUM-AGG-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Mar 29 02:05:37 MUM-AGG-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Mar 29 02:11:37 MUM-AGG-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Mar 29 02:13:37 MUM-AGG-02 : %CPU-4-HIGH: CPU utilization: 94%; 5min: 80%
+Mar 29 02:14:15 MUM-AGG-02 : Scheduler: process BGP Scanner at 74% CPU
+Mar 29 02:15:05 MUM-AGG-02 : %SYS-3-CPUHOG: Task ran for 2600ms
+Mar 29 02:20:37 MUM-AGG-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Mar 29 02:21:37 MUM-AGG-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Mar 29 02:23:37 MUM-AGG-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Mar 29 02:23:37 MUM-AGG-02 : %SYS-5-RELOAD: Reload requested by NOC engineer

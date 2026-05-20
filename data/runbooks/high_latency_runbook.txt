@@ -1,0 +1,63 @@
+RUNBOOK: High Latency Investigation
+Category: Network Performance
+Severity: P2/P3
+Last Updated: 2024-01-20
+
+OVERVIEW
+--------
+Latency spikes degrade application performance and can breach SLAs. Common causes include congestion, routing changes, and hardware issues.
+
+SYMPTOMS
+--------
+- RTT > 150ms on normally sub-50ms paths
+- Customer complaints about slow application response
+- Alert: rtt_ms threshold breached
+
+STEP 1 — BASELINE COMPARISON
+------------------------------
+First confirm this is abnormal:
+- Check historical latency from monitoring (last 7 days)
+- Is it affecting all destinations or specific prefixes?
+  traceroute <affected-destination> source <loopback>
+
+STEP 2 — IDENTIFY CONGESTED HOP
+---------------------------------
+Run traceroute with timing:
+  traceroute <destination> probe 10
+Look for hop where RTT jumps significantly.
+That hop or the link before it is the bottleneck.
+
+STEP 3 — CHECK INTERFACE UTILIZATION
+--------------------------------------
+On the congested hop device:
+  show interfaces GigabitEthernet0/1 | include rate|utilization
+If utilization > 80%:
+  → Traffic engineering needed
+  → Check if recent routing change shifted traffic to this path
+
+STEP 4 — CHECK ROUTING TABLE CHANGES
+--------------------------------------
+Has the routing path changed recently?
+  show ip route <destination>
+  show bgp <destination>
+Compare with expected next-hop. If path is suboptimal:
+  → Traffic may have been rerouted due to link failure elsewhere
+  → Restore primary path if available
+
+STEP 5 — CHECK FOR MICROBURSTS
+--------------------------------
+Short bursts can cause queuing without showing sustained high utilization.
+  show interfaces GigabitEthernet0/1 | include output queue
+  show queueing interface GigabitEthernet0/1
+
+STEP 6 — REMEDIATION
+----------------------
+Option A — Traffic engineering: shift traffic to lower-latency path
+Option B — QoS: prioritize latency-sensitive traffic
+Option C — Capacity upgrade: if chronic congestion, raise ticket for link upgrade
+Option D — ECMP: verify equal-cost paths are being utilized
+
+ESCALATION
+----------
+- SLA breach > 30 mins: notify account manager
+- Chronic congestion: capacity planning team

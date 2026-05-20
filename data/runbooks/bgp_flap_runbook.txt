@@ -1,0 +1,71 @@
+RUNBOOK: BGP Session Instability / Flapping
+Category: Routing
+Severity: P1/P2
+Last Updated: 2024-02-01
+
+OVERVIEW
+--------
+BGP flapping causes route withdrawals and re-advertisements, leading to traffic blackholing and instability. This runbook guides investigation of BGP session drops.
+
+SYMPTOMS
+--------
+- BGP session repeatedly going UP/DOWN in logs
+- Routes being withdrawn and re-advertised
+- Customers reporting intermittent loss on specific prefixes
+- Alert: bgp_session_state = 0
+
+STEP 1 — IDENTIFY AFFECTED SESSION
+-------------------------------------
+   show bgp summary
+   show bgp neighbors | include BGP state|Resets|Notifications
+Note the neighbor IP, AS number, and flap count.
+
+STEP 2 — CHECK HOLD TIMER EXPIRY
+----------------------------------
+If session drops show "Hold Timer Expired":
+  → Keepalive messages not reaching peer in time
+  → Check for high CPU on router:
+    show processes cpu sorted | head 10
+  → Check for packet loss between peers:
+    ping <bgp-peer-ip> source <loopback> repeat 1000
+
+STEP 3 — CHECK FOR NOTIFICATION MESSAGES
+------------------------------------------
+   show bgp neighbors <peer-ip> | include Notification|Error
+Common notification codes:
+  - 6/7: Connection collision (two sessions trying to form)
+  - 4/0: Hold timer expired
+  - 2/2: Bad peer AS number (config mismatch)
+  - 3/x: UPDATE message error (check route policy)
+
+STEP 4 — CHECK TCP SESSION STABILITY
+--------------------------------------
+BGP runs over TCP. TCP issues cause BGP drops.
+   show tcp brief | include <peer-ip>
+If TCP session is unstable:
+  → MTU mismatch on path (check with ping df-bit size 1500)
+  → QoS policy dropping BGP packets (check for any rate-limiters on TCP 179)
+
+STEP 5 — CHECK ROUTE POLICY / FILTERS
+----------------------------------------
+A bad route-map or prefix-list can cause UPDATE errors and resets.
+   show route-map
+   show bgp neighbors <peer-ip> | include policy
+
+STEP 6 — REMEDIATION
+----------------------
+Option A — Increase hold timer (temporary stability):
+  router bgp <ASN>
+   neighbor <peer-ip> timers 10 30
+Option B — Soft reset (no traffic impact):
+  clear ip bgp <peer-ip> soft
+Option C — Hard reset (use carefully, causes route withdrawal):
+  clear ip bgp <peer-ip>
+Option D — BFD check:
+  show bfd neighbors detail
+
+ESCALATION
+----------
+- If session with upstream provider: contact provider NOC
+- If config-related: escalate to Network Engineering
+- For P1 with customer impact: notify account manager immediately

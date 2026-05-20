@@ -1,0 +1,4434 @@
+[
+  {
+    "alert_id": "ALT-5A994753",
+    "incident_id": "INC-104332",
+    "device": "SIN-CR-01",
+    "region": "Singapore",
+    "severity": "CRITICAL",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on SIN-CR-01",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 25
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-10T00:01:21.419455",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-D62468BA",
+    "incident_id": "INC-104332",
+    "device": "SIN-CR-01",
+    "region": "Singapore",
+    "severity": "CRITICAL",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on SIN-CR-01",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 30
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-10T00:02:50.419455",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-E5E12A9F",
+    "incident_id": "INC-104332",
+    "device": "SIN-CR-01",
+    "region": "Singapore",
+    "severity": "MINOR",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on SIN-CR-01",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 3
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-10T00:00:13.419455",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-D3F27EF0",
+    "incident_id": "INC-104332",
+    "device": "SIN-CR-01",
+    "region": "Singapore",
+    "severity": "CRITICAL",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on SIN-CR-01",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 59
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-10T00:01:13.419455",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-EAB5C181",
+    "incident_id": "INC-196001",
+    "device": "MUM-ER-04",
+    "region": "Mumbai",
+    "severity": "MAJOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/0 DOWN on MUM-ER-04",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-16T21:42:14.419585",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-9F23DB08",
+    "incident_id": "INC-386379",
+    "device": "TOK-CR-05",
+    "region": "Tokyo",
+    "severity": "MINOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/3 DOWN on TOK-CR-05",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-30T02:58:34.419665",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-37C9A37A",
+    "incident_id": "INC-386379",
+    "device": "TOK-CR-05",
+    "region": "Tokyo",
+    "severity": "CRITICAL",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/0 DOWN on TOK-CR-05",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-30T02:57:27.419665",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-E0053D5A",
+    "incident_id": "INC-386379",
+    "device": "TOK-CR-05",
+    "region": "Tokyo",
+    "severity": "MAJOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/2 DOWN on TOK-CR-05",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-30T02:57:46.419665",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-F898A26F",
+    "incident_id": "INC-386379",
+    "device": "TOK-CR-05",
+    "region": "Tokyo",
+    "severity": "MAJOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/4 DOWN on TOK-CR-05",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-30T02:59:00.419665",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-C4F2E3B4",
+    "incident_id": "INC-265423",
+    "device": "MUM-ER-02",
+    "region": "Mumbai",
+    "severity": "MAJOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -26dBm on MUM-ER-02",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -30
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-12T21:28:46.419729",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-7873A6BB",
+    "incident_id": "INC-265423",
+    "device": "MUM-ER-02",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -29dBm on MUM-ER-02",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -31
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-12T21:28:47.419729",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-A330B0DF",
+    "incident_id": "INC-265423",
+    "device": "MUM-ER-02",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -25dBm on MUM-ER-02",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -29
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-12T21:30:30.419729",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-5DAA8645",
+    "incident_id": "INC-265423",
+    "device": "MUM-ER-02",
+    "region": "Mumbai",
+    "severity": "MAJOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -33dBm on MUM-ER-02",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -26
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-12T21:28:18.419729",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-FE2924D6",
+    "incident_id": "INC-265423",
+    "device": "MUM-ER-02",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -29dBm on MUM-ER-02",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -32
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-12T21:29:51.419729",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-60E22BEE",
+    "incident_id": "INC-265423",
+    "device": "MUM-ER-02",
+    "region": "Mumbai",
+    "severity": "MAJOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -29dBm on MUM-ER-02",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -26
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-12T21:26:53.419729",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-B4EB07AF",
+    "incident_id": "INC-155940",
+    "device": "MUM-CR-08",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 89% on MUM-CR-08",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 95
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-11T15:29:44.419794",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-8B7CBF4F",
+    "incident_id": "INC-155940",
+    "device": "MUM-CR-08",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 92% on MUM-CR-08",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 89
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-11T15:29:20.419794",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-0CB53480",
+    "incident_id": "INC-155940",
+    "device": "MUM-CR-08",
+    "region": "Mumbai",
+    "severity": "MAJOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 95% on MUM-CR-08",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 94
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-11T15:28:01.419794",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-4481228A",
+    "incident_id": "INC-155940",
+    "device": "MUM-CR-08",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 96% on MUM-CR-08",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 96
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-11T15:28:07.419794",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-5AB3F086",
+    "incident_id": "INC-155940",
+    "device": "MUM-CR-08",
+    "region": "Mumbai",
+    "severity": "MAJOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 94% on MUM-CR-08",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 86
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-11T15:28:29.419794",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-80BB48DC",
+    "incident_id": "INC-618495",
+    "device": "SIN-ER-03",
+    "region": "Singapore",
+    "severity": "MAJOR",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on SIN-ER-03",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 90
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-17T08:55:40.419855",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-BFB681AD",
+    "incident_id": "INC-618495",
+    "device": "SIN-ER-03",
+    "region": "Singapore",
+    "severity": "MINOR",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on SIN-ER-03",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 65
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-17T08:58:00.419855",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-8E0477C4",
+    "incident_id": "INC-618495",
+    "device": "SIN-ER-03",
+    "region": "Singapore",
+    "severity": "MINOR",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on SIN-ER-03",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 79
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-17T08:57:16.419855",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-553D2C71",
+    "incident_id": "INC-341316",
+    "device": "NEW-PE-08",
+    "region": "New York",
+    "severity": "CRITICAL",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 95% on NEW-PE-08",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 91
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-16T01:52:30.419913",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-614DB3B5",
+    "incident_id": "INC-341316",
+    "device": "NEW-PE-08",
+    "region": "New York",
+    "severity": "MINOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 99% on NEW-PE-08",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 97
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-16T01:50:23.419913",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-E88FEB38",
+    "incident_id": "INC-341316",
+    "device": "NEW-PE-08",
+    "region": "New York",
+    "severity": "CRITICAL",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 85% on NEW-PE-08",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 90
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-16T01:52:24.419913",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-A1816C92",
+    "incident_id": "INC-341316",
+    "device": "NEW-PE-08",
+    "region": "New York",
+    "severity": "CRITICAL",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 92% on NEW-PE-08",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 89
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-16T01:51:32.419913",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-E25F177D",
+    "incident_id": "INC-341316",
+    "device": "NEW-PE-08",
+    "region": "New York",
+    "severity": "MAJOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 97% on NEW-PE-08",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 92
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-16T01:49:37.419913",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-4C1A6AA5",
+    "incident_id": "INC-341316",
+    "device": "NEW-PE-08",
+    "region": "New York",
+    "severity": "MAJOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 95% on NEW-PE-08",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 93
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-16T01:49:54.419913",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-294C790A",
+    "incident_id": "INC-553419",
+    "device": "NEW-PE-03",
+    "region": "New York",
+    "severity": "CRITICAL",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 97% on NEW-PE-03",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 86
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-02T15:54:59.419965",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-0FB8FCA4",
+    "incident_id": "INC-553419",
+    "device": "NEW-PE-03",
+    "region": "New York",
+    "severity": "MINOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 87% on NEW-PE-03",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 89
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-02T15:53:59.419965",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-3AE5BD7B",
+    "incident_id": "INC-553419",
+    "device": "NEW-PE-03",
+    "region": "New York",
+    "severity": "MAJOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 90% on NEW-PE-03",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 90
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-02T15:53:40.419965",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-13D94975",
+    "incident_id": "INC-553419",
+    "device": "NEW-PE-03",
+    "region": "New York",
+    "severity": "MAJOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 97% on NEW-PE-03",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 87
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-02T15:54:16.419965",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-18FCEB91",
+    "incident_id": "INC-764835",
+    "device": "MUM-ER-06",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "bgp_flap",
+    "message": "CRITICAL: BGP session DOWN on MUM-ER-06 peer 10.228.218.43",
+    "metric_value": {
+      "name": "bgp_session_state",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-17T06:02:55.420018",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-7C6C2A8C",
+    "incident_id": "INC-056413",
+    "device": "NEW-CR-04",
+    "region": "New York",
+    "severity": "MINOR",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 31% on NEW-CR-04",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 14.4
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-25T10:47:48.420070",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-6265837B",
+    "incident_id": "INC-056413",
+    "device": "NEW-CR-04",
+    "region": "New York",
+    "severity": "MINOR",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 24% on NEW-CR-04",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 23.9
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-25T10:44:44.420070",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-FABB1029",
+    "incident_id": "INC-056413",
+    "device": "NEW-CR-04",
+    "region": "New York",
+    "severity": "MINOR",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 22% on NEW-CR-04",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 20.0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-25T10:47:41.420070",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-D3EE3657",
+    "incident_id": "INC-376724",
+    "device": "LON-CR-07",
+    "region": "London",
+    "severity": "CRITICAL",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/0 DOWN on LON-CR-07",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-22T02:28:34.420122",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-521F4DC5",
+    "incident_id": "INC-376724",
+    "device": "LON-CR-07",
+    "region": "London",
+    "severity": "CRITICAL",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/2 DOWN on LON-CR-07",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-22T02:25:49.420122",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-526B5BBC",
+    "incident_id": "INC-376724",
+    "device": "LON-CR-07",
+    "region": "London",
+    "severity": "MINOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/2 DOWN on LON-CR-07",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-22T02:28:52.420122",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-BD616139",
+    "incident_id": "INC-376724",
+    "device": "LON-CR-07",
+    "region": "London",
+    "severity": "MAJOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/1 DOWN on LON-CR-07",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-22T02:25:53.420122",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-DF91402E",
+    "incident_id": "INC-376724",
+    "device": "LON-CR-07",
+    "region": "London",
+    "severity": "MINOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/4 DOWN on LON-CR-07",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-22T02:25:51.420122",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-C5068C9D",
+    "incident_id": "INC-376724",
+    "device": "LON-CR-07",
+    "region": "London",
+    "severity": "MINOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/4 DOWN on LON-CR-07",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-22T02:26:34.420122",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-6F688EDF",
+    "incident_id": "INC-969653",
+    "device": "FRA-ER-08",
+    "region": "Frankfurt",
+    "severity": "MAJOR",
+    "alert_type": "high_latency",
+    "message": "MAJOR: Latency 387ms exceeds threshold on FRA-ER-08",
+    "metric_value": {
+      "name": "rtt_ms",
+      "value": 216
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-13T07:01:38.420173",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-DFDE103F",
+    "incident_id": "INC-969653",
+    "device": "FRA-ER-08",
+    "region": "Frankfurt",
+    "severity": "MAJOR",
+    "alert_type": "high_latency",
+    "message": "MAJOR: Latency 286ms exceeds threshold on FRA-ER-08",
+    "metric_value": {
+      "name": "rtt_ms",
+      "value": 593
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-13T06:59:56.420173",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-7DB16A37",
+    "incident_id": "INC-122691",
+    "device": "FRA-PE-05",
+    "region": "Frankfurt",
+    "severity": "MAJOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/0 DOWN on FRA-PE-05",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-14T14:46:03.420230",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-EF066E95",
+    "incident_id": "INC-122691",
+    "device": "FRA-PE-05",
+    "region": "Frankfurt",
+    "severity": "MAJOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/2 DOWN on FRA-PE-05",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-14T14:48:42.420230",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-1DCBF20D",
+    "incident_id": "INC-480184",
+    "device": "SYD-ER-02",
+    "region": "Sydney",
+    "severity": "MINOR",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on SYD-ER-02",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 52
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-15T20:21:32.420280",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-898A48AE",
+    "incident_id": "INC-270482",
+    "device": "MUM-AGG-02",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 87% on MUM-AGG-02",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 96
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-29T02:13:56.420333",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-22C65B39",
+    "incident_id": "INC-893252",
+    "device": "SYD-PE-07",
+    "region": "Sydney",
+    "severity": "MAJOR",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on SYD-PE-07",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 30
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-26T11:47:14.420385",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-A89616B9",
+    "incident_id": "INC-893252",
+    "device": "SYD-PE-07",
+    "region": "Sydney",
+    "severity": "MAJOR",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on SYD-PE-07",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 53
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-26T11:47:24.420385",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-37AA3AF5",
+    "incident_id": "INC-893252",
+    "device": "SYD-PE-07",
+    "region": "Sydney",
+    "severity": "MINOR",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on SYD-PE-07",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 99
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-26T11:42:57.420385",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-3AF75B12",
+    "incident_id": "INC-893252",
+    "device": "SYD-PE-07",
+    "region": "Sydney",
+    "severity": "CRITICAL",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on SYD-PE-07",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 16
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-26T11:46:33.420385",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-B567BB28",
+    "incident_id": "INC-893252",
+    "device": "SYD-PE-07",
+    "region": "Sydney",
+    "severity": "MAJOR",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on SYD-PE-07",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 72
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-26T11:45:48.420385",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-5EB61869",
+    "incident_id": "INC-893252",
+    "device": "SYD-PE-07",
+    "region": "Sydney",
+    "severity": "CRITICAL",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on SYD-PE-07",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 99
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-26T11:43:36.420385",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-F7EB4B2E",
+    "incident_id": "INC-095701",
+    "device": "NEW-AGG-05",
+    "region": "New York",
+    "severity": "CRITICAL",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 94% used on NEW-AGG-05",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 99
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-14T12:36:33.420436",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-137B3CC3",
+    "incident_id": "INC-430391",
+    "device": "LON-ER-05",
+    "region": "London",
+    "severity": "CRITICAL",
+    "alert_type": "crc_errors",
+    "message": "MAJOR: CRC errors 3455/min on LON-ER-05",
+    "metric_value": {
+      "name": "crc_errors_per_min",
+      "value": 19149
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-19T13:16:23.420488",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-94AC38BE",
+    "incident_id": "INC-430391",
+    "device": "LON-ER-05",
+    "region": "London",
+    "severity": "MAJOR",
+    "alert_type": "crc_errors",
+    "message": "MAJOR: CRC errors 43486/min on LON-ER-05",
+    "metric_value": {
+      "name": "crc_errors_per_min",
+      "value": 19834
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-19T13:17:08.420488",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-AD426F88",
+    "incident_id": "INC-822782",
+    "device": "DUB-AGG-03",
+    "region": "Dubai",
+    "severity": "MAJOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/1 DOWN on DUB-AGG-03",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-24T15:57:47.420541",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-0E39D29B",
+    "incident_id": "INC-822782",
+    "device": "DUB-AGG-03",
+    "region": "Dubai",
+    "severity": "MINOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/2 DOWN on DUB-AGG-03",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-24T15:55:37.420541",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-E1E8DC49",
+    "incident_id": "INC-822782",
+    "device": "DUB-AGG-03",
+    "region": "Dubai",
+    "severity": "CRITICAL",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/4 DOWN on DUB-AGG-03",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-24T15:57:28.420541",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-F7D530A7",
+    "incident_id": "INC-822782",
+    "device": "DUB-AGG-03",
+    "region": "Dubai",
+    "severity": "MINOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/4 DOWN on DUB-AGG-03",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-24T15:57:54.420541",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-BA8CE0A7",
+    "incident_id": "INC-383465",
+    "device": "TOK-CR-04",
+    "region": "Tokyo",
+    "severity": "MAJOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/1 DOWN on TOK-CR-04",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-06T00:05:56.420592",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-D4105F8D",
+    "incident_id": "INC-383465",
+    "device": "TOK-CR-04",
+    "region": "Tokyo",
+    "severity": "MINOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/2 DOWN on TOK-CR-04",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-06T00:00:59.420592",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-DD76B2C4",
+    "incident_id": "INC-383465",
+    "device": "TOK-CR-04",
+    "region": "Tokyo",
+    "severity": "MAJOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/0 DOWN on TOK-CR-04",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-06T00:04:33.420592",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-CBF8EB49",
+    "incident_id": "INC-383465",
+    "device": "TOK-CR-04",
+    "region": "Tokyo",
+    "severity": "CRITICAL",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/4 DOWN on TOK-CR-04",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-06T00:02:52.420592",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-45B4C2D8",
+    "incident_id": "INC-383465",
+    "device": "TOK-CR-04",
+    "region": "Tokyo",
+    "severity": "CRITICAL",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/4 DOWN on TOK-CR-04",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-06T00:01:06.420592",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-2A5B4455",
+    "incident_id": "INC-383465",
+    "device": "TOK-CR-04",
+    "region": "Tokyo",
+    "severity": "MINOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/2 DOWN on TOK-CR-04",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-06T00:02:09.420592",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-5ECD9807",
+    "incident_id": "INC-315098",
+    "device": "MUM-AGG-08",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -31dBm on MUM-AGG-08",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -29
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-30T11:59:08.420644",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-3C0CD111",
+    "incident_id": "INC-315098",
+    "device": "MUM-AGG-08",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -35dBm on MUM-AGG-08",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -33
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-30T11:58:52.420644",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-A6A3ACFA",
+    "incident_id": "INC-315098",
+    "device": "MUM-AGG-08",
+    "region": "Mumbai",
+    "severity": "MAJOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -28dBm on MUM-AGG-08",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -25
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-30T11:55:21.420644",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-BC46CB32",
+    "incident_id": "INC-315098",
+    "device": "MUM-AGG-08",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -31dBm on MUM-AGG-08",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -30
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-30T11:55:55.420644",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-48924212",
+    "incident_id": "INC-315098",
+    "device": "MUM-AGG-08",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -28dBm on MUM-AGG-08",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -34
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-30T11:58:53.420644",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-1D7AB6EF",
+    "incident_id": "INC-031051",
+    "device": "SYD-ER-04",
+    "region": "Sydney",
+    "severity": "CRITICAL",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on SYD-ER-04",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 22
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-19T18:32:18.420695",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-03B242E2",
+    "incident_id": "INC-031051",
+    "device": "SYD-ER-04",
+    "region": "Sydney",
+    "severity": "CRITICAL",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on SYD-ER-04",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 53
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-19T18:32:26.420695",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-EC5B61FC",
+    "incident_id": "INC-031051",
+    "device": "SYD-ER-04",
+    "region": "Sydney",
+    "severity": "CRITICAL",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on SYD-ER-04",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 1
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-19T18:32:58.420695",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-A55E5AF4",
+    "incident_id": "INC-829973",
+    "device": "TOK-AGG-08",
+    "region": "Tokyo",
+    "severity": "MINOR",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on TOK-AGG-08",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 35
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-17T19:18:19.420749",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-F5CA68B0",
+    "incident_id": "INC-165667",
+    "device": "FRA-AGG-04",
+    "region": "Frankfurt",
+    "severity": "MAJOR",
+    "alert_type": "crc_errors",
+    "message": "MAJOR: CRC errors 43843/min on FRA-AGG-04",
+    "metric_value": {
+      "name": "crc_errors_per_min",
+      "value": 36721
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-18T08:34:05.420802",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-7A85D4E5",
+    "incident_id": "INC-106513",
+    "device": "TOK-CR-03",
+    "region": "Tokyo",
+    "severity": "MAJOR",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on TOK-CR-03",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 73
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-14T03:36:20.420855",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-BE306A13",
+    "incident_id": "INC-247317",
+    "device": "MUM-AGG-07",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 87% on MUM-AGG-07",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 95
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-25T17:47:27.420907",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-ACB87F2A",
+    "incident_id": "INC-247317",
+    "device": "MUM-AGG-07",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 90% on MUM-AGG-07",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 90
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-25T17:45:26.420907",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-E0069018",
+    "incident_id": "INC-801326",
+    "device": "SIN-AGG-01",
+    "region": "Singapore",
+    "severity": "MAJOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -34dBm on SIN-AGG-01",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -29
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-25T20:20:46.420959",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-A9B97C94",
+    "incident_id": "INC-801326",
+    "device": "SIN-AGG-01",
+    "region": "Singapore",
+    "severity": "MINOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -29dBm on SIN-AGG-01",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -33
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-25T20:20:08.420959",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-FCACC4D8",
+    "incident_id": "INC-801326",
+    "device": "SIN-AGG-01",
+    "region": "Singapore",
+    "severity": "CRITICAL",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -31dBm on SIN-AGG-01",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -34
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-25T20:19:42.420959",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-E76CB79C",
+    "incident_id": "INC-801326",
+    "device": "SIN-AGG-01",
+    "region": "Singapore",
+    "severity": "CRITICAL",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -29dBm on SIN-AGG-01",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -29
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-25T20:22:04.420959",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-F18442C7",
+    "incident_id": "INC-606474",
+    "device": "FRA-AGG-01",
+    "region": "Frankfurt",
+    "severity": "MAJOR",
+    "alert_type": "crc_errors",
+    "message": "MAJOR: CRC errors 22772/min on FRA-AGG-01",
+    "metric_value": {
+      "name": "crc_errors_per_min",
+      "value": 29350
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-29T10:47:14.421013",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-4402EF31",
+    "incident_id": "INC-606474",
+    "device": "FRA-AGG-01",
+    "region": "Frankfurt",
+    "severity": "MAJOR",
+    "alert_type": "crc_errors",
+    "message": "MAJOR: CRC errors 21915/min on FRA-AGG-01",
+    "metric_value": {
+      "name": "crc_errors_per_min",
+      "value": 25145
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-29T10:48:07.421013",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-505C8811",
+    "incident_id": "INC-606474",
+    "device": "FRA-AGG-01",
+    "region": "Frankfurt",
+    "severity": "CRITICAL",
+    "alert_type": "crc_errors",
+    "message": "MAJOR: CRC errors 29734/min on FRA-AGG-01",
+    "metric_value": {
+      "name": "crc_errors_per_min",
+      "value": 52604
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-29T10:50:13.421013",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-F8099D46",
+    "incident_id": "INC-606474",
+    "device": "FRA-AGG-01",
+    "region": "Frankfurt",
+    "severity": "MAJOR",
+    "alert_type": "crc_errors",
+    "message": "MAJOR: CRC errors 40186/min on FRA-AGG-01",
+    "metric_value": {
+      "name": "crc_errors_per_min",
+      "value": 45831
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-29T10:47:37.421013",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-ACD69EC9",
+    "incident_id": "INC-606474",
+    "device": "FRA-AGG-01",
+    "region": "Frankfurt",
+    "severity": "CRITICAL",
+    "alert_type": "crc_errors",
+    "message": "MAJOR: CRC errors 3903/min on FRA-AGG-01",
+    "metric_value": {
+      "name": "crc_errors_per_min",
+      "value": 7443
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-29T10:46:29.421013",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-17FF9E97",
+    "incident_id": "INC-872343",
+    "device": "DUB-ER-07",
+    "region": "Dubai",
+    "severity": "MAJOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -26dBm on DUB-ER-07",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -30
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-18T03:55:11.421073",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-ACBAE1B9",
+    "incident_id": "INC-872343",
+    "device": "DUB-ER-07",
+    "region": "Dubai",
+    "severity": "MAJOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -25dBm on DUB-ER-07",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -35
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-18T03:56:26.421073",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-CED881A8",
+    "incident_id": "INC-872343",
+    "device": "DUB-ER-07",
+    "region": "Dubai",
+    "severity": "MINOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -35dBm on DUB-ER-07",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -25
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-18T03:54:04.421073",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-A61FFE7B",
+    "incident_id": "INC-872343",
+    "device": "DUB-ER-07",
+    "region": "Dubai",
+    "severity": "MINOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -34dBm on DUB-ER-07",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -30
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-18T03:55:50.421073",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-7C2552C1",
+    "incident_id": "INC-500978",
+    "device": "LON-PE-07",
+    "region": "London",
+    "severity": "MINOR",
+    "alert_type": "bgp_flap",
+    "message": "CRITICAL: BGP session DOWN on LON-PE-07 peer 10.160.198.157",
+    "metric_value": {
+      "name": "bgp_session_state",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-23T11:28:51.421128",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-2D5AC90C",
+    "incident_id": "INC-812191",
+    "device": "NEW-ER-08",
+    "region": "New York",
+    "severity": "MAJOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 98% used on NEW-ER-08",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 96
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-21T13:50:30.421179",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-E649FCE6",
+    "incident_id": "INC-812191",
+    "device": "NEW-ER-08",
+    "region": "New York",
+    "severity": "CRITICAL",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 95% used on NEW-ER-08",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 98
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-21T13:54:06.421179",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-4A126FB1",
+    "incident_id": "INC-812191",
+    "device": "NEW-ER-08",
+    "region": "New York",
+    "severity": "MINOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 93% used on NEW-ER-08",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 92
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-21T13:52:51.421179",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-2F6A32C8",
+    "incident_id": "INC-812191",
+    "device": "NEW-ER-08",
+    "region": "New York",
+    "severity": "MINOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 90% used on NEW-ER-08",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 93
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-21T13:54:03.421179",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-F03BFCA5",
+    "incident_id": "INC-812191",
+    "device": "NEW-ER-08",
+    "region": "New York",
+    "severity": "MAJOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 99% used on NEW-ER-08",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 92
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-21T13:51:36.421179",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-5686BBC3",
+    "incident_id": "INC-812191",
+    "device": "NEW-ER-08",
+    "region": "New York",
+    "severity": "CRITICAL",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 94% used on NEW-ER-08",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 92
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-21T13:51:07.421179",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-D8B99400",
+    "incident_id": "INC-939909",
+    "device": "MUM-CR-04",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 37% on MUM-CR-04",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 15.0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-12T04:13:09.421230",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-D554FA78",
+    "incident_id": "INC-939909",
+    "device": "MUM-CR-04",
+    "region": "Mumbai",
+    "severity": "MAJOR",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 26% on MUM-CR-04",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 35.6
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-12T04:12:52.421230",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-C32B1780",
+    "incident_id": "INC-939909",
+    "device": "MUM-CR-04",
+    "region": "Mumbai",
+    "severity": "MAJOR",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 36% on MUM-CR-04",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 29.8
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-12T04:13:56.421230",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-C6C3BAF2",
+    "incident_id": "INC-939909",
+    "device": "MUM-CR-04",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 39% on MUM-CR-04",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 20.6
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-12T04:12:13.421230",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-438B6A50",
+    "incident_id": "INC-939909",
+    "device": "MUM-CR-04",
+    "region": "Mumbai",
+    "severity": "MAJOR",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 31% on MUM-CR-04",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 32.9
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-12T04:12:47.421230",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-56930218",
+    "incident_id": "INC-939909",
+    "device": "MUM-CR-04",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 31% on MUM-CR-04",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 26.7
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-12T04:14:00.421230",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-00A5638D",
+    "incident_id": "INC-543534",
+    "device": "DUB-AGG-05",
+    "region": "Dubai",
+    "severity": "MAJOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -32dBm on DUB-AGG-05",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -31
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-05T03:40:41.421280",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-238D203C",
+    "incident_id": "INC-543534",
+    "device": "DUB-AGG-05",
+    "region": "Dubai",
+    "severity": "CRITICAL",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -27dBm on DUB-AGG-05",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -34
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-05T03:41:22.421280",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-4E2A55C8",
+    "incident_id": "INC-543534",
+    "device": "DUB-AGG-05",
+    "region": "Dubai",
+    "severity": "MINOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -28dBm on DUB-AGG-05",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -26
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-05T03:39:44.421280",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-7A380639",
+    "incident_id": "INC-510799",
+    "device": "LON-ER-05",
+    "region": "London",
+    "severity": "CRITICAL",
+    "alert_type": "high_latency",
+    "message": "MAJOR: Latency 441ms exceeds threshold on LON-ER-05",
+    "metric_value": {
+      "name": "rtt_ms",
+      "value": 157
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-16T14:24:19.421331",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-3ED6A749",
+    "incident_id": "INC-510799",
+    "device": "LON-ER-05",
+    "region": "London",
+    "severity": "MAJOR",
+    "alert_type": "high_latency",
+    "message": "MAJOR: Latency 355ms exceeds threshold on LON-ER-05",
+    "metric_value": {
+      "name": "rtt_ms",
+      "value": 229
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-16T14:25:53.421331",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-5C45FDFF",
+    "incident_id": "INC-510799",
+    "device": "LON-ER-05",
+    "region": "London",
+    "severity": "MINOR",
+    "alert_type": "high_latency",
+    "message": "MAJOR: Latency 272ms exceeds threshold on LON-ER-05",
+    "metric_value": {
+      "name": "rtt_ms",
+      "value": 491
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-16T14:24:15.421331",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-BAFF1DD7",
+    "incident_id": "INC-513542",
+    "device": "MUM-PE-02",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/1 DOWN on MUM-PE-02",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-08T00:00:06.421385",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-A0788E9A",
+    "incident_id": "INC-513542",
+    "device": "MUM-PE-02",
+    "region": "Mumbai",
+    "severity": "MAJOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/4 DOWN on MUM-PE-02",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-08T00:04:15.421385",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-62016F90",
+    "incident_id": "INC-513542",
+    "device": "MUM-PE-02",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/1 DOWN on MUM-PE-02",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-08T00:00:23.421385",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-F37C7653",
+    "incident_id": "INC-513542",
+    "device": "MUM-PE-02",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/4 DOWN on MUM-PE-02",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-08T00:03:34.421385",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-E43AA503",
+    "incident_id": "INC-513542",
+    "device": "MUM-PE-02",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/2 DOWN on MUM-PE-02",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-08T00:02:48.421385",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-98B1DCDA",
+    "incident_id": "INC-513542",
+    "device": "MUM-PE-02",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/2 DOWN on MUM-PE-02",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-08T00:01:18.421385",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-74544773",
+    "incident_id": "INC-808412",
+    "device": "SYD-PE-01",
+    "region": "Sydney",
+    "severity": "CRITICAL",
+    "alert_type": "high_latency",
+    "message": "MAJOR: Latency 293ms exceeds threshold on SYD-PE-01",
+    "metric_value": {
+      "name": "rtt_ms",
+      "value": 193
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-13T04:22:51.421435",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-F800C51C",
+    "incident_id": "INC-808412",
+    "device": "SYD-PE-01",
+    "region": "Sydney",
+    "severity": "MINOR",
+    "alert_type": "high_latency",
+    "message": "MAJOR: Latency 181ms exceeds threshold on SYD-PE-01",
+    "metric_value": {
+      "name": "rtt_ms",
+      "value": 526
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-13T04:19:18.421435",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-57D23F01",
+    "incident_id": "INC-808412",
+    "device": "SYD-PE-01",
+    "region": "Sydney",
+    "severity": "CRITICAL",
+    "alert_type": "high_latency",
+    "message": "MAJOR: Latency 449ms exceeds threshold on SYD-PE-01",
+    "metric_value": {
+      "name": "rtt_ms",
+      "value": 333
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-13T04:20:23.421435",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-45D4E18F",
+    "incident_id": "INC-808412",
+    "device": "SYD-PE-01",
+    "region": "Sydney",
+    "severity": "CRITICAL",
+    "alert_type": "high_latency",
+    "message": "MAJOR: Latency 305ms exceeds threshold on SYD-PE-01",
+    "metric_value": {
+      "name": "rtt_ms",
+      "value": 175
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-13T04:19:41.421435",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-7844338F",
+    "incident_id": "INC-244935",
+    "device": "TOK-AGG-03",
+    "region": "Tokyo",
+    "severity": "MINOR",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on TOK-AGG-03",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 76
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-01T22:36:09.421487",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-C53063EA",
+    "incident_id": "INC-244935",
+    "device": "TOK-AGG-03",
+    "region": "Tokyo",
+    "severity": "CRITICAL",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on TOK-AGG-03",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 4
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-01T22:32:03.421487",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-2BD2B9F7",
+    "incident_id": "INC-244935",
+    "device": "TOK-AGG-03",
+    "region": "Tokyo",
+    "severity": "CRITICAL",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on TOK-AGG-03",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 62
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-01T22:35:03.421487",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-F4EF2D03",
+    "incident_id": "INC-244935",
+    "device": "TOK-AGG-03",
+    "region": "Tokyo",
+    "severity": "MAJOR",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on TOK-AGG-03",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 63
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-01T22:32:09.421487",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-49FCBD2A",
+    "incident_id": "INC-740164",
+    "device": "DUB-PE-04",
+    "region": "Dubai",
+    "severity": "MAJOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -25dBm on DUB-PE-04",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -28
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-11T08:28:17.421537",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-5BD67F39",
+    "incident_id": "INC-740164",
+    "device": "DUB-PE-04",
+    "region": "Dubai",
+    "severity": "MINOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -27dBm on DUB-PE-04",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -34
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-11T08:26:06.421537",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-32EABF6D",
+    "incident_id": "INC-740164",
+    "device": "DUB-PE-04",
+    "region": "Dubai",
+    "severity": "MINOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -26dBm on DUB-PE-04",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -32
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-11T08:28:50.421537",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-6B481B0A",
+    "incident_id": "INC-740164",
+    "device": "DUB-PE-04",
+    "region": "Dubai",
+    "severity": "CRITICAL",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -26dBm on DUB-PE-04",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -35
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-11T08:25:43.421537",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-B558EE2D",
+    "incident_id": "INC-740164",
+    "device": "DUB-PE-04",
+    "region": "Dubai",
+    "severity": "MAJOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -33dBm on DUB-PE-04",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -35
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-11T08:26:52.421537",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-BCE19B86",
+    "incident_id": "INC-427868",
+    "device": "SYD-CR-08",
+    "region": "Sydney",
+    "severity": "MINOR",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on SYD-CR-08",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 82
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-12T06:58:31.421587",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-6EECFCD9",
+    "incident_id": "INC-427868",
+    "device": "SYD-CR-08",
+    "region": "Sydney",
+    "severity": "CRITICAL",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on SYD-CR-08",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 32
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-12T07:00:08.421587",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-0A574289",
+    "incident_id": "INC-427868",
+    "device": "SYD-CR-08",
+    "region": "Sydney",
+    "severity": "MAJOR",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on SYD-CR-08",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 62
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-12T06:58:53.421587",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-A990BD0B",
+    "incident_id": "INC-427868",
+    "device": "SYD-CR-08",
+    "region": "Sydney",
+    "severity": "MAJOR",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on SYD-CR-08",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 44
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-12T06:57:17.421587",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-DC18C670",
+    "incident_id": "INC-280598",
+    "device": "NEW-ER-04",
+    "region": "New York",
+    "severity": "MAJOR",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on NEW-ER-04",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 85
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-30T14:33:23.421639",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-9813DB48",
+    "incident_id": "INC-280598",
+    "device": "NEW-ER-04",
+    "region": "New York",
+    "severity": "CRITICAL",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on NEW-ER-04",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 13
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-30T14:35:40.421639",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-F658916C",
+    "incident_id": "INC-280598",
+    "device": "NEW-ER-04",
+    "region": "New York",
+    "severity": "CRITICAL",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on NEW-ER-04",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 24
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-30T14:34:53.421639",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-A59304CC",
+    "incident_id": "INC-280598",
+    "device": "NEW-ER-04",
+    "region": "New York",
+    "severity": "MAJOR",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on NEW-ER-04",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 86
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-30T14:36:23.421639",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-769710DA",
+    "incident_id": "INC-280598",
+    "device": "NEW-ER-04",
+    "region": "New York",
+    "severity": "MAJOR",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on NEW-ER-04",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 39
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-30T14:37:45.421639",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-5362512C",
+    "incident_id": "INC-280598",
+    "device": "NEW-ER-04",
+    "region": "New York",
+    "severity": "MINOR",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on NEW-ER-04",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 81
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-30T14:36:30.421639",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-A30402E0",
+    "incident_id": "INC-053315",
+    "device": "DUB-ER-02",
+    "region": "Dubai",
+    "severity": "MAJOR",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on DUB-ER-02",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 67
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-20T06:18:42.421689",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-6DAE8D5F",
+    "incident_id": "INC-053315",
+    "device": "DUB-ER-02",
+    "region": "Dubai",
+    "severity": "MAJOR",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on DUB-ER-02",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 78
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-20T06:17:27.421689",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-356D0AEC",
+    "incident_id": "INC-053315",
+    "device": "DUB-ER-02",
+    "region": "Dubai",
+    "severity": "CRITICAL",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on DUB-ER-02",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 39
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-20T06:16:49.421689",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-9EF47D7F",
+    "incident_id": "INC-053315",
+    "device": "DUB-ER-02",
+    "region": "Dubai",
+    "severity": "MAJOR",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on DUB-ER-02",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 28
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-20T06:18:53.421689",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-03467295",
+    "incident_id": "INC-053315",
+    "device": "DUB-ER-02",
+    "region": "Dubai",
+    "severity": "MINOR",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on DUB-ER-02",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 25
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-20T06:20:38.421689",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-61C8AF63",
+    "incident_id": "INC-923226",
+    "device": "TOK-AGG-06",
+    "region": "Tokyo",
+    "severity": "CRITICAL",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on TOK-AGG-06",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 77
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-25T20:28:11.421741",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-1BA08D95",
+    "incident_id": "INC-634216",
+    "device": "FRA-ER-03",
+    "region": "Frankfurt",
+    "severity": "MINOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/2 DOWN on FRA-ER-03",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-10T07:02:48.421791",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-BEB8D537",
+    "incident_id": "INC-634216",
+    "device": "FRA-ER-03",
+    "region": "Frankfurt",
+    "severity": "MAJOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/1 DOWN on FRA-ER-03",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-10T07:00:31.421791",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-279802B8",
+    "incident_id": "INC-754330",
+    "device": "NEW-CR-06",
+    "region": "New York",
+    "severity": "CRITICAL",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/4 DOWN on NEW-CR-06",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-09T02:49:17.421843",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-F4683617",
+    "incident_id": "INC-754330",
+    "device": "NEW-CR-06",
+    "region": "New York",
+    "severity": "MINOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/1 DOWN on NEW-CR-06",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-09T02:49:29.421843",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-1DA30C09",
+    "incident_id": "INC-754330",
+    "device": "NEW-CR-06",
+    "region": "New York",
+    "severity": "MINOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/3 DOWN on NEW-CR-06",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-09T02:47:21.421843",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-BD83532D",
+    "incident_id": "INC-754330",
+    "device": "NEW-CR-06",
+    "region": "New York",
+    "severity": "MINOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/3 DOWN on NEW-CR-06",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-09T02:50:11.421843",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-7EE7BAE7",
+    "incident_id": "INC-145868",
+    "device": "SIN-CR-08",
+    "region": "Singapore",
+    "severity": "MINOR",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on SIN-CR-08",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 10
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-01T15:44:05.421895",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-0AE44D3A",
+    "incident_id": "INC-145868",
+    "device": "SIN-CR-08",
+    "region": "Singapore",
+    "severity": "MINOR",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on SIN-CR-08",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 41
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-01T15:43:50.421895",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-6C5DAB1B",
+    "incident_id": "INC-145868",
+    "device": "SIN-CR-08",
+    "region": "Singapore",
+    "severity": "MAJOR",
+    "alert_type": "dns_outage",
+    "message": "MAJOR: DNS resolution timeout on SIN-CR-08",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 98
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-01T15:42:52.421895",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-BC4ED1C5",
+    "incident_id": "INC-429401",
+    "device": "DUB-PE-08",
+    "region": "Dubai",
+    "severity": "MINOR",
+    "alert_type": "bgp_flap",
+    "message": "CRITICAL: BGP session DOWN on DUB-PE-08 peer 10.219.244.99",
+    "metric_value": {
+      "name": "bgp_session_state",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-02T18:33:38.421945",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-1309986D",
+    "incident_id": "INC-429401",
+    "device": "DUB-PE-08",
+    "region": "Dubai",
+    "severity": "CRITICAL",
+    "alert_type": "bgp_flap",
+    "message": "CRITICAL: BGP session DOWN on DUB-PE-08 peer 10.159.66.27",
+    "metric_value": {
+      "name": "bgp_session_state",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-02T18:32:03.421945",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-BC9EC1B1",
+    "incident_id": "INC-698169",
+    "device": "SIN-ER-04",
+    "region": "Singapore",
+    "severity": "MAJOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -27dBm on SIN-ER-04",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -26
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-03T04:41:15.421996",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-44CB0119",
+    "incident_id": "INC-698169",
+    "device": "SIN-ER-04",
+    "region": "Singapore",
+    "severity": "MINOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -25dBm on SIN-ER-04",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -33
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-03T04:43:19.421996",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-56015D2E",
+    "incident_id": "INC-698169",
+    "device": "SIN-ER-04",
+    "region": "Singapore",
+    "severity": "CRITICAL",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -34dBm on SIN-ER-04",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -33
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-03T04:41:25.421996",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-105C3102",
+    "incident_id": "INC-698169",
+    "device": "SIN-ER-04",
+    "region": "Singapore",
+    "severity": "CRITICAL",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -28dBm on SIN-ER-04",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -33
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-03T04:42:31.421996",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-6F22BDAC",
+    "incident_id": "INC-883561",
+    "device": "FRA-AGG-05",
+    "region": "Frankfurt",
+    "severity": "MAJOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 97% used on FRA-AGG-05",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 91
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-14T05:03:30.422046",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-56B44635",
+    "incident_id": "INC-883561",
+    "device": "FRA-AGG-05",
+    "region": "Frankfurt",
+    "severity": "MAJOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 94% used on FRA-AGG-05",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 91
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-14T05:03:17.422046",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-B2BDECFA",
+    "incident_id": "INC-883561",
+    "device": "FRA-AGG-05",
+    "region": "Frankfurt",
+    "severity": "CRITICAL",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 91% used on FRA-AGG-05",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 96
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-14T04:59:28.422046",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-634250BE",
+    "incident_id": "INC-883561",
+    "device": "FRA-AGG-05",
+    "region": "Frankfurt",
+    "severity": "MAJOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 96% used on FRA-AGG-05",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 92
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-14T05:03:28.422046",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-B27F8079",
+    "incident_id": "INC-883561",
+    "device": "FRA-AGG-05",
+    "region": "Frankfurt",
+    "severity": "MINOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 91% used on FRA-AGG-05",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 98
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-14T04:59:38.422046",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-F294584C",
+    "incident_id": "INC-883561",
+    "device": "FRA-AGG-05",
+    "region": "Frankfurt",
+    "severity": "MINOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 96% used on FRA-AGG-05",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 90
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-14T05:02:17.422046",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-B524AFED",
+    "incident_id": "INC-148465",
+    "device": "SIN-CR-05",
+    "region": "Singapore",
+    "severity": "MAJOR",
+    "alert_type": "high_latency",
+    "message": "MAJOR: Latency 234ms exceeds threshold on SIN-CR-05",
+    "metric_value": {
+      "name": "rtt_ms",
+      "value": 479
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-24T19:37:56.422098",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-9335E823",
+    "incident_id": "INC-148465",
+    "device": "SIN-CR-05",
+    "region": "Singapore",
+    "severity": "MAJOR",
+    "alert_type": "high_latency",
+    "message": "MAJOR: Latency 405ms exceeds threshold on SIN-CR-05",
+    "metric_value": {
+      "name": "rtt_ms",
+      "value": 168
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-24T19:38:49.422098",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-60F6BAFC",
+    "incident_id": "INC-148465",
+    "device": "SIN-CR-05",
+    "region": "Singapore",
+    "severity": "MINOR",
+    "alert_type": "high_latency",
+    "message": "MAJOR: Latency 485ms exceeds threshold on SIN-CR-05",
+    "metric_value": {
+      "name": "rtt_ms",
+      "value": 467
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-24T19:38:16.422098",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-AE909486",
+    "incident_id": "INC-148465",
+    "device": "SIN-CR-05",
+    "region": "Singapore",
+    "severity": "CRITICAL",
+    "alert_type": "high_latency",
+    "message": "MAJOR: Latency 331ms exceeds threshold on SIN-CR-05",
+    "metric_value": {
+      "name": "rtt_ms",
+      "value": 517
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-24T19:35:49.422098",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-D49D35F9",
+    "incident_id": "INC-148465",
+    "device": "SIN-CR-05",
+    "region": "Singapore",
+    "severity": "CRITICAL",
+    "alert_type": "high_latency",
+    "message": "MAJOR: Latency 351ms exceeds threshold on SIN-CR-05",
+    "metric_value": {
+      "name": "rtt_ms",
+      "value": 474
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-24T19:35:32.422098",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-29BFD5CD",
+    "incident_id": "INC-662994",
+    "device": "MUM-AGG-05",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 98% used on MUM-AGG-05",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 92
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-22T20:47:04.422148",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-8398FF49",
+    "incident_id": "INC-662994",
+    "device": "MUM-AGG-05",
+    "region": "Mumbai",
+    "severity": "MAJOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 92% used on MUM-AGG-05",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 98
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-22T20:47:04.422148",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-0F0BDF54",
+    "incident_id": "INC-662994",
+    "device": "MUM-AGG-05",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 92% used on MUM-AGG-05",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 91
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-22T20:47:29.422148",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-B11BCB1D",
+    "incident_id": "INC-662994",
+    "device": "MUM-AGG-05",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 91% used on MUM-AGG-05",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 93
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-22T20:47:44.422148",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-07DC98BD",
+    "incident_id": "INC-369957",
+    "device": "MUM-CR-07",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "crc_errors",
+    "message": "MAJOR: CRC errors 3117/min on MUM-CR-07",
+    "metric_value": {
+      "name": "crc_errors_per_min",
+      "value": 48963
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-02T20:08:25.422198",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-CE095C67",
+    "incident_id": "INC-369957",
+    "device": "MUM-CR-07",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "crc_errors",
+    "message": "MAJOR: CRC errors 45901/min on MUM-CR-07",
+    "metric_value": {
+      "name": "crc_errors_per_min",
+      "value": 13809
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-02T20:08:18.422198",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-C3DE93A9",
+    "incident_id": "INC-369957",
+    "device": "MUM-CR-07",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "crc_errors",
+    "message": "MAJOR: CRC errors 45738/min on MUM-CR-07",
+    "metric_value": {
+      "name": "crc_errors_per_min",
+      "value": 25220
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-02T20:10:56.422198",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-8C09760A",
+    "incident_id": "INC-214895",
+    "device": "MUM-PE-08",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "crc_errors",
+    "message": "MAJOR: CRC errors 3617/min on MUM-PE-08",
+    "metric_value": {
+      "name": "crc_errors_per_min",
+      "value": 40844
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-03T18:26:40.422248",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-AAAC57FC",
+    "incident_id": "INC-214895",
+    "device": "MUM-PE-08",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "crc_errors",
+    "message": "MAJOR: CRC errors 34104/min on MUM-PE-08",
+    "metric_value": {
+      "name": "crc_errors_per_min",
+      "value": 23398
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-03T18:25:55.422248",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-22A07203",
+    "incident_id": "INC-433200",
+    "device": "NEW-ER-01",
+    "region": "New York",
+    "severity": "CRITICAL",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on NEW-ER-01",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 15
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-17T01:12:13.422298",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-636C60C8",
+    "incident_id": "INC-433200",
+    "device": "NEW-ER-01",
+    "region": "New York",
+    "severity": "MINOR",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on NEW-ER-01",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 22
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-17T01:11:54.422298",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-659443BB",
+    "incident_id": "INC-433200",
+    "device": "NEW-ER-01",
+    "region": "New York",
+    "severity": "CRITICAL",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on NEW-ER-01",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 59
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-17T01:10:16.422298",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-E6C04A4D",
+    "incident_id": "INC-176936",
+    "device": "SIN-ER-05",
+    "region": "Singapore",
+    "severity": "CRITICAL",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -32dBm on SIN-ER-05",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -35
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-16T15:25:18.422349",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-44CE76F8",
+    "incident_id": "INC-163287",
+    "device": "DUB-AGG-08",
+    "region": "Dubai",
+    "severity": "MINOR",
+    "alert_type": "bgp_flap",
+    "message": "CRITICAL: BGP session DOWN on DUB-AGG-08 peer 10.37.183.238",
+    "metric_value": {
+      "name": "bgp_session_state",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-28T13:16:32.422406",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-F150B48C",
+    "incident_id": "INC-163287",
+    "device": "DUB-AGG-08",
+    "region": "Dubai",
+    "severity": "MINOR",
+    "alert_type": "bgp_flap",
+    "message": "CRITICAL: BGP session DOWN on DUB-AGG-08 peer 10.200.151.246",
+    "metric_value": {
+      "name": "bgp_session_state",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-28T13:17:20.422406",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-AD8B6C26",
+    "incident_id": "INC-163287",
+    "device": "DUB-AGG-08",
+    "region": "Dubai",
+    "severity": "MINOR",
+    "alert_type": "bgp_flap",
+    "message": "CRITICAL: BGP session DOWN on DUB-AGG-08 peer 10.156.107.192",
+    "metric_value": {
+      "name": "bgp_session_state",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-28T13:20:35.422406",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-37D778C9",
+    "incident_id": "INC-163287",
+    "device": "DUB-AGG-08",
+    "region": "Dubai",
+    "severity": "CRITICAL",
+    "alert_type": "bgp_flap",
+    "message": "CRITICAL: BGP session DOWN on DUB-AGG-08 peer 10.236.37.75",
+    "metric_value": {
+      "name": "bgp_session_state",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-28T13:20:50.422406",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-C094DF6E",
+    "incident_id": "INC-163287",
+    "device": "DUB-AGG-08",
+    "region": "Dubai",
+    "severity": "MAJOR",
+    "alert_type": "bgp_flap",
+    "message": "CRITICAL: BGP session DOWN on DUB-AGG-08 peer 10.168.156.178",
+    "metric_value": {
+      "name": "bgp_session_state",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-28T13:17:39.422406",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-DA85B896",
+    "incident_id": "INC-163287",
+    "device": "DUB-AGG-08",
+    "region": "Dubai",
+    "severity": "MAJOR",
+    "alert_type": "bgp_flap",
+    "message": "CRITICAL: BGP session DOWN on DUB-AGG-08 peer 10.169.245.119",
+    "metric_value": {
+      "name": "bgp_session_state",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-28T13:18:21.422406",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-6EADF656",
+    "incident_id": "INC-727889",
+    "device": "MUM-AGG-05",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 99% on MUM-AGG-05",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 95
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-25T00:35:56.422457",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-118B8853",
+    "incident_id": "INC-727889",
+    "device": "MUM-AGG-05",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 95% on MUM-AGG-05",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 87
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-25T00:37:45.422457",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-B93C3367",
+    "incident_id": "INC-727889",
+    "device": "MUM-AGG-05",
+    "region": "Mumbai",
+    "severity": "MAJOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 88% on MUM-AGG-05",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 91
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-25T00:39:24.422457",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-E23DD059",
+    "incident_id": "INC-868727",
+    "device": "MUM-AGG-01",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 87% on MUM-AGG-01",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 99
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-24T13:09:44.422507",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-B720279F",
+    "incident_id": "INC-868727",
+    "device": "MUM-AGG-01",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 85% on MUM-AGG-01",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 93
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-24T13:08:53.422507",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-2B7A5F9E",
+    "incident_id": "INC-868727",
+    "device": "MUM-AGG-01",
+    "region": "Mumbai",
+    "severity": "MAJOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 86% on MUM-AGG-01",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 87
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-24T13:08:19.422507",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-6844ABBC",
+    "incident_id": "INC-868727",
+    "device": "MUM-AGG-01",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 85% on MUM-AGG-01",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 94
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-24T13:08:04.422507",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-296A1601",
+    "incident_id": "INC-868727",
+    "device": "MUM-AGG-01",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 94% on MUM-AGG-01",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 95
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-24T13:07:42.422507",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-C0ABC9D7",
+    "incident_id": "INC-868727",
+    "device": "MUM-AGG-01",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 85% on MUM-AGG-01",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 91
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-24T13:10:51.422507",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-256B25B6",
+    "incident_id": "INC-487347",
+    "device": "FRA-AGG-01",
+    "region": "Frankfurt",
+    "severity": "MINOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -35dBm on FRA-AGG-01",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -33
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-11T10:59:13.422557",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-080176D4",
+    "incident_id": "INC-487347",
+    "device": "FRA-AGG-01",
+    "region": "Frankfurt",
+    "severity": "MAJOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -26dBm on FRA-AGG-01",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -28
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-11T11:03:00.422557",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-65CFCD82",
+    "incident_id": "INC-487347",
+    "device": "FRA-AGG-01",
+    "region": "Frankfurt",
+    "severity": "MINOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -31dBm on FRA-AGG-01",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -29
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-11T11:03:49.422557",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-9D473786",
+    "incident_id": "INC-487347",
+    "device": "FRA-AGG-01",
+    "region": "Frankfurt",
+    "severity": "MAJOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -30dBm on FRA-AGG-01",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -30
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-11T11:03:43.422557",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-EC778B87",
+    "incident_id": "INC-581223",
+    "device": "DUB-CR-05",
+    "region": "Dubai",
+    "severity": "MINOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -33dBm on DUB-CR-05",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -31
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-14T04:13:26.422607",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-699BF8D6",
+    "incident_id": "INC-581223",
+    "device": "DUB-CR-05",
+    "region": "Dubai",
+    "severity": "CRITICAL",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -34dBm on DUB-CR-05",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -29
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-14T04:13:02.422607",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-B5EB005A",
+    "incident_id": "INC-581223",
+    "device": "DUB-CR-05",
+    "region": "Dubai",
+    "severity": "MINOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -34dBm on DUB-CR-05",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -35
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-14T04:13:45.422607",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-0A62EF85",
+    "incident_id": "INC-581223",
+    "device": "DUB-CR-05",
+    "region": "Dubai",
+    "severity": "MINOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -31dBm on DUB-CR-05",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -26
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-14T04:14:18.422607",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-42231BF2",
+    "incident_id": "INC-581223",
+    "device": "DUB-CR-05",
+    "region": "Dubai",
+    "severity": "MINOR",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -34dBm on DUB-CR-05",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -33
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-14T04:17:02.422607",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-20090B05",
+    "incident_id": "INC-581223",
+    "device": "DUB-CR-05",
+    "region": "Dubai",
+    "severity": "CRITICAL",
+    "alert_type": "optical_degradation",
+    "message": "CRITICAL: Optical Rx power -28dBm on DUB-CR-05",
+    "metric_value": {
+      "name": "rx_power_dbm",
+      "value": -34
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-14T04:15:10.422607",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-AFDC0498",
+    "incident_id": "INC-665876",
+    "device": "MUM-AGG-05",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "high_latency",
+    "message": "MAJOR: Latency 474ms exceeds threshold on MUM-AGG-05",
+    "metric_value": {
+      "name": "rtt_ms",
+      "value": 576
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-10T02:27:03.422657",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-2F320CEA",
+    "incident_id": "INC-909670",
+    "device": "FRA-CR-03",
+    "region": "Frankfurt",
+    "severity": "CRITICAL",
+    "alert_type": "bgp_flap",
+    "message": "CRITICAL: BGP session DOWN on FRA-CR-03 peer 10.181.111.229",
+    "metric_value": {
+      "name": "bgp_session_state",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-14T14:03:50.422707",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-E16B7268",
+    "incident_id": "INC-688937",
+    "device": "NEW-AGG-03",
+    "region": "New York",
+    "severity": "CRITICAL",
+    "alert_type": "crc_errors",
+    "message": "MAJOR: CRC errors 41227/min on NEW-AGG-03",
+    "metric_value": {
+      "name": "crc_errors_per_min",
+      "value": 41176
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-04T01:14:17.422759",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-EE137E91",
+    "incident_id": "INC-688937",
+    "device": "NEW-AGG-03",
+    "region": "New York",
+    "severity": "MINOR",
+    "alert_type": "crc_errors",
+    "message": "MAJOR: CRC errors 28733/min on NEW-AGG-03",
+    "metric_value": {
+      "name": "crc_errors_per_min",
+      "value": 56887
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-04T01:12:48.422759",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-94CD733F",
+    "incident_id": "INC-562729",
+    "device": "SYD-CR-07",
+    "region": "Sydney",
+    "severity": "CRITICAL",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 98% on SYD-CR-07",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 92
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-14T08:53:51.422809",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-BF2F0C3F",
+    "incident_id": "INC-562729",
+    "device": "SYD-CR-07",
+    "region": "Sydney",
+    "severity": "MAJOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 92% on SYD-CR-07",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 88
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-14T08:58:02.422809",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-2FF8780E",
+    "incident_id": "INC-562729",
+    "device": "SYD-CR-07",
+    "region": "Sydney",
+    "severity": "CRITICAL",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 87% on SYD-CR-07",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 89
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-14T08:57:02.422809",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-4EC3A659",
+    "incident_id": "INC-016272",
+    "device": "DUB-CR-08",
+    "region": "Dubai",
+    "severity": "MINOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 95% used on DUB-CR-08",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 94
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-23T06:55:57.422861",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-D9A8F60A",
+    "incident_id": "INC-016272",
+    "device": "DUB-CR-08",
+    "region": "Dubai",
+    "severity": "MAJOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 98% used on DUB-CR-08",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 96
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-23T06:56:09.422861",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-7AA25EFA",
+    "incident_id": "INC-016272",
+    "device": "DUB-CR-08",
+    "region": "Dubai",
+    "severity": "CRITICAL",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 95% used on DUB-CR-08",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 94
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-23T06:56:21.422861",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-06A7ED17",
+    "incident_id": "INC-016272",
+    "device": "DUB-CR-08",
+    "region": "Dubai",
+    "severity": "MAJOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 93% used on DUB-CR-08",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 91
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-02-23T06:57:25.422861",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-B44E4794",
+    "incident_id": "INC-556464",
+    "device": "DUB-CR-07",
+    "region": "Dubai",
+    "severity": "CRITICAL",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on DUB-CR-07",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 30
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-15T06:05:27.422910",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-CA038E39",
+    "incident_id": "INC-053100",
+    "device": "TOK-PE-07",
+    "region": "Tokyo",
+    "severity": "MAJOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 95% used on TOK-PE-07",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 94
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-22T10:34:15.422961",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-3A1619FB",
+    "incident_id": "INC-053100",
+    "device": "TOK-PE-07",
+    "region": "Tokyo",
+    "severity": "CRITICAL",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 95% used on TOK-PE-07",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 94
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-22T10:36:26.422961",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-2C2B41C5",
+    "incident_id": "INC-053100",
+    "device": "TOK-PE-07",
+    "region": "Tokyo",
+    "severity": "MAJOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 97% used on TOK-PE-07",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 94
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-22T10:33:09.422961",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-284B02FC",
+    "incident_id": "INC-053100",
+    "device": "TOK-PE-07",
+    "region": "Tokyo",
+    "severity": "MAJOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 96% used on TOK-PE-07",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 93
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-22T10:36:30.422961",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-590BC4AD",
+    "incident_id": "INC-053100",
+    "device": "TOK-PE-07",
+    "region": "Tokyo",
+    "severity": "MINOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 94% used on TOK-PE-07",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 99
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-22T10:34:15.422961",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-66FA9FA3",
+    "incident_id": "INC-053100",
+    "device": "TOK-PE-07",
+    "region": "Tokyo",
+    "severity": "CRITICAL",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 92% used on TOK-PE-07",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 90
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-22T10:31:59.422961",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-B1A1F590",
+    "incident_id": "INC-232719",
+    "device": "MUM-ER-07",
+    "region": "Mumbai",
+    "severity": "MAJOR",
+    "alert_type": "crc_errors",
+    "message": "MAJOR: CRC errors 4672/min on MUM-ER-07",
+    "metric_value": {
+      "name": "crc_errors_per_min",
+      "value": 13095
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-01T06:05:23.423013",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-C4E9570E",
+    "incident_id": "INC-232719",
+    "device": "MUM-ER-07",
+    "region": "Mumbai",
+    "severity": "MAJOR",
+    "alert_type": "crc_errors",
+    "message": "MAJOR: CRC errors 49190/min on MUM-ER-07",
+    "metric_value": {
+      "name": "crc_errors_per_min",
+      "value": 31487
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-01T06:04:51.423013",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-03CB7DF7",
+    "incident_id": "INC-232719",
+    "device": "MUM-ER-07",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "crc_errors",
+    "message": "MAJOR: CRC errors 4413/min on MUM-ER-07",
+    "metric_value": {
+      "name": "crc_errors_per_min",
+      "value": 21767
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-01T06:07:25.423013",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-E3FB3E02",
+    "incident_id": "INC-232719",
+    "device": "MUM-ER-07",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "crc_errors",
+    "message": "MAJOR: CRC errors 17300/min on MUM-ER-07",
+    "metric_value": {
+      "name": "crc_errors_per_min",
+      "value": 50278
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-01T06:06:06.423013",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-CA774196",
+    "incident_id": "INC-529912",
+    "device": "NEW-ER-05",
+    "region": "New York",
+    "severity": "CRITICAL",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 14% on NEW-ER-05",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 35.7
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-26T12:00:46.423065",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-96F72345",
+    "incident_id": "INC-529912",
+    "device": "NEW-ER-05",
+    "region": "New York",
+    "severity": "MINOR",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 24% on NEW-ER-05",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 35.6
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-26T12:00:20.423065",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-328B9309",
+    "incident_id": "INC-529912",
+    "device": "NEW-ER-05",
+    "region": "New York",
+    "severity": "CRITICAL",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 24% on NEW-ER-05",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 40.9
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-26T12:00:43.423065",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-44CDC1CA",
+    "incident_id": "INC-529912",
+    "device": "NEW-ER-05",
+    "region": "New York",
+    "severity": "MAJOR",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 16% on NEW-ER-05",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 13.4
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-26T12:00:47.423065",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-085E5A60",
+    "incident_id": "INC-529912",
+    "device": "NEW-ER-05",
+    "region": "New York",
+    "severity": "MAJOR",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 16% on NEW-ER-05",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 11.7
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-26T11:57:06.423065",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-EBA43780",
+    "incident_id": "INC-529912",
+    "device": "NEW-ER-05",
+    "region": "New York",
+    "severity": "MAJOR",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 35% on NEW-ER-05",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 19.3
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-26T11:56:52.423065",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-8E168A49",
+    "incident_id": "INC-496631",
+    "device": "SYD-CR-02",
+    "region": "Sydney",
+    "severity": "MINOR",
+    "alert_type": "bgp_flap",
+    "message": "CRITICAL: BGP session DOWN on SYD-CR-02 peer 10.98.127.146",
+    "metric_value": {
+      "name": "bgp_session_state",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-19T20:54:29.423115",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-1750807F",
+    "incident_id": "INC-491905",
+    "device": "DUB-AGG-05",
+    "region": "Dubai",
+    "severity": "CRITICAL",
+    "alert_type": "bgp_flap",
+    "message": "CRITICAL: BGP session DOWN on DUB-AGG-05 peer 10.172.80.137",
+    "metric_value": {
+      "name": "bgp_session_state",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-05T07:33:25.423167",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-E4E48229",
+    "incident_id": "INC-506716",
+    "device": "LON-PE-07",
+    "region": "London",
+    "severity": "MINOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 91% on LON-PE-07",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 93
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-27T17:14:16.423219",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-F528004E",
+    "incident_id": "INC-506716",
+    "device": "LON-PE-07",
+    "region": "London",
+    "severity": "CRITICAL",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 93% on LON-PE-07",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 90
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-27T17:14:06.423219",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-D8865F06",
+    "incident_id": "INC-506716",
+    "device": "LON-PE-07",
+    "region": "London",
+    "severity": "CRITICAL",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 99% on LON-PE-07",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 87
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-27T17:17:11.423219",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-F6DCC2BB",
+    "incident_id": "INC-506716",
+    "device": "LON-PE-07",
+    "region": "London",
+    "severity": "MINOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 90% on LON-PE-07",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 97
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-27T17:12:32.423219",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-35CB5FEE",
+    "incident_id": "INC-506716",
+    "device": "LON-PE-07",
+    "region": "London",
+    "severity": "CRITICAL",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 90% on LON-PE-07",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 91
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-27T17:15:28.423219",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-8D04FED4",
+    "incident_id": "INC-262849",
+    "device": "DUB-PE-05",
+    "region": "Dubai",
+    "severity": "MAJOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 90% used on DUB-PE-05",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 96
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-28T14:09:23.423270",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-BB91D810",
+    "incident_id": "INC-262849",
+    "device": "DUB-PE-05",
+    "region": "Dubai",
+    "severity": "MINOR",
+    "alert_type": "memory_exhaustion",
+    "message": "CRITICAL: Memory 93% used on DUB-PE-05",
+    "metric_value": {
+      "name": "memory_used_pct",
+      "value": 99
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-28T14:09:48.423270",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-23C4643C",
+    "incident_id": "INC-694531",
+    "device": "SIN-CR-06",
+    "region": "Singapore",
+    "severity": "MAJOR",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on SIN-CR-06",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 88
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-12T23:01:34.423323",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-FF798CF4",
+    "incident_id": "INC-694531",
+    "device": "SIN-CR-06",
+    "region": "Singapore",
+    "severity": "MINOR",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on SIN-CR-06",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 3
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-12T22:59:46.423323",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-296419CB",
+    "incident_id": "INC-694531",
+    "device": "SIN-CR-06",
+    "region": "Singapore",
+    "severity": "MINOR",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on SIN-CR-06",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 33
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-12T23:00:14.423323",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-6FDF79FF",
+    "incident_id": "INC-694531",
+    "device": "SIN-CR-06",
+    "region": "Singapore",
+    "severity": "MAJOR",
+    "alert_type": "mpls_failure",
+    "message": "CRITICAL: LDP session DOWN on SIN-CR-06",
+    "metric_value": {
+      "name": "generic_metric",
+      "value": 38
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-12T22:58:57.423323",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-456F1BCC",
+    "incident_id": "INC-996507",
+    "device": "MUM-AGG-01",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 32% on MUM-AGG-01",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 27.5
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-16T23:12:55.423374",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-CBCADA6A",
+    "incident_id": "INC-996507",
+    "device": "MUM-AGG-01",
+    "region": "Mumbai",
+    "severity": "MAJOR",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 22% on MUM-AGG-01",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 44.9
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-16T23:12:31.423374",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-B7F0B52D",
+    "incident_id": "INC-454948",
+    "device": "TOK-CR-06",
+    "region": "Tokyo",
+    "severity": "MAJOR",
+    "alert_type": "bgp_flap",
+    "message": "CRITICAL: BGP session DOWN on TOK-CR-06 peer 10.174.201.169",
+    "metric_value": {
+      "name": "bgp_session_state",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-04-12T05:42:40.423425",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-405952B3",
+    "incident_id": "INC-678377",
+    "device": "NEW-AGG-02",
+    "region": "New York",
+    "severity": "MINOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 93% on NEW-AGG-02",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 93
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-05T08:41:18.423477",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-9E2E4494",
+    "incident_id": "INC-678377",
+    "device": "NEW-AGG-02",
+    "region": "New York",
+    "severity": "CRITICAL",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 85% on NEW-AGG-02",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 96
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-05T08:43:28.423477",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-0D638CAD",
+    "incident_id": "INC-678377",
+    "device": "NEW-AGG-02",
+    "region": "New York",
+    "severity": "CRITICAL",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 95% on NEW-AGG-02",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 87
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-05T08:39:33.423477",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-F04307D8",
+    "incident_id": "INC-678377",
+    "device": "NEW-AGG-02",
+    "region": "New York",
+    "severity": "MAJOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 91% on NEW-AGG-02",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 95
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-05T08:40:13.423477",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-2554A942",
+    "incident_id": "INC-634957",
+    "device": "MUM-ER-08",
+    "region": "Mumbai",
+    "severity": "MINOR",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 20% on MUM-ER-08",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 23.8
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-27T11:35:34.423531",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-3EAAB4F5",
+    "incident_id": "INC-634957",
+    "device": "MUM-ER-08",
+    "region": "Mumbai",
+    "severity": "CRITICAL",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 24% on MUM-ER-08",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 23.6
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-27T11:35:50.423531",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-2D0EC765",
+    "incident_id": "INC-634957",
+    "device": "MUM-ER-08",
+    "region": "Mumbai",
+    "severity": "MAJOR",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 24% on MUM-ER-08",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 39.0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-27T11:33:59.423531",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-57E8D61A",
+    "incident_id": "INC-634957",
+    "device": "MUM-ER-08",
+    "region": "Mumbai",
+    "severity": "MAJOR",
+    "alert_type": "packet_loss",
+    "message": "CRITICAL: Packet loss 20% on MUM-ER-08",
+    "metric_value": {
+      "name": "packet_loss_pct",
+      "value": 13.2
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-27T11:34:45.423531",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-792E1818",
+    "incident_id": "INC-855744",
+    "device": "TOK-ER-06",
+    "region": "Tokyo",
+    "severity": "MINOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/4 DOWN on TOK-ER-06",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-19T13:25:17.423586",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-3866D25E",
+    "incident_id": "INC-855744",
+    "device": "TOK-ER-06",
+    "region": "Tokyo",
+    "severity": "MAJOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/1 DOWN on TOK-ER-06",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-19T13:25:01.423586",
+    "source": "Zabbix"
+  },
+  {
+    "alert_id": "ALT-581CAEC7",
+    "incident_id": "INC-855744",
+    "device": "TOK-ER-06",
+    "region": "Tokyo",
+    "severity": "CRITICAL",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/3 DOWN on TOK-ER-06",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-19T13:23:28.423586",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-9A7232BC",
+    "incident_id": "INC-855744",
+    "device": "TOK-ER-06",
+    "region": "Tokyo",
+    "severity": "CRITICAL",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/0 DOWN on TOK-ER-06",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-19T13:22:42.423586",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-D36250E9",
+    "incident_id": "INC-855744",
+    "device": "TOK-ER-06",
+    "region": "Tokyo",
+    "severity": "MINOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/2 DOWN on TOK-ER-06",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-19T13:26:20.423586",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-4A47FB2D",
+    "incident_id": "INC-855744",
+    "device": "TOK-ER-06",
+    "region": "Tokyo",
+    "severity": "MAJOR",
+    "alert_type": "interface_down",
+    "message": "CRITICAL: Interface Gi0/0 DOWN on TOK-ER-06",
+    "metric_value": {
+      "name": "interface_status",
+      "value": 0
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-19T13:23:47.423586",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-DF028682",
+    "incident_id": "INC-182337",
+    "device": "NEW-ER-01",
+    "region": "New York",
+    "severity": "MINOR",
+    "alert_type": "high_latency",
+    "message": "MAJOR: Latency 331ms exceeds threshold on NEW-ER-01",
+    "metric_value": {
+      "name": "rtt_ms",
+      "value": 298
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-21T05:57:08.423640",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-DEFC52AF",
+    "incident_id": "INC-182337",
+    "device": "NEW-ER-01",
+    "region": "New York",
+    "severity": "MINOR",
+    "alert_type": "high_latency",
+    "message": "MAJOR: Latency 361ms exceeds threshold on NEW-ER-01",
+    "metric_value": {
+      "name": "rtt_ms",
+      "value": 294
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-21T05:54:25.423640",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-504FD6ED",
+    "incident_id": "INC-182337",
+    "device": "NEW-ER-01",
+    "region": "New York",
+    "severity": "CRITICAL",
+    "alert_type": "high_latency",
+    "message": "MAJOR: Latency 320ms exceeds threshold on NEW-ER-01",
+    "metric_value": {
+      "name": "rtt_ms",
+      "value": 323
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-03-21T05:52:42.423640",
+    "source": "Prometheus"
+  },
+  {
+    "alert_id": "ALT-AA3B8341",
+    "incident_id": "INC-941343",
+    "device": "LON-AGG-03",
+    "region": "London",
+    "severity": "MINOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 85% on LON-AGG-03",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 93
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-16T15:50:32.423696",
+    "source": "SolarWinds"
+  },
+  {
+    "alert_id": "ALT-11CFFA40",
+    "incident_id": "INC-941343",
+    "device": "LON-AGG-03",
+    "region": "London",
+    "severity": "CRITICAL",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 93% on LON-AGG-03",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 86
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-16T15:52:14.423696",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-AE1FD2A5",
+    "incident_id": "INC-941343",
+    "device": "LON-AGG-03",
+    "region": "London",
+    "severity": "MAJOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 93% on LON-AGG-03",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 97
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-16T15:51:32.423696",
+    "source": "Nagios"
+  },
+  {
+    "alert_id": "ALT-04CAC8D0",
+    "incident_id": "INC-941343",
+    "device": "LON-AGG-03",
+    "region": "London",
+    "severity": "MINOR",
+    "alert_type": "cpu_spike",
+    "message": "MAJOR: CPU 97% on LON-AGG-03",
+    "metric_value": {
+      "name": "cpu_utilization_pct",
+      "value": 93
+    },
+    "threshold_breached": true,
+    "timestamp": "2026-05-16T15:53:20.423696",
+    "source": "Nagios"
+  }
+]

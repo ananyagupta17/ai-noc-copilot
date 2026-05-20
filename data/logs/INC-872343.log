@@ -1,0 +1,9 @@
+Apr 18 03:47:00 DUB-ER-07 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 18 03:48:00 DUB-ER-07 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 18 03:50:00 DUB-ER-07 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 18 03:52:00 DUB-ER-07 : %OPTICAL-3-RXPOWER_LOW: Rx power on DUB-ER-07 Gi0/1: -29 dBm (threshold: -23 dBm)
+Apr 18 03:52:20 DUB-ER-07 : %OPTICAL-4-SIGNAL_DEGRADED: Signal quality degraded on interface Gi0/1
+Apr 18 03:53:38 DUB-ER-07 : %OPTICAL-3-LOS: Loss of signal on Gi0/1
+Apr 18 03:57:00 DUB-ER-07 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 18 04:01:00 DUB-ER-07 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 18 04:04:00 DUB-ER-07 : %SYS-5-RELOAD: Reload requested by NOC engineer

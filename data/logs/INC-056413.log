@@ -1,0 +1,14 @@
+Apr 25 10:33:26 NEW-CR-04 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 25 10:33:26 NEW-CR-04 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 25 10:36:26 NEW-CR-04 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 25 10:40:26 NEW-CR-04 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 25 10:40:26 NEW-CR-04 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 25 10:41:26 NEW-CR-04 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 25 10:43:26 NEW-CR-04 : %IP-4-DUPADDR: Duplicate address 10.236.70.52 on GigabitEthernet0/0
+Apr 25 10:44:13 NEW-CR-04 : %MPLS-3-BADLABEL: Received bad label 290 on interface Gi0/1
+Apr 25 10:44:24 NEW-CR-04 : QoS: drop tail on queue 3, packet loss rate: 36%
+Apr 25 10:44:26 NEW-CR-04 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 25 10:47:26 NEW-CR-04 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 25 10:51:26 NEW-CR-04 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 25 10:52:26 NEW-CR-04 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 25 10:55:26 NEW-CR-04 : %SYS-5-RELOAD: Reload requested by NOC engineer

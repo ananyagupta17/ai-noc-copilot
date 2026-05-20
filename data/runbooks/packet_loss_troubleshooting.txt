@@ -1,0 +1,77 @@
+RUNBOOK: Packet Loss Troubleshooting
+Category: Network Performance
+Severity: P1/P2
+Last Updated: 2024-01-15
+
+OVERVIEW
+--------
+This runbook covers investigation and remediation of packet loss events on Tata Communications backbone and edge infrastructure.
+
+SYMPTOMS
+--------
+- Customer reports intermittent connectivity
+- Monitoring alerts: packet_loss_pct > 5%
+- Ping loss > 5% to customer CE device
+- SLA breach notifications triggered
+
+STEP 1 — INITIAL TRIAGE
+------------------------
+1. Identify affected device and interface from alert
+2. Run ping test from NOC to affected device:
+   ping <device-ip> repeat 100 size 1500
+3. Check interface error counters:
+   show interface GigabitEthernet0/1 | include error|drop|loss
+4. Check if issue is unidirectional or bidirectional
+
+STEP 2 — CHECK FOR CRC ERRORS
+-------------------------------
+CRC errors indicate physical layer problems (fiber, optics, cables).
+   show interfaces | include CRC|input error
+If CRC errors > 1000/min:
+  → Suspect optical degradation or cable fault
+  → Proceed to optical diagnostics (see optical_degradation runbook)
+
+STEP 3 — CHECK QUEUE DROPS
+---------------------------
+   show interfaces | include output drop|queue
+If output drops present:
+  → QoS policy may be misconfigured or interface is congested
+  → Check traffic rate vs interface capacity:
+    show interfaces GigabitEthernet0/1 | include rate
+
+STEP 4 — CHECK UPSTREAM/DOWNSTREAM
+------------------------------------
+1. Identify upstream device from topology
+2. Run traceroute to isolate hop where loss begins:
+   traceroute <destination-ip> source <loopback>
+3. Ping each hop — loss at specific hop identifies fault location
+
+STEP 5 — MPLS LABEL CHECK
+--------------------------
+   show mpls forwarding-table
+   show mpls ldp neighbor
+If LDP neighbors are missing or label errors present:
+  → Refer to MPLS failure runbook
+
+STEP 6 — REMEDIATION OPTIONS
+------------------------------
+Option A — Reroute traffic:
+  - Identify backup path via topology
+  - Adjust OSPF/ISIS metric to shift traffic:
+    interface GigabitEthernet0/2
+     ip ospf cost 100
+Option B — Interface reset (use with caution):
+  shutdown / no shutdown on affected interface
+Option C — Escalate to field team if physical fault confirmed
+
+STEP 7 — CUSTOMER COMMUNICATION
+---------------------------------
+- Update ticket with findings within 15 minutes
+- For P1: Send executive update every 30 minutes
+- Template: "We have identified [root cause] affecting [region]. Traffic is being rerouted via [backup path]. ETA for full resolution: [time]."
+
+ESCALATION
+----------
+- L2 Network Engineering: if unresolved after 30 mins
+- Fiber Operations: if physical fault confirmed
+- Account Manager: if enterprise customer impacted > 1 hour

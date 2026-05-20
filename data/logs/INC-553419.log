@@ -1,0 +1,10 @@
+May 02 15:41:59 NEW-PE-03 : %SYS-5-CONFIG_I: Configured from console by admin
+May 02 15:41:59 NEW-PE-03 : %SYS-5-CONFIG_I: Configured from console by admin
+May 02 15:44:59 NEW-PE-03 : %SYS-5-CONFIG_I: Configured from console by admin
+May 02 15:49:59 NEW-PE-03 : %SYS-5-CONFIG_I: Configured from console by admin
+May 02 15:50:59 NEW-PE-03 : %CPU-4-HIGH: CPU utilization: 98%; 5min: 87%
+May 02 15:51:12 NEW-PE-03 : Scheduler: process BGP Scanner at 64% CPU
+May 02 15:52:35 NEW-PE-03 : %SYS-3-CPUHOG: Task ran for 3463ms
+May 02 15:54:59 NEW-PE-03 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 02 15:59:59 NEW-PE-03 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 02 16:00:59 NEW-PE-03 : %SYS-5-RELOAD: Reload requested by NOC engineer

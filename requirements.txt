@@ -1,0 +1,31 @@
+# LLM + Agent
+langchain
+langchain-openai
+langgraph
+openai
+
+# RAG
+llama-index
+llama-index-vector-stores-chroma
+llama-index-embeddings-openai
+chromadb
+
+# Backend
+fastapi
+uvicorn[standard]
+websockets
+python-dotenv
+
+# Data generation
+faker
+networkx
+
+# Storage
+sqlalchemy
+
+# UI
+streamlit
+
+# Utils
+pydantic
+httpx

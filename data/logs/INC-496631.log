@@ -1,0 +1,12 @@
+Apr 19 20:44:31 SYD-CR-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 19 20:50:31 SYD-CR-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 19 20:51:31 SYD-CR-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 19 20:52:31 SYD-CR-02 : %BGP-5-ADJCHANGE: neighbor 10.91.195.155 Down BGP Notification sent
+Apr 19 20:53:05 SYD-CR-02 : %BGP-3-NOTIFICATION: sent to neighbor 10.167.78.78 6/7 (Cease/connection collision resolution)
+Apr 19 20:53:31 SYD-CR-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 19 20:53:31 SYD-CR-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 19 20:53:47 SYD-CR-02 : %BGP-5-ADJCHANGE: neighbor 10.49.39.170 Up
+Apr 19 20:54:01 SYD-CR-02 : %BGP-5-ADJCHANGE: neighbor 10.252.238.52 Down Hold Timer Expired
+Apr 19 20:55:31 SYD-CR-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 19 21:00:31 SYD-CR-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 19 21:00:31 SYD-CR-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
