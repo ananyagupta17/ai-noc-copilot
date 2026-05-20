@@ -4,3 +4,8 @@ __pycache__/
 .venv/
 venv/
 node_modules/
+db/
+*.db
+*.sqlite
+*.sqlite3
+chroma/
