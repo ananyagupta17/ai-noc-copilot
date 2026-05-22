@@ -17,9 +17,8 @@ SQLITE_PATH = DB_DIR / "noc.db"
 CHROMA_PATH = DB_DIR / "chroma"
 
 # LLM
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
-LLM_MODEL = "gpt-4o"
-EMBEDDING_MODEL = "text-embedding-3-small"
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "")
+LLM_MODEL = "gemini-2.5-flash" 
 
 # RAG
 CHUNK_SIZE = 512

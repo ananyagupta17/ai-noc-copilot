@@ -1,8 +1,8 @@
 # LLM + Agent
 langchain
-langchain-openai
+langchain-google-genai
 langgraph
-openai
+google-generativeai
 
 # RAG
 llama-index
