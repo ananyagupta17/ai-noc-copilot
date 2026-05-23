@@ -32,6 +32,8 @@ from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage
 from langgraph.graph import StateGraph, START, END
 from agent.evidence import enrich_rca_with_evidence
 from agent.timeline import build_timeline, timeline_to_display
+from observability.tracer import tracer
+from observability.logger import noc_logger
 
 # Note: We keep GOOGLE_API_KEY as a fallback default if your environment relies on it elsewhere
 from config import LLM_MODEL, MAX_TOOL_CALLS, GOOGLE_API_KEY
@@ -127,6 +129,9 @@ def entry_node(state: AgentState) -> AgentState:
     """
     print(f"\n[NOC Agent] Starting investigation...")
     print(f"[NOC Agent] Input: {state.incident_description[:100]}")
+
+    tracer.start_investigation(state.incident_description)
+    noc_logger.investigation_started("active", state.incident_description)
 
     # Build the opening message — this is what GPT-4o first reads
     opening = f"""
@@ -280,6 +285,16 @@ def tools_node(state: AgentState) -> AgentState:
             "tool_call_id": tool_call_id,
             "content": result_str,
         })
+
+        tracer.record_tool_call(
+            tool_name=tool_name, input_params=tool_args, result=result,
+            duration_ms=duration_ms, success=success, error=None, loop_number=state.loop_count,
+        )
+        noc_logger.tool_called(
+            tool_name=tool_name, params=tool_args, success=success,
+            duration_ms=duration_ms, result_summary=_summarise_result(tool_name, result),
+            loop_number=state.loop_count,
+        )
 
         # Record for observability
         state.tool_calls.append(ToolCallRecord(
@@ -512,6 +527,14 @@ Return ONLY the JSON object, no other text.
     if state.alert_cluster:
         state.rca.correlated_alert_cluster = state.alert_cluster
 
+    tracer.end_investigation(confidence=confidence, complete=True)
+    tracer.save_to_file()
+    noc_logger.investigation_completed(
+        investigation_id="active", confidence=confidence,
+        tool_count=len(state.tool_calls), loop_count=state.loop_count,
+        duration_ms=0, probable_cause=state.rca.probable_cause,
+    )
+    
     state.investigation_complete = True
     state.completed_at = datetime.now().isoformat()
 
