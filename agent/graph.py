@@ -30,6 +30,7 @@ from typing import Literal
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage
 from langgraph.graph import StateGraph, START, END
+from agent.evidence import enrich_rca_with_evidence
 
 # Note: We keep GOOGLE_API_KEY as a fallback default if your environment relies on it elsewhere
 from config import LLM_MODEL, MAX_TOOL_CALLS, GOOGLE_API_KEY
@@ -431,13 +432,9 @@ def output_node(state: AgentState) -> AgentState:
     """
     print("[NOC Agent] Generating RCA output...")
 
-    # ── Step 1: Compute confidence score ──────
-    # Normalise evidence weights so score is always 0–1
-    total_weight = sum(e.weight for e in state.evidence)
-    # Cap at 1.0 — having more evidence doesn't lower confidence
-    confidence = min(round(total_weight / 1.5, 2), 1.0) if total_weight > 0 else 0.0
-    state.rca.confidence_score = confidence
-    state.rca.evidence = state.evidence
+      # ── Step 1: Compute confidence score (via evidence.py) ────
+    state = enrich_rca_with_evidence(state)
+    confidence = state.rca.confidence_score
 
     # ── Step 2: Build timeline ─────────────────
     timeline = _build_timeline(state)
