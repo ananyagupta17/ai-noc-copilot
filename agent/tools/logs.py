@@ -27,7 +27,9 @@ def search_logs(incident_id: str = None, keyword: str = None,
         # Direct lookup — one file per incident
         log_file = LOGS_DIR / f"{incident_id}.log"
         if not log_file.exists():
-            return {"error": f"No log file found for {incident_id}", "lines": []}
+             # Fall back to keyword search using incident_id as keyword
+            return search_logs(keyword=incident_id.split('-')[1], 
+                             limit=limit)
         lines = log_file.read_text().splitlines()
         if keyword:
             lines = [l for l in lines if keyword.lower() in l.lower()]

@@ -1,3 +1,4 @@
+from __future__ import annotations
 """
 agent/graph.py
 
@@ -19,7 +20,8 @@ Graph structure:
     ↓
   END
 """
-
+import itertools
+import os
 import json
 import time
 from datetime import datetime
@@ -29,6 +31,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage
 from langgraph.graph import StateGraph, START, END
 
+# Note: We keep GOOGLE_API_KEY as a fallback default if your environment relies on it elsewhere
 from config import LLM_MODEL, MAX_TOOL_CALLS, GOOGLE_API_KEY
 from agent.state import (
     AgentState, EvidenceItem, TimelineEvent,
@@ -38,21 +41,44 @@ from agent.tools import ALL_TOOLS
 
 
 # ─────────────────────────────────────────────
+# API KEY ROTATION SETUP
+# Pull keys from your .env and create an endless loop iterator
+# ─────────────────────────────────────────────
+
+API_KEYS = [
+    os.getenv("GOOGLE_API_KEY_1"),
+    os.getenv("GOOGLE_API_KEY_2"),
+    os.getenv("GOOGLE_API_KEY_3")
+]
+
+# Quick validation check to notify you if any key failed to load from .env
+if not all(API_KEYS):
+    missing_indices = [i + 1 for i, key in enumerate(API_KEYS) if not key]
+    print(f"[WARNING] Missing environment keys for slot(s): {missing_indices}")
+
+# Fall back to the original key config array if everything in .env came back empty
+if not any(API_KEYS):
+    API_KEYS = [GOOGLE_API_KEY]
+
+KEY_ROTATOR = itertools.cycle(API_KEYS)
+
+
+# ─────────────────────────────────────────────
 # LLM SETUP
 # bind_tools() tells the LLM about all 14 tools
-# so it can call them by name with correct params
 # ─────────────────────────────────────────────
 
 llm = ChatGoogleGenerativeAI(
     model=LLM_MODEL,
     temperature=0,
-    google_api_key=GOOGLE_API_KEY,
+    # We pass a temporary placeholder key initialization here because 
+    # we will dynamically overwrite it inside reason_node during invocation.
+    google_api_key=API_KEYS[0] or GOOGLE_API_KEY,
 )
 llm_with_tools = llm.bind_tools(ALL_TOOLS)
 
 # Tool lookup map — name → callable
 TOOL_MAP = {t.name: t for t in ALL_TOOLS}
-
 
 # ─────────────────────────────────────────────
 # SYSTEM PROMPT
@@ -157,8 +183,18 @@ def reason_node(state: AgentState) -> AgentState:
                 tool_call_id=msg.get("tool_call_id", "unknown")
             ))
 
-    # Call LLM — it returns either a tool call or a final answer
-    response = llm_with_tools.invoke(lc_messages)
+    # Grab the next key in line from our iterative pool
+    current_key = next(KEY_ROTATOR)
+    
+    # Print a masked version of the key suffix to confirm rotation works visually
+    key_preview = f"...{current_key[-6:]}" if current_key else "FALLBACK"
+    print(f"[NOC Agent] Dynamic authentication token shift. Active key slot: {key_preview}")
+
+    # Call LLM — passing the active rotated key directly into the configuration block
+    response = llm_with_tools.invoke(
+        lc_messages,
+        config={"configurable": {"google_api_key": current_key}}
+    )
 
     # Store response in message history
     state.messages.append({
@@ -177,7 +213,7 @@ def reason_node(state: AgentState) -> AgentState:
 # LangGraph uses this to determine the next node.
 # ─────────────────────────────────────────────
 
-def should_continue(state: AgentState) -> Literal["tools", "output"]:
+def should_continue(state: AgentState):
     """
     If the last LLM response contains tool calls → go to tools node.
     If no tool calls OR max loops hit → go to output node.
@@ -286,36 +322,36 @@ def _extract_evidence(state: AgentState, tool_name: str, args: dict, result):
       metrics         → 0.10  (device health confirmation)
     """
     weight_map = {
-        "tool_search_logs":             0.30,
-        "tool_get_error_summary":       0.30,
-        "tool_find_similar_incidents":  0.25,
-        "tool_get_incident":            0.20,
-        "tool_get_runbook":             0.20,
-        "tool_list_runbooks":           0.05,
-        "tool_get_alerts_for_incident": 0.15,
-        "tool_get_critical_alerts":     0.15,
-        "tool_get_blast_radius":        0.10,
-        "tool_get_neighbors":           0.10,
-        "tool_get_region_devices":      0.05,
-        "tool_get_device_metrics":      0.10,
-        "tool_get_metrics_history":     0.10,
-        "tool_get_recent_incidents":    0.10,
+        "search_logs":             0.30,
+        "get_error_summary":       0.30,
+        "find_similar_incidents":  0.25,
+        "get_incident":            0.20,
+        "get_runbook":             0.20,
+        "list_runbooks":           0.05,
+        "get_alerts_for_incident": 0.15,
+        "get_critical_alerts":     0.15,
+        "get_blast_radius":        0.10,
+        "get_neighbors":           0.10,
+        "get_region_devices":      0.05,
+        "get_device_metrics":      0.10,
+        "get_metrics_history":     0.10,
+        "get_recent_incidents":    0.10,
     }
 
     type_map = {
-        "tool_search_logs":             "log",
-        "tool_get_error_summary":       "log",
-        "tool_find_similar_incidents":  "historical_incident",
-        "tool_get_incident":            "historical_incident",
-        "tool_get_runbook":             "runbook",
-        "tool_get_alerts_for_incident": "alert",
-        "tool_get_critical_alerts":     "alert",
-        "tool_get_blast_radius":        "topology",
-        "tool_get_neighbors":           "topology",
-        "tool_get_region_devices":      "topology",
-        "tool_get_device_metrics":      "metric",
-        "tool_get_metrics_history":     "metric",
-        "tool_get_recent_incidents":    "historical_incident",
+        "search_logs":             "log",
+        "get_error_summary":       "log",
+        "find_similar_incidents":  "historical_incident",
+        "get_incident":            "historical_incident",
+        "get_runbook":             "runbook",
+        "get_alerts_for_incident": "alert",
+        "get_critical_alerts":     "alert",
+        "get_blast_radius":        "topology",
+        "get_neighbors":           "topology",
+        "get_region_devices":      "topology",
+        "get_device_metrics":      "metric",
+        "get_metrics_history":     "metric",
+        "get_recent_incidents":    "historical_incident",
     }
 
     # Skip if result is empty or error
@@ -372,11 +408,11 @@ def _extract_state_fields(state: AgentState, tool_name: str, result):
         state.runbook_chunks = result.get("results", [])
 
     elif tool_name == "tool_find_similar_incidents" and isinstance(result, list):
-        # Try to extract symptom from first match
+        state.similar_incidents_found = result
+        if result and not state.identified_region:
+            state.identified_region = result[0].get("region")
         if result and not state.identified_symptom:
             state.identified_symptom = result[0].get("symptom")
-            if not state.identified_region:
-                state.identified_region = result[0].get("region")
 
 
 # ─────────────────────────────────────────────

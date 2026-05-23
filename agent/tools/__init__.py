@@ -6,7 +6,7 @@ The decorator gives each function a JSON schema so GPT-4o knows
 exactly what parameters to pass when it decides to call a tool.
 
 The docstring of each tool is critical — GPT-4o reads it to decide
-WHEN to call the tool. Write them like instructions to the LLM.
+WHEN to call a tool. Write them like instructions to the LLM.
 """
 
 from langchain.tools import tool
@@ -33,7 +33,7 @@ from agent.tools.metrics import get_device_metrics, get_metrics_history
 from agent.tools.runbooks import get_runbook, list_available_runbooks
 
 
-@tool
+@tool("get_incident")
 def tool_get_incident(incident_id: str) -> dict:
     """
     Fetch full details of a specific incident by its ID (e.g. INC-104332).
@@ -43,7 +43,7 @@ def tool_get_incident(incident_id: str) -> dict:
     return get_incident(incident_id)
 
 
-@tool
+@tool("find_similar_incidents")
 def tool_find_similar_incidents(
     symptom: str = None,
     region: str = None,
@@ -57,22 +57,33 @@ def tool_find_similar_incidents(
     bgp_flap, interface_down, crc_errors, cpu_spike, memory_exhaustion,
     mpls_failure, dns_outage, optical_degradation.
     """
-    return find_similar_incidents(symptom=symptom, region=region,
-                                  root_cause=root_cause, limit=limit)
+    return find_similar_incidents(
+        symptom=symptom,
+        region=region,
+        root_cause=root_cause,
+        limit=limit
+    )
 
 
-@tool
-def tool_get_recent_incidents(region: str = None, severity: str = None,
-                               limit: int = 10) -> list:
+@tool("get_recent_incidents")
+def tool_get_recent_incidents(
+    region: str = None,
+    severity: str = None,
+    limit: int = 10
+) -> list:
     """
     Get the most recent incidents, optionally filtered by region or severity.
     Use this for initial triage to understand recent activity in an area.
     Severity options: P1, P2, P3, P4.
     """
-    return get_recent_incidents(region=region, severity=severity, limit=limit)
+    return get_recent_incidents(
+        region=region,
+        severity=severity,
+        limit=limit
+    )
 
 
-@tool
+@tool("get_alerts_for_incident")
 def tool_get_alerts_for_incident(incident_id: str) -> list:
     """
     Get all alerts linked to a specific incident ID.
@@ -81,7 +92,7 @@ def tool_get_alerts_for_incident(incident_id: str) -> list:
     return get_alerts_for_incident(incident_id)
 
 
-@tool
+@tool("get_critical_alerts")
 def tool_get_critical_alerts(region: str = None, limit: int = 15) -> list:
     """
     Get the most recent CRITICAL severity alerts, optionally filtered by region.
@@ -90,7 +101,7 @@ def tool_get_critical_alerts(region: str = None, limit: int = 15) -> list:
     return get_critical_alerts(region=region, limit=limit)
 
 
-@tool
+@tool("search_logs")
 def tool_search_logs(
     incident_id: str = None,
     keyword: str = None,
@@ -103,11 +114,15 @@ def tool_search_logs(
     Use keyword to search across all logs (e.g. 'BGP', 'CRC', 'MPLS').
     Returns raw syslog lines with timestamps and error codes.
     """
-    return search_logs(incident_id=incident_id, keyword=keyword,
-                       device=device, limit=limit)
+    return search_logs(
+        incident_id=incident_id,
+        keyword=keyword,
+        device=device,
+        limit=limit
+    )
 
 
-@tool
+@tool("get_error_summary")
 def tool_get_error_summary(incident_id: str) -> dict:
     """
     Get a summary of error codes found in the logs for an incident.
@@ -117,7 +132,7 @@ def tool_get_error_summary(incident_id: str) -> dict:
     return get_error_summary(incident_id)
 
 
-@tool
+@tool("get_blast_radius")
 def tool_get_blast_radius(device_id: str, hops: int = 2) -> dict:
     """
     Find all devices within N hops of an affected device.
@@ -127,7 +142,7 @@ def tool_get_blast_radius(device_id: str, hops: int = 2) -> dict:
     return get_blast_radius(device_id=device_id, hops=hops)
 
 
-@tool
+@tool("get_neighbors")
 def tool_get_neighbors(device_id: str) -> dict:
     """
     Get all directly connected devices for a given device ID.
@@ -136,7 +151,7 @@ def tool_get_neighbors(device_id: str) -> dict:
     return get_neighbors(device_id)
 
 
-@tool
+@tool("get_region_devices")
 def tool_get_region_devices(region: str) -> dict:
     """
     List all network devices in a given region.
@@ -146,7 +161,7 @@ def tool_get_region_devices(region: str) -> dict:
     return get_region_devices(region)
 
 
-@tool
+@tool("get_device_metrics")
 def tool_get_device_metrics(device_id: str) -> dict:
     """
     Get current performance metrics for a specific device.
@@ -156,7 +171,7 @@ def tool_get_device_metrics(device_id: str) -> dict:
     return get_device_metrics(device_id)
 
 
-@tool
+@tool("get_metrics_history")
 def tool_get_metrics_history(device_id: str, hours: int = 6) -> dict:
     """
     Get hourly metric snapshots for a device over the last N hours.
@@ -165,7 +180,7 @@ def tool_get_metrics_history(device_id: str, hours: int = 6) -> dict:
     return get_metrics_history(device_id=device_id, hours=hours)
 
 
-@tool
+@tool("get_runbook")
 def tool_get_runbook(symptom: str) -> dict:
     """
     Retrieve the most relevant runbook sections for a given symptom.
@@ -175,7 +190,7 @@ def tool_get_runbook(symptom: str) -> dict:
     return get_runbook(symptom)
 
 
-@tool
+@tool("list_runbooks")
 def tool_list_runbooks() -> dict:
     """
     List all available runbooks in the knowledge base.
