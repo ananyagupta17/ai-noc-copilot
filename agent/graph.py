@@ -31,6 +31,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage
 from langgraph.graph import StateGraph, START, END
 from agent.evidence import enrich_rca_with_evidence
+from agent.timeline import build_timeline, timeline_to_display
 
 # Note: We keep GOOGLE_API_KEY as a fallback default if your environment relies on it elsewhere
 from config import LLM_MODEL, MAX_TOOL_CALLS, GOOGLE_API_KEY
@@ -437,7 +438,7 @@ def output_node(state: AgentState) -> AgentState:
     confidence = state.rca.confidence_score
 
     # ── Step 2: Build timeline ─────────────────
-    timeline = _build_timeline(state)
+    timeline = build_timeline(state)
     state.rca.timeline = timeline
 
     # ── Step 3: Build impact analysis ─────────
