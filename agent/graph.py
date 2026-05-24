@@ -175,7 +175,6 @@ def reason_node(state: AgentState) -> AgentState:
     state.loop_count += 1
     print(f"[NOC Agent] Reasoning loop {state.loop_count}...")
 
-    # Convert our message dicts to LangChain message objects
     lc_messages = []
     for msg in state.messages:
         if msg["role"] == "system":
@@ -190,20 +189,15 @@ def reason_node(state: AgentState) -> AgentState:
                 tool_call_id=msg.get("tool_call_id", "unknown")
             ))
 
-    # Grab the next key in line from our iterative pool
     current_key = next(KEY_ROTATOR)
-    
-    # Print a masked version of the key suffix to confirm rotation works visually
     key_preview = f"...{current_key[-6:]}" if current_key else "FALLBACK"
     print(f"[NOC Agent] Dynamic authentication token shift. Active key slot: {key_preview}")
 
-    # Call LLM — passing the active rotated key directly into the configuration block
     response = llm_with_tools.invoke(
         lc_messages,
         config={"configurable": {"google_api_key": current_key}}
     )
 
-    # Store response in message history
     state.messages.append({
         "role": "assistant",
         "content": response.content,
@@ -211,9 +205,19 @@ def reason_node(state: AgentState) -> AgentState:
         "_lc_obj": response
     })
 
+    # Record reasoning loop for observability
+    tracer.record_loop(
+        loop_number=state.loop_count,
+        tools_selected=[
+            tc["name"] for tc in
+            state.messages[-1].get("tool_calls", [])
+        ],
+        evidence_count=len(state.evidence),
+        confidence=state.rca.confidence_score,
+        duration_ms=0,
+    )
+
     return state
-
-
 # ─────────────────────────────────────────────
 # ROUTER — after reason_node
 # Decides whether to call a tool or go to output.
@@ -311,6 +315,18 @@ def tools_node(state: AgentState) -> AgentState:
 
         # Extract key fields if found
         _extract_state_fields(state, tool_name, result)
+
+        # RAG tracer — record runbook retrievals for observability panel
+        if tool_name == "get_runbook" and success and isinstance(result, dict):
+            tracer.record_rag_retrieval(
+                query=tool_args.get("symptom", ""),
+                results=result.get("results", []),
+                duration_ms=duration_ms,
+            )
+
+        # Timeline fix — populate raw_alerts from get_critical_alerts
+        if tool_name == "get_critical_alerts" and success and isinstance(result, list):
+            state.raw_alerts.extend(result)
 
     return state
 
@@ -410,6 +426,9 @@ def _extract_state_fields(state: AgentState, tool_name: str, result):
 
     elif tool_name == "tool_get_critical_alerts" and isinstance(result, list):
         state.raw_alerts = result
+
+    elif tool_name == "get_critical_alerts" and isinstance(result, list):
+         state.raw_alerts.extend(result)
 
     elif tool_name == "tool_get_blast_radius" and isinstance(result, dict):
         state.topology_data = result
