@@ -46,7 +46,24 @@ from agent.tools import ALL_TOOLS
 
 # ─────────────────────────────────────────────
 # API KEY ROTATION SETUP
-# Pull keys from your .env and create an endless loop iterator
+#
+# WHY WE ROTATE KEYS HERE:
+#   This project runs on Gemini free-tier API keys, which enforce a
+#   per-minute request quota (RPM limit). A single investigation can
+#   trigger 6-10 LLM calls across reasoning loops, which exhausts the
+#   free-tier RPM limit mid-investigation and causes 429 errors.
+#
+#   To work around this during development, we spread calls across
+#   3 separate free-tier API keys using round-robin rotation, effectively
+#   tripling the available RPM budget.
+#
+# IN PRODUCTION THIS WOULD NOT BE NEEDED:
+#   A paid Gemini API key has a much higher (or configurable) RPM limit,
+#   so a single key handles the full investigation load comfortably.
+#   The correct production pattern would be:
+#     - One API key
+#     - Exponential backoff + retry on 429 responses
+#   Key rotation is purely a free-tier development workaround.
 # ─────────────────────────────────────────────
 
 API_KEYS = [
