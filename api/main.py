@@ -53,7 +53,7 @@ from agent.tools.metrics import get_device_metrics
 
 app = FastAPI(
     title="AI NOC Copilot",
-    description="Agentic network operations assistant for Tata Communications",
+    description="Agentic network operations assistant for large-scale telecom infrastructure",
     version="1.0.0",
 )
 

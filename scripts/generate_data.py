@@ -387,7 +387,7 @@ Last Updated: 2024-01-15
 
 OVERVIEW
 --------
-This runbook covers investigation and remediation of packet loss events on Tata Communications backbone and edge infrastructure.
+This runbook covers investigation and remediation of packet loss events on backbone and edge infrastructure.
 
 SYMPTOMS
 --------
