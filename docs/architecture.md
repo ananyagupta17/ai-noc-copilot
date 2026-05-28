@@ -4,9 +4,6 @@
 > what decisions were made and why, and how data flows from
 > an incoming alert to a structured RCA output.
 >
-> **Diagrams:** Wherever you see `[DIAGRAM: ...]`, that is an instruction
-> to insert the corresponding diagram image manually.
-
 ---
 
 ## Table of Contents
@@ -39,9 +36,7 @@ Layer 1  →  SQLite + ChromaDB (storage)
 Layer 0  →  Synthetic data (incidents, alerts, logs, runbooks, topology)
 ```
 
-![System overview](./diagrams/diagran_1_system_overview.png)
-*This should be a vertical flowchart showing all 7 layers with arrows between them,
-and the two branches at Layer 4 (MCP tools on the left, RAG on the right).*
+![System overview](../diagrams/diagram_1_system_overview.png)
 
 The key architectural principle is that the agent never stores state between
 invocations. Every investigation starts fresh, the agent builds up its
@@ -101,9 +96,7 @@ NetworkX builds a realistic backbone graph:
 - Backbone links have 100Gbps or 400Gbps capacity
 - Access links have 10Gbps capacity
 
-![Network Topology](./diagrams/diagram_2_network_topology.png)
-*Show the 8 regional clusters (Singapore, Mumbai, London, Frankfurt, New York,
-Tokyo, Sydney, Dubai) with their internal device hierarchies and inter-region backbone links.*
+![Network Topology](../diagrams/diagram_2_network_topology.png)
 
 ### Why runbooks are hand-written
 
@@ -196,11 +189,7 @@ At query time, the agent's natural language symptom description is embedded
 and compared against all stored chunks using cosine similarity. The top-5
 most similar chunks are returned as context.
 
-![Chunking and Embedding](./diagrams/diagram_3_rag_chunking_embedding.png)
-*Show a runbook being split into overlapping chunks, each chunk being
-embedded into a vector, and the vectors being stored in ChromaDB.
-Then show a query coming in, being embedded, and the cosine similarity
-search returning the top-k results.*
+![Chunking and Embedding](../diagrams/diagram_3_rag_chunking_embedding.png)
 
 ---
 
@@ -259,10 +248,7 @@ DBSCAN has two key advantages over K-Means:
 2. Alerts that don't belong to any cluster are labelled as noise (-1)
    and filtered out — this is the noise reduction
 
-![DBSCAN clustering](./diagrams/diagram_4_dbscan_clustering.png)
-*Show a 2D projection of alert vectors with circles showing DBSCAN clusters.
-One cluster of BGP-related alerts, one cluster of CRC-related alerts,
-some noise points marked separately. Show the eps radius around one point.*
+![DBSCAN clustering](../diagrams/diagram_4_dbscan_clustering.png)
 
 ### Output
 
@@ -307,10 +293,7 @@ START → [entry] → [reason] → [tools] → [reason] → ... → [output] →
                           (loop until done)
 ```
 
-![Langraph agent loop](./diagrams/diagram_6_langraph_agent_loop.png)
-*Show the four nodes as boxes with arrows. Show the conditional edge
-from reason that either goes to tools or output. Show the loop-back
-edge from tools to reason. Label each arrow with the condition.*
+![LangGraph agent loop](../diagrams/diagram_6_langraph_agent_loop.png)
 
 ### Node 1 — entry_node
 
@@ -505,10 +488,7 @@ The topology module uses NetworkX's graph algorithms:
   ```
   Useful for tracing the network path between an affected device and a data centre.
 
-![Blast Radius](./diagrams/diagram_5_blast_radius.png)
-*Show a device SIN-ER-01 at the centre, with 1-hop neighbours highlighted,
-and 2-hop neighbours in a lighter colour. Label the edges with link types
-(backbone vs access). Show how the blast radius spans multiple regions.*
+![Blast Radius](../diagrams/diagram_5_blast_radius.png)
 
 ---
 
@@ -547,11 +527,7 @@ A "perfect investigation" would have strong evidence in all types.
 Normalising against this theoretical maximum means confidence reflects
 how complete the investigation was, not just how many tool calls were made.
 
-![Confidence Evolution](./diagrams/diagram_7_confidence_evolution.png)
-*Show a horizontal bar chart with each evidence type on the y-axis
-and its contribution to confidence on the x-axis. Show a sample investigation
-with log: 0.55, historical: 0.25, runbook: 0.20, alert: 0.15, topology: 0.10.
-Show the total and the normalised confidence score.*
+![Confidence Evolution](../diagrams/diagram_7_confidence_evolution.png)
 
 ### Timeline reconstruction
 
@@ -701,10 +677,7 @@ This history powers the confidence evolution chart in the Streamlit
 observability panel, showing how the agent's certainty increased
 as it gathered more evidence.
 
-![Confidence Evolution](./diagrams/diagram_7_confidence_evolution.png)
-*Show a line chart with loops on the x-axis (1-4) and confidence
-percentage on the y-axis (0-100%). The line rises steeply then
-flattens as evidence saturates. Add a second line for evidence count.*
+![Confidence Evolution](../diagrams/diagram_7_confidence_evolution.png)
 
 ---
 
@@ -850,8 +823,5 @@ Here is the complete journey from an engineer's input to the dashboard:
     → Tab 4: Confidence evolution chart, audit log, full trace JSON
 ```
 
-![Sequence diagram for end-to-end flow](./diagrams/diagram_8_sequence_end_to_end.png)
-*Show vertical lifelines for: Engineer, Streamlit, FastAPI, Agent, Tools, ChromaDB, SQLite, Gemini.
-Show the messages flowing between them horizontally, numbered 1-15.
-Group the tool calls in a loop box labelled "Investigation loop (3-8 iterations)".*
+![Sequence diagram for end-to-end flow](../diagrams/diagram_8_sequence_end_to_end.png)
 
