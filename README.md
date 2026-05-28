@@ -265,7 +265,4 @@ Escalation: Fiber Operations Team
 - Shift handoff automation and postmortem report generation
 
 ---
-
-AI Automation Internship, 2025
-
 Built with LangGraph · Gemini 2.5 Flash · ChromaDB · FastAPI · Streamlit
