@@ -372,7 +372,7 @@ def severity_pill(sev: str) -> str:
 st.markdown("""
 <div class="noc-header">
     <p class="noc-title">🛡️ AI NOC Copilot</p>
-    <p class="noc-subtitle">Tata Communications · Network Operations Intelligence · Powered by Gemini 2.5 Flash</p>
+    <p class="noc-subtitle">Network Operations Intelligence · Powered by Gemini 2.5 Flash</p>
 </div>
 """, unsafe_allow_html=True)
 
