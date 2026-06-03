@@ -61,7 +61,8 @@ def find_similar_incidents(symptom: str = None, region: str = None,
     where = ("WHERE " + " AND ".join(conditions)) if conditions else ""
     query = f"""
         SELECT incident_id, severity, region, affected_device,
-               symptom, root_cause, description, resolution, mttr_minutes
+               symptom, root_cause, description, resolution, mttr_minutes,
+               customer_segment, affected_customers, detected_at, resolved_at
         FROM incidents
         {where}
         ORDER BY detected_at DESC
