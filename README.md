@@ -73,6 +73,12 @@ FastAPI (REST + WebSocket) → Streamlit Dashboard
 - Deduplicates events within a 30-second window
 - Infers customer impact milestone automatically when first CRITICAL event fires
 
+### Live Investigation Streaming
+- The UI streams agent activity in real time as the investigation runs — no waiting for a spinner to resolve
+- Each node emits typed events (`start`, `reason`, `tool`, `output`) polled every 1.5 seconds from the server
+- Engineers see exactly which tool is being called, which reasoning loop is running, and whether the agent hit a rate limit and rotated keys — before the RCA is ready
+- After the investigation completes the trace collapses into an expandable "Last investigation trace" panel
+
 ### AI Observability Layer
 - **Runtime tracer** — records every tool call with timing, input params, and output summary
 - **RAG quality scorer** — tracks retrieval quality per query
@@ -127,7 +133,7 @@ noc_copilot/
 │   ├── tracer.py          # Runtime tool call + RAG tracing
 │   └── logger.py          # Persistent JSONL audit log
 ├── api/
-│   └── main.py            # FastAPI — 20 endpoints + WebSocket
+│   └── main.py            # FastAPI — 21 endpoints + WebSocket
 ├── ui/
 │   └── app.py             # Streamlit dashboard — 4 panels
 ├── scripts/
