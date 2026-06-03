@@ -17,10 +17,9 @@ Layout:
 import json
 import sys
 import time
+import threading
 import requests
-import websocket
 from pathlib import Path
-from datetime import datetime
 
 import streamlit as st
 
@@ -386,6 +385,9 @@ if "trace_result"  not in st.session_state: st.session_state.trace_result  = Non
 if "cluster"       not in st.session_state: st.session_state.cluster       = None
 if "investigating" not in st.session_state: st.session_state.investigating = False
 if "logs"          not in st.session_state: st.session_state.logs          = []
+if "live_events"   not in st.session_state: st.session_state.live_events   = []
+if "_inv_thread"   not in st.session_state: st.session_state._inv_thread   = None
+if "_inv_result"   not in st.session_state: st.session_state._inv_result   = {}
 
 
 # ─────────────────────────────────────────────
@@ -459,31 +461,89 @@ with st.sidebar:
 
 
 # ─────────────────────────────────────────────
-# INVESTIGATION TRIGGER
+# INVESTIGATION TRIGGER — threaded, non-blocking
 # ─────────────────────────────────────────────
 
+def _render_live_events(events: list[dict]):
+    """Terminal-style card shown while the agent is running."""
+    icons    = {"start": "🔍", "reason": "🧠", "tool": "⚙️", "output": "📊"}
+    colors   = {"start": "#4da6ff", "reason": "#a78bfa", "tool": "#00c864", "output": "#ffb400"}
+    rows_html = ""
+    for ev in events[-20:]:
+        icon  = icons.get(ev.get("event", ""), "·")
+        ts    = ev.get("ts", "")[:19].replace("T", " ")
+        msg   = ev.get("message", "")
+        color = colors.get(ev.get("event", ""), "#94a3b8")
+        rows_html += (
+            f'<div style="font-family:JetBrains Mono,monospace;font-size:12px;'
+            f'padding:4px 0;border-bottom:1px solid #1a2332;color:{color}">'
+            f'{icon}&nbsp;&nbsp;<span style="color:#4a6fa5">{ts}</span>&nbsp;&nbsp;{msg}</div>'
+        )
+    st.markdown(
+        f'<div class="noc-card">'
+        f'<div class="noc-card-title" style="color:#ff5050;letter-spacing:3px">'
+        f'● LIVE &nbsp;·&nbsp; AGENT INVESTIGATING</div>'
+        f'{rows_html}'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
+
+
 if investigate_btn and incident_input.strip():
+    # Fresh result dict — capture local ref so the background thread can mutate it
+    result_dict = {}
+    st.session_state._inv_result = result_dict
+    payload = {
+        "incident_description": incident_input.strip(),
+        "region": region_input if region_input else None,
+        "run_correlation": run_correlation,
+    }
+    def _run():
+        r = api_post("/investigate", payload)
+        if r:
+            result_dict.update(r)
+    thread = threading.Thread(target=_run, daemon=True)
+    thread.start()
+    st.session_state._inv_thread  = thread
     st.session_state.investigating = True
-
-    with st.spinner("Running alert correlation..."):
-        result = api_post("/investigate", {
-            "incident_description": incident_input.strip(),
-            "region": region_input if region_input else None,
-            "run_correlation": run_correlation,
-        })
-
-    if result:
-        st.session_state.rca_result   = result
-        st.session_state.cluster      = result.get("alert_cluster")
-        # Fetch trace after investigation
-        st.session_state.trace_result = api_get("/observability/trace")
-        st.session_state.logs         = api_get("/observability/logs") or []
-
-    st.session_state.investigating = False
+    st.session_state.live_events   = []
     st.rerun()
 
 elif investigate_btn and not incident_input.strip():
     st.warning("Please enter an incident description.")
+
+
+# ─────────────────────────────────────────────
+# POLLING LOOP — runs every rerun while investigating
+# ─────────────────────────────────────────────
+
+live_placeholder = st.empty()
+
+if st.session_state.investigating:
+    thread = st.session_state._inv_thread
+    if thread and thread.is_alive():
+        events = api_get("/status/events") or []
+        st.session_state.live_events = events
+        with live_placeholder.container():
+            _render_live_events(events)
+        time.sleep(1.5)
+        st.rerun()
+    else:
+        # Thread finished — pull results
+        inv_result = st.session_state._inv_result
+        if inv_result:
+            st.session_state.rca_result   = inv_result.copy()
+            st.session_state.cluster      = inv_result.get("alert_cluster")
+            st.session_state.trace_result = api_get("/observability/trace")
+            st.session_state.logs         = api_get("/observability/logs") or []
+        st.session_state.investigating = False
+        st.rerun()
+
+elif st.session_state.live_events:
+    # Show the last event log collapsed after investigation finishes
+    with live_placeholder.container():
+        with st.expander("Last investigation trace", expanded=False):
+            _render_live_events(st.session_state.live_events)
 
 
 # ─────────────────────────────────────────────
@@ -648,18 +708,18 @@ with tab1:
                     "topology": "#a78bfa", "metric": "#38bdf8",
                 }
 
-                st.markdown('<div class="noc-card"><div class="noc-card-title">Evidence Breakdown</div>', unsafe_allow_html=True)
+                breakdown_html = '<div class="noc-card"><div class="noc-card-title">Evidence Breakdown</div>'
                 for t, count in type_counts.items():
                     color = type_colors.get(t, "#64748b")
                     label = f"{count} item{'s' if count > 1 else ''}"
-                    st.markdown(
+                    breakdown_html += (
                         f'<div style="display:flex;justify-content:space-between;padding:4px 0;'
                         f'border-bottom:1px solid #1e2d40;font-size:12px">'
                         f'<span style="color:{color};font-family:JetBrains Mono,monospace">{t}</span>'
-                        f'<span style="color:#94a3b8">{label}</span></div>',
-                        unsafe_allow_html=True
+                        f'<span style="color:#94a3b8">{label}</span></div>'
                     )
-                st.markdown('</div>', unsafe_allow_html=True)
+                breakdown_html += '</div>'
+                st.markdown(breakdown_html, unsafe_allow_html=True)
 
 
 # ══════════════════════════════════════════════
@@ -766,94 +826,72 @@ with tab3:
         col_left, col_right = st.columns([3, 2])
 
         with col_left:
-            # Tool call waterfall
-            st.markdown("""
-            <div class="noc-card">
-                <div class="noc-card-title">Tool Call Waterfall</div>
-            """, unsafe_allow_html=True)
-
+            # Tool call waterfall — build full HTML in one call to avoid div fragmentation
+            waterfall_html = '<div class="noc-card"><div class="noc-card-title">Tool Call Waterfall</div>'
             for tc in tool_traces:
-                success  = tc.get("success", True)
-                cls      = "tool-success" if success else "tool-fail"
-                status   = "✓" if success else "✗"
-                scls     = "tool-status-ok" if success else "tool-status-err"
-                name     = tc.get("tool_name", "")
-                dur      = tc.get("duration_ms", 0)
-                loop     = tc.get("loop_number", 0)
-                summary_txt = tc.get("output_summary", "")
-
-                st.markdown(f"""
-                <div class="tool-row {cls}">
-                    <span class="{scls}">{status}</span>
-                    <span class="tool-loop">L{loop}</span>
-                    <span class="tool-name">{name}</span>
-                    <span style="color:#64748b;font-size:11px;flex:1">{summary_txt[:40]}</span>
-                    <span class="tool-time">{dur:.1f}ms</span>
-                </div>
-                """, unsafe_allow_html=True)
-
-            st.markdown("</div>", unsafe_allow_html=True)
+                success     = tc.get("success", True)
+                cls         = "tool-success" if success else "tool-fail"
+                status      = "✓" if success else "✗"
+                scls        = "tool-status-ok" if success else "tool-status-err"
+                name        = tc.get("tool_name", "")
+                dur         = tc.get("duration_ms", 0) or 0
+                loop        = tc.get("loop_number", 0)
+                summary_txt = tc.get("output_summary", "")[:40]
+                waterfall_html += (
+                    f'<div class="tool-row {cls}">'
+                    f'<span class="{scls}">{status}</span>'
+                    f'<span class="tool-loop">L{loop}</span>'
+                    f'<span class="tool-name">{name}</span>'
+                    f'<span style="color:#64748b;font-size:11px;flex:1">{summary_txt}</span>'
+                    f'<span class="tool-time">{dur:.1f}ms</span>'
+                    f'</div>'
+                )
+            waterfall_html += '</div>'
+            st.markdown(waterfall_html, unsafe_allow_html=True)
 
         with col_right:
-            # RAG retrievals
+            # RAG retrievals — single st.markdown call
             if rag_traces:
-                st.markdown("""
-                <div class="noc-card">
-                    <div class="noc-card-title">RAG Retrievals</div>
-                """, unsafe_allow_html=True)
-
+                rag_html = '<div class="noc-card"><div class="noc-card-title">RAG Retrievals</div>'
                 for rt in rag_traces:
-                    quality = rt.get("top_similarity", 0)
+                    quality = rt.get("top_similarity", 0) or 0
                     q_color = "#00c864" if quality > 0.7 else "#ffb400" if quality > 0.4 else "#ff5050"
-                    st.markdown(f"""
-                    <div style="padding:8px 0;border-bottom:1px solid #1e2d40">
-                        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;
-                                    color:#4a6fa5;margin-bottom:4px">
-                            {rt.get('retrieved_at','')[:19]}
-                        </div>
-                        <div style="font-size:12px;color:#94a3b8;margin-bottom:4px">
-                            {rt.get('query','')[:60]}
-                        </div>
-                        <div style="display:flex;gap:12px;font-size:11px">
-                            <span style="color:#4da6ff">{rt.get('chunks_retrieved',0)} chunks</span>
-                            <span style="color:{q_color}">quality {quality:.0%}</span>
-                            <span style="color:#4a6fa5">{rt.get('duration_ms',0):.1f}ms</span>
-                        </div>
-                        <div style="font-size:11px;color:#4a6fa5;margin-top:4px">
-                            {', '.join(rt.get('sources_hit',[]))}
-                        </div>
-                    </div>
-                    """, unsafe_allow_html=True)
+                    dur_ms  = rt.get("duration_ms", 0) or 0
+                    rag_html += (
+                        f'<div style="padding:8px 0;border-bottom:1px solid #1e2d40">'
+                        f'<div style="font-family:\'JetBrains Mono\',monospace;font-size:11px;color:#4a6fa5;margin-bottom:4px">'
+                        f'{rt.get("retrieved_at","")[:19]}</div>'
+                        f'<div style="font-size:12px;color:#94a3b8;margin-bottom:4px">{rt.get("query","")[:60]}</div>'
+                        f'<div style="display:flex;gap:12px;font-size:11px">'
+                        f'<span style="color:#4da6ff">{rt.get("chunks_retrieved",0)} chunks</span>'
+                        f'<span style="color:{q_color}">quality {quality:.0%}</span>'
+                        f'<span style="color:#4a6fa5">{dur_ms:.1f}ms</span></div>'
+                        f'<div style="font-size:11px;color:#4a6fa5;margin-top:4px">'
+                        f'{", ".join(rt.get("sources_hit",[]))}</div>'
+                        f'</div>'
+                    )
+                rag_html += '</div>'
+                st.markdown(rag_html, unsafe_allow_html=True)
 
-                st.markdown("</div>", unsafe_allow_html=True)
-
-            # Loop summary
+            # Reasoning loops — single st.markdown call
             if loop_traces:
-                st.markdown("""
-                <div class="noc-card">
-                    <div class="noc-card-title">Reasoning Loops</div>
-                """, unsafe_allow_html=True)
-
+                loops_html = '<div class="noc-card"><div class="noc-card-title">Reasoning Loops</div>'
                 for lt in loop_traces:
-                    conf = lt.get("confidence_so_far", 0)
-                    st.markdown(f"""
-                    <div style="padding:8px 0;border-bottom:1px solid #1e2d40;font-size:12px">
-                        <div style="display:flex;justify-content:space-between">
-                            <span style="font-family:'JetBrains Mono',monospace;color:#4da6ff">
-                                Loop {lt.get('loop_number',0)}
-                            </span>
-                            <span style="color:#00c864">{conf:.0%} confidence</span>
-                        </div>
-                        <div style="color:#4a6fa5;margin-top:4px">
-                            {', '.join(lt.get('tools_selected',[]))}
-                        </div>
-                        <div style="color:#64748b;font-size:11px;margin-top:2px">
-                            {lt.get('evidence_count',0)} evidence items · {lt.get('duration_ms',0):.0f}ms
-                        </div>
-                    </div>
-                    """, unsafe_allow_html=True)
-
-                st.markdown("</div>", unsafe_allow_html=True)
+                    conf      = lt.get("confidence_so_far", 0) or 0
+                    dur_ms    = lt.get("duration_ms", 0) or 0
+                    tools_str = ", ".join(lt.get("tools_selected", []))
+                    loops_html += (
+                        f'<div style="padding:8px 0;border-bottom:1px solid #1e2d40;font-size:12px">'
+                        f'<div style="display:flex;justify-content:space-between">'
+                        f'<span style="font-family:\'JetBrains Mono\',monospace;color:#4da6ff">Loop {lt.get("loop_number",0)}</span>'
+                        f'<span style="color:#00c864">{conf:.0%} confidence</span></div>'
+                        f'<div style="color:#4a6fa5;margin-top:4px">{tools_str}</div>'
+                        f'<div style="color:#64748b;font-size:11px;margin-top:2px">'
+                        f'{lt.get("evidence_count",0)} evidence items · {dur_ms:.0f}ms</div>'
+                        f'</div>'
+                    )
+                loops_html += '</div>'
+                st.markdown(loops_html, unsafe_allow_html=True)
 
 
 # ══════════════════════════════════════════════
