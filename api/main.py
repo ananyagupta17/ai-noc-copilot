@@ -35,7 +35,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 from dotenv import load_dotenv
 load_dotenv()
 
-from agent.graph import run_investigation, run_investigation_stream
+from agent.graph import run_investigation, run_investigation_stream, _LIVE_EVENTS
 from alert_correlation.clusterer import correlate_alerts
 from observability.tracer import tracer
 from observability.logger import noc_logger
@@ -382,6 +382,12 @@ async def ws_investigate(websocket: WebSocket):
 # ─────────────────────────────────────────────
 # REST — OBSERVABILITY
 # ─────────────────────────────────────────────
+
+@app.get("/status/events")
+def get_live_events():
+    """Live event log polled by the UI while an investigation is running."""
+    return _LIVE_EVENTS
+
 
 @app.get("/observability/summary")
 def observability_summary():
