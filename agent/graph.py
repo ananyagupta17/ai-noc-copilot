@@ -25,13 +25,19 @@ import os
 import json
 import time
 from datetime import datetime
-from typing import Literal
+
+# ── Live event log ────────────────────────────
+# Cleared at the start of each investigation and polled by the UI.
+_LIVE_EVENTS: list[dict] = []
+
+def _emit(event: str, message: str):
+    _LIVE_EVENTS.append({"event": event, "message": message, "ts": datetime.now().isoformat()})
 
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage
 from langgraph.graph import StateGraph, START, END
 from agent.evidence import enrich_rca_with_evidence
-from agent.timeline import build_timeline, timeline_to_display
+from agent.timeline import build_timeline
 from observability.tracer import tracer
 from observability.logger import noc_logger
 
@@ -39,7 +45,7 @@ from observability.logger import noc_logger
 from config import LLM_MODEL, MAX_TOOL_CALLS, GOOGLE_API_KEY
 from agent.state import (
     AgentState, EvidenceItem, TimelineEvent,
-    ToolCallRecord, ImpactAnalysis, summarise_state
+    ToolCallRecord, ImpactAnalysis
 )
 from agent.tools import ALL_TOOLS
 
@@ -82,6 +88,44 @@ if not any(API_KEYS):
     API_KEYS = [GOOGLE_API_KEY]
 
 KEY_ROTATOR = itertools.cycle(API_KEYS)
+
+
+def _llm_invoke_with_retry(llm_instance, messages, max_retries: int = 4, **kwargs):
+    """
+    Invoke an LLM and retry on 429 RESOURCE_EXHAUSTED errors.
+    Rotates to the next API key before each retry.
+    Extracts retryDelay from the error when available.
+    """
+    import re
+    last_err = None
+    for attempt in range(max_retries):
+        try:
+            return llm_instance.invoke(messages, **kwargs)
+        except Exception as e:
+            err_str = str(e)
+            if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str:
+                last_err = e
+                # Try to parse suggested retry delay from error message
+                m = re.search(r"retry[^\d]*(\d+(?:\.\d+)?)", err_str, re.IGNORECASE)
+                wait = float(m.group(1)) + 2 if m else (30 * (attempt + 1))
+                wait = min(wait, 90)  # cap at 90s
+                next_key = next(KEY_ROTATOR)
+                key_preview = f"...{next_key[-6:]}" if next_key else "FALLBACK"
+                print(f"[NOC Agent] 429 — rotating to key {key_preview}, waiting {wait:.0f}s (attempt {attempt+1}/{max_retries})")
+                _emit("reason", f"429 rate limit — rotating to key {key_preview}, waiting {wait:.0f}s...")
+                time.sleep(wait)
+                # Rebuild the LLM instance with the new key
+                try:
+                    llm_instance = llm_instance.__class__(
+                        model=LLM_MODEL, temperature=0, google_api_key=next_key
+                    )
+                    if hasattr(llm_instance, "bind_tools"):
+                        llm_instance = llm_instance.bind_tools(ALL_TOOLS)
+                except Exception:
+                    pass
+            else:
+                raise
+    raise last_err
 
 
 # ─────────────────────────────────────────────
@@ -147,6 +191,9 @@ def entry_node(state: AgentState) -> AgentState:
     print(f"\n[NOC Agent] Starting investigation...")
     print(f"[NOC Agent] Input: {state.incident_description[:100]}")
 
+    _LIVE_EVENTS.clear()
+    _emit("start", f"Investigation started — {state.incident_description[:80]}")
+
     tracer.start_investigation(state.incident_description)
     noc_logger.investigation_started("active", state.incident_description)
 
@@ -191,6 +238,7 @@ def reason_node(state: AgentState) -> AgentState:
     """
     state.loop_count += 1
     print(f"[NOC Agent] Reasoning loop {state.loop_count}...")
+    _emit("reason", f"Loop {state.loop_count} — reasoning over {len(state.evidence)} evidence items")
 
     lc_messages = []
     for msg in state.messages:
@@ -210,9 +258,9 @@ def reason_node(state: AgentState) -> AgentState:
     key_preview = f"...{current_key[-6:]}" if current_key else "FALLBACK"
     print(f"[NOC Agent] Dynamic authentication token shift. Active key slot: {key_preview}")
 
-    response = llm_with_tools.invoke(
+    response = _llm_invoke_with_retry(
+        ChatGoogleGenerativeAI(model=LLM_MODEL, temperature=0, google_api_key=current_key).bind_tools(ALL_TOOLS),
         lc_messages,
-        config={"configurable": {"google_api_key": current_key}}
     )
 
     state.messages.append({
@@ -222,7 +270,10 @@ def reason_node(state: AgentState) -> AgentState:
         "_lc_obj": response
     })
 
-    # Record reasoning loop for observability
+    # Record reasoning loop for observability — compute real confidence from
+    # collected evidence so the evolution chart isn't a flat zero line
+    from agent.evidence import score_evidence as _score
+    preliminary_confidence, _ = _score(state) if state.evidence else (0.0, None)
     tracer.record_loop(
         loop_number=state.loop_count,
         tools_selected=[
@@ -230,7 +281,7 @@ def reason_node(state: AgentState) -> AgentState:
             state.messages[-1].get("tool_calls", [])
         ],
         evidence_count=len(state.evidence),
-        confidence=state.rca.confidence_score,
+        confidence=preliminary_confidence,
         duration_ms=0,
     )
 
@@ -281,6 +332,7 @@ def tools_node(state: AgentState) -> AgentState:
         tool_call_id = tc.get("id", f"call_{len(state.tool_calls)}")
 
         print(f"[NOC Agent] Calling {tool_name}({tool_args})")
+        _emit("tool", f"→ {tool_name}({json.dumps(tool_args, default=str)[:60]})")
 
         start = time.perf_counter()
         try:
@@ -348,7 +400,7 @@ def tools_node(state: AgentState) -> AgentState:
     return state
 
 
-def _summarise_result(tool_name: str, result) -> str:
+def _summarise_result(_tool_name: str, result) -> str:
     """Short summary of a tool result for the observability trace."""
     if isinstance(result, dict) and "error" in result:
         return f"ERROR: {result['error']}"
@@ -427,45 +479,35 @@ def _extract_state_fields(state: AgentState, tool_name: str, result):
     Pull key fields out of tool results and store in state directly.
     These are used by the output node for impact analysis and timeline.
     """
-    if tool_name == "tool_find_similar_incidents" and isinstance(result, list):
-        state.similar_incidents_found = result
-
-    elif tool_name == "tool_search_logs" and isinstance(result, dict):
-        state.raw_logs = result.get("lines", [])
-        # Try to extract incident ID from log source filenames
-        for line in state.raw_logs:
-            src = line.get("source", "")
-            if src.startswith("INC-") and not state.incident_id:
-                state.incident_id = src.replace(".log", "")
-
-    elif tool_name == "tool_get_alerts_for_incident" and isinstance(result, list):
-        state.raw_alerts = result
-
-    elif tool_name == "tool_get_critical_alerts" and isinstance(result, list):
-        state.raw_alerts = result
-
-    elif tool_name == "get_critical_alerts" and isinstance(result, list):
-         state.raw_alerts.extend(result)
-
-    elif tool_name == "tool_get_blast_radius" and isinstance(result, dict):
-        state.topology_data = result
-        if not state.identified_region and result.get("regions_affected"):
-            state.identified_region = result["regions_affected"][0]
-
-    elif tool_name == "tool_get_device_metrics" and isinstance(result, dict):
-        state.device_metrics = result
-        if not state.identified_device:
-            state.identified_device = result.get("device_id")
-
-    elif tool_name == "tool_get_runbook" and isinstance(result, dict):
-        state.runbook_chunks = result.get("results", [])
-
-    elif tool_name == "tool_find_similar_incidents" and isinstance(result, list):
+    if tool_name == "find_similar_incidents" and isinstance(result, list):
         state.similar_incidents_found = result
         if result and not state.identified_region:
             state.identified_region = result[0].get("region")
         if result and not state.identified_symptom:
             state.identified_symptom = result[0].get("symptom")
+
+    elif tool_name == "search_logs" and isinstance(result, dict):
+        state.raw_logs = result.get("lines", [])
+        for line in state.raw_logs:
+            src = line.get("source", "")
+            if src.startswith("INC-") and not state.incident_id:
+                state.incident_id = src.replace(".log", "")
+
+    elif tool_name in ("get_alerts_for_incident", "get_critical_alerts") and isinstance(result, list):
+        state.raw_alerts.extend(result)
+
+    elif tool_name == "get_blast_radius" and isinstance(result, dict):
+        state.topology_data = result
+        if not state.identified_region and result.get("regions_affected"):
+            state.identified_region = result["regions_affected"][0]
+
+    elif tool_name == "get_device_metrics" and isinstance(result, dict):
+        state.device_metrics = result
+        if not state.identified_device:
+            state.identified_device = result.get("device_id")
+
+    elif tool_name == "get_runbook" and isinstance(result, dict):
+        state.runbook_chunks = result.get("results", [])
 
 
 # ─────────────────────────────────────────────
@@ -483,19 +525,32 @@ def output_node(state: AgentState) -> AgentState:
     3. Ask GPT-4o to synthesise final RCA using all collected evidence
     """
     print("[NOC Agent] Generating RCA output...")
+    _emit("output", f"Scoring evidence ({len(state.evidence)} items) and building RCA...")
 
-      # ── Step 1: Compute confidence score (via evidence.py) ────
+    # ── Step 1: Compute confidence score (via evidence.py) ────
     state = enrich_rca_with_evidence(state)
     confidence = state.rca.confidence_score
 
-    # ── Step 2: Build timeline ─────────────────
+    # ── Step 2: Fallback — pull logs from similar incidents if agent missed them
+    if not state.raw_logs and state.similar_incidents_found:
+        from agent.tools.logs import search_logs as _fetch_logs
+        for inc in state.similar_incidents_found[:2]:
+            inc_id = inc.get("incident_id")
+            if inc_id:
+                log_result = _fetch_logs(incident_id=inc_id)
+                if log_result.get("total_lines", 0) > 0:
+                    state.raw_logs.extend(log_result.get("lines", []))
+                    _emit("output", f"Auto-fetched {log_result['total_lines']} log lines from {inc_id}")
+                    break
+
+    # ── Step 3: Build timeline ─────────────────
     timeline = build_timeline(state)
     state.rca.timeline = timeline
 
-    # ── Step 3: Build impact analysis ─────────
+    # ── Step 4: Build impact analysis ─────────
     state.rca.impact = _build_impact(state)
 
-    # ── Step 4: Ask LLM to synthesise RCA ─────
+    # ── Step 5: Ask LLM to synthesise RCA ─────
     synthesis_prompt = f"""
 Based on your investigation, provide a final RCA in this exact JSON format:
 
@@ -535,7 +590,11 @@ Return ONLY the JSON object, no other text.
             lc_messages.append(HumanMessage(content=f"[Assistant]: {msg['content']}"))
 
     # Use plain LLM here (no tools) — we just want text output
-    response = llm.invoke(lc_messages)
+    final_key = next(KEY_ROTATOR)
+    response = _llm_invoke_with_retry(
+        ChatGoogleGenerativeAI(model=LLM_MODEL, temperature=0, google_api_key=final_key),
+        lc_messages,
+    )
 
     # Parse LLM JSON response
     try:
