@@ -238,28 +238,51 @@ similarity[i][j] = cosine similarity between alert i and alert j
 This is converted to a distance matrix: `distance = 1 - similarity`
 and clipped to [0, 2] to avoid floating point negatives.
 
-DBSCAN clustering runs on the distance matrix:
+The clustering backend is **pluggable**. Label assignment is the only step
+that differs between backends — embedding, the distance matrix above, and
+cluster building are all shared — so the two backends produce interchangeable
+output for the rest of the pipeline.
+
+**Default — average-linkage agglomerative clustering** runs on the distance
+matrix:
+- `distance_threshold = 0.4` — the dendrogram is cut here (0.6 similarity),
+  so the number of clusters is discovered automatically rather than specified
+- `linkage = "average"` — two groups are merged on the *mean* pairwise
+  distance between their members, not the single closest pair
+- `metric = "precomputed"` — uses our distance matrix directly
+
+We don't need to specify the number of clusters upfront — cutting the
+dendrogram at a distance threshold discovers them automatically, which is
+essential when you don't know in advance how many distinct incidents an
+alert batch contains. Average linkage is chosen specifically to resist
+**chaining**: with single-linkage clustering, a lone bridging alert (e.g. a
+generic "high latency" message) that is similar to two otherwise-unrelated
+incidents can glue them into one cluster, silently merging two investigations.
+Averaging over all members prevents that.
+
+**Fallback — DBSCAN** is retained and invoked automatically if agglomerative
+clustering raises at runtime:
 - `eps = 0.4` — alerts within 0.4 distance (0.6 similarity) are neighbours
 - `min_samples = 1` — even single alerts form a cluster
 - `metric = "precomputed"` — uses our distance matrix directly
 
-DBSCAN is chosen over K-Means because you don't need to specify the number
-of clusters upfront — it discovers them from the density of the data, which
-is essential when you don't know in advance how many distinct incidents an
-alert batch contains.
+Note that with `min_samples = 1` every alert is a core point, so DBSCAN here
+degenerates to single-linkage / connected-components clustering and never
+labels anything as noise (`-1`). This is why it sits behind agglomerative as
+a fallback rather than the primary backend.
 
-`min_samples=1` ensures no alerts are discarded by DBSCAN — every alert,
-including isolated ones, forms its own single-member cluster. This is
-intentional: in a production NOC, a single outlier alert may represent an
-early fault signal or a novel failure mode not yet seen in the alert stream.
-The cost of a false negative (missing a real signal) outweighs the cost of a
-false positive (agent investigates a spurious alert). Noise reduction in this
-system refers to dimensionality compression — N raw alerts are reduced to K
-cluster summaries (where K << N) before the agent investigates. The agent
-reasons over cluster summaries, not individual alerts, which reduces context
-window consumption and eliminates redundant signal.
+Either way, **no alert is ever discarded** — every alert, including isolated
+ones, is assigned to a cluster (its own single-member cluster if nothing else
+is similar). This is intentional: in a production NOC, a single outlier alert
+may represent an early fault signal or a novel failure mode not yet seen in
+the alert stream. The cost of a false negative (missing a real signal)
+outweighs the cost of a false positive (agent investigates a spurious alert).
+Noise reduction in this system refers to dimensionality compression — N raw
+alerts are reduced to K cluster summaries (where K << N) before the agent
+investigates. The agent reasons over cluster summaries, not individual alerts,
+which reduces context window consumption and eliminates redundant signal.
 
-![DBSCAN clustering](../diagrams/diagram_4_dbscan_clustering.png)
+![Alert clustering](../diagrams/diagram_4_dbscan_clustering.png)
 
 ### Output
 
@@ -763,8 +786,8 @@ Here is the complete journey from an engineer's input to the dashboard:
 
 3. FastAPI calls correlate_alerts(description, region="Singapore")
    → AlertEmbedder.embed(50 recent alerts)
-   → DBSCAN clusters alerts
-   → Returns: CLU-001, dominant=interface_down, 6 alerts, 0 noise
+   → agglomerative clustering groups alerts (DBSCAN fallback)
+   → Returns: CLU-001, dominant=interface_down, 6 alerts
 
 4. FastAPI calls run_investigation(description, alert_cluster)
    → Creates AgentState with incident_description + alert_cluster

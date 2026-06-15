@@ -25,7 +25,7 @@ The AI NOC Copilot automates this investigation loop:
 ```
 Incident / Alert Input
         ↓
-Alert Correlation Engine        ← TF-IDF embeddings + DBSCAN clustering
+Alert Correlation Engine        ← TF-IDF embeddings + agglomerative clustering
         ↓                           groups noisy alerts into clean clusters
 LangGraph Agent                 ← Gemini 2.5 Flash orchestrated via LangGraph
         ↓  ↑  (investigation loop)
@@ -58,7 +58,8 @@ FastAPI (REST + WebSocket) → Streamlit Dashboard
 
 ### Alert Correlation Engine
 - Embeds alert messages using TF-IDF vectorisation with bigram support
-- Clusters similar alerts using DBSCAN on cosine distance matrix
+- Clusters similar alerts using average-linkage agglomerative clustering on a
+  cosine distance matrix (DBSCAN retained as an automatic fallback)
 - Reduces alert noise before the agent investigates — solving the #1 NOC pain point
 
 ### Explainable RCA with Evidence Scoring
@@ -100,7 +101,7 @@ FastAPI (REST + WebSocket) → Streamlit Dashboard
 | LLM | Gemini 2.5 Flash (via LangChain) |
 | Agent framework | LangGraph |
 | RAG | ChromaDB + TF-IDF embeddings |
-| Alert correlation | scikit-learn (DBSCAN) + NumPy |
+| Alert correlation | scikit-learn (agglomerative clustering, DBSCAN fallback) + NumPy |
 | Backend | FastAPI + WebSockets |
 | Frontend | Streamlit |
 | Storage | SQLite + ChromaDB |
@@ -128,7 +129,7 @@ noc_copilot/
 │       └── runbooks.py    # ChromaDB RAG retrieval
 ├── alert_correlation/
 │   ├── embedder.py        # TF-IDF alert vectorisation
-│   └── clusterer.py       # DBSCAN clustering + noise reduction
+│   └── clusterer.py       # agglomerative clustering (DBSCAN fallback) + noise reduction
 ├── observability/
 │   ├── tracer.py          # Runtime tool call + RAG tracing
 │   └── logger.py          # Persistent JSONL audit log
