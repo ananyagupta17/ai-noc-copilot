@@ -17,7 +17,7 @@ import json
 import numpy as np
 from dataclasses import dataclass, field
 from datetime import datetime
-from sklearn.cluster import DBSCAN
+from sklearn.cluster import DBSCAN, AgglomerativeClustering
 from sklearn.metrics.pairwise import cosine_similarity
 from pathlib import Path
 import sys
@@ -68,17 +68,32 @@ class AlertCluster:
 
 class AlertClusterer:
 
-    def __init__(self, similarity_threshold: float = 0.6):
+    def __init__(self, similarity_threshold: float = 0.6,
+                 method: str = "agglomerative"):
         """
         similarity_threshold: alerts with cosine similarity above this
         value get grouped together. 0.6 is a good starting point —
         lower = more aggressive grouping, higher = stricter separation.
+
+        method: which clustering backend to use for label assignment.
+            "agglomerative" (default) — average-linkage hierarchical
+                clustering. Resists the chaining problem that single-linkage
+                clustering suffers from, so it won't over-merge two distinct
+                incidents that happen to share one bridging alert.
+            "dbscan" — density-based clustering. Kept as a fallback; with
+                min_samples=1 it degenerates to single-linkage / connected
+                components.
+        Both backends share the same embedding, distance matrix, and cluster
+        building code, so their output is interchangeable in the pipeline.
+        If "agglomerative" raises at runtime, we automatically fall back to
+        "dbscan" rather than failing the correlation.
         """
-        # DBSCAN params:
-        # eps = 1 - similarity_threshold (DBSCAN uses distance not similarity)
-        # min_samples = 1 means even single alerts form a cluster
+        # eps = 1 - similarity_threshold (both backends use distance, not
+        # similarity). For agglomerative this is the distance_threshold the
+        # dendrogram is cut at; for DBSCAN it's the neighbourhood radius.
         self.eps = 1.0 - similarity_threshold
-        self.min_samples = 1
+        self.min_samples = 1            # DBSCAN: even single alerts form a cluster
+        self.method = method
         self.embedder = AlertEmbedder()
 
     def cluster(self, alerts: list[dict]) -> list[AlertCluster]:
@@ -104,13 +119,11 @@ class AlertClusterer:
         distance_matrix = np.clip(1.0 - similarity_matrix, 0.0, 2.0)
         np.fill_diagonal(distance_matrix, 0)
 
-        # Step 4 — run DBSCAN
-        db = DBSCAN(
-            eps=self.eps,
-            min_samples=self.min_samples,
-            metric="precomputed"    # we're passing a precomputed distance matrix
-        )
-        labels = db.fit_predict(distance_matrix)
+        # Step 4 — assign cluster labels using the configured backend.
+        # This is the ONLY step that differs between agglomerative and DBSCAN;
+        # everything before and after is shared, which keeps the two backends'
+        # output interchangeable in the forward pipeline.
+        labels = self._compute_labels(distance_matrix)
 
         # Step 5 — group alerts by cluster label
         # Label -1 means DBSCAN classified this alert as noise
@@ -170,6 +183,65 @@ class AlertClusterer:
             return None
         clusters = self.cluster(alerts)
         return clusters[0] if clusters else None
+
+    # ─────────────────────────────────────────
+    # LABEL ASSIGNMENT BACKENDS
+    # Each takes a precomputed distance matrix and returns a 1-D array of
+    # integer cluster labels (one per alert). Label -1 means "noise" — only
+    # DBSCAN can emit it, and only when min_samples >= 2. Agglomerative never
+    # emits -1, so every alert is always assigned to a cluster.
+    # ─────────────────────────────────────────
+
+    def _compute_labels(self, distance_matrix: np.ndarray) -> np.ndarray:
+        """
+        Dispatch to the configured clustering backend.
+        Agglomerative is the default; if it raises for any reason we fall
+        back to DBSCAN so correlation never fails outright.
+        """
+        if self.method == "agglomerative":
+            try:
+                return self._agglomerative_labels(distance_matrix)
+            except Exception as e:
+                print(f"[clusterer] agglomerative clustering failed "
+                      f"({e}); falling back to DBSCAN")
+                return self._dbscan_labels(distance_matrix)
+        return self._dbscan_labels(distance_matrix)
+
+    def _agglomerative_labels(self, distance_matrix: np.ndarray) -> np.ndarray:
+        """
+        Average-linkage hierarchical clustering.
+
+        We don't specify the number of clusters — instead we cut the
+        dendrogram at distance_threshold = eps (= 1 - similarity_threshold),
+        which discovers the cluster count automatically, just like DBSCAN.
+
+        Average linkage merges two groups based on the mean pairwise distance
+        between their members rather than the single closest pair. This is
+        what makes it resist chaining: a lone bridging alert can't glue two
+        otherwise-dissimilar incidents into one cluster.
+        """
+        agg = AgglomerativeClustering(
+            n_clusters=None,
+            distance_threshold=self.eps,
+            metric="precomputed",       # we pass a precomputed distance matrix
+            linkage="average",
+        )
+        return agg.fit_predict(distance_matrix)
+
+    def _dbscan_labels(self, distance_matrix: np.ndarray) -> np.ndarray:
+        """
+        Density-based clustering. Kept as the fallback backend.
+
+        With min_samples=1 every point is a core point, so this degenerates
+        to single-linkage / connected-components clustering and never labels
+        anything as noise (-1).
+        """
+        db = DBSCAN(
+            eps=self.eps,
+            min_samples=self.min_samples,
+            metric="precomputed",       # we pass a precomputed distance matrix
+        )
+        return db.fit_predict(distance_matrix)
 
     # ─────────────────────────────────────────
     # HELPERS
@@ -273,8 +345,11 @@ class AlertClusterer:
 # Called by api/main.py and agent/graph.py
 # ─────────────────────────────────────────────
 
-# Single shared instance
-_clusterer = AlertClusterer(similarity_threshold=0.6)
+# Single shared instance.
+# Uses agglomerative (average-linkage) clustering by default, with automatic
+# fallback to DBSCAN if it ever fails. Pass method="dbscan" to force the old
+# backend.
+_clusterer = AlertClusterer(similarity_threshold=0.6, method="agglomerative")
 
 
 def correlate_alerts(incident_id: str = None,
