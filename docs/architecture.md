@@ -273,7 +273,6 @@ AlertCluster(
     affected_devices=["SIN-ER-01", "SIN-CR-01"],
     affected_regions=["Singapore"],
     total_alert_count=12,
-    noise_reduced=0,         # always 0 with min_samples=1 (see note above)
     time_span_minutes=3.6,
     root_alerts=[...],       # top 3 most representative alerts
     summary="12 alerts correlated — dominant: bgp_flap (CRITICAL) across 2 devices."
