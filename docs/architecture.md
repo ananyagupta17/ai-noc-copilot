@@ -243,10 +243,21 @@ DBSCAN clustering runs on the distance matrix:
 - `min_samples = 1` — even single alerts form a cluster
 - `metric = "precomputed"` — uses our distance matrix directly
 
-DBSCAN has two key advantages over K-Means:
-1. You don't need to specify the number of clusters upfront
-2. Alerts that don't belong to any cluster are labelled as noise (-1)
-   and filtered out — this is the noise reduction
+DBSCAN is chosen over K-Means because you don't need to specify the number
+of clusters upfront — it discovers them from the density of the data, which
+is essential when you don't know in advance how many distinct incidents an
+alert batch contains.
+
+`min_samples=1` ensures no alerts are discarded by DBSCAN — every alert,
+including isolated ones, forms its own single-member cluster. This is
+intentional: in a production NOC, a single outlier alert may represent an
+early fault signal or a novel failure mode not yet seen in the alert stream.
+The cost of a false negative (missing a real signal) outweighs the cost of a
+false positive (agent investigates a spurious alert). Noise reduction in this
+system refers to dimensionality compression — N raw alerts are reduced to K
+cluster summaries (where K << N) before the agent investigates. The agent
+reasons over cluster summaries, not individual alerts, which reduces context
+window consumption and eliminates redundant signal.
 
 ![DBSCAN clustering](../diagrams/diagram_4_dbscan_clustering.png)
 
@@ -262,10 +273,10 @@ AlertCluster(
     affected_devices=["SIN-ER-01", "SIN-CR-01"],
     affected_regions=["Singapore"],
     total_alert_count=12,
-    noise_reduced=8,         # 8 noise alerts filtered out
+    noise_reduced=0,         # always 0 with min_samples=1 (see note above)
     time_span_minutes=3.6,
     root_alerts=[...],       # top 3 most representative alerts
-    summary="12 alerts correlated — dominant: bgp_flap (CRITICAL) across 2 devices. 8 noise filtered."
+    summary="12 alerts correlated — dominant: bgp_flap (CRITICAL) across 2 devices."
 )
 ```
 
