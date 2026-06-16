@@ -36,11 +36,20 @@ from agent.tools.runbooks import get_runbook, list_available_runbooks
 @tool("get_incident")
 def tool_get_incident(incident_id: str) -> dict:
     """
-    Fetch full details of a specific incident by its ID (e.g. INC-104332).
-    Use this when you have an incident ID and need the complete record
-    including root cause, resolution, MTTR, and affected device.
+    Fetch metadata for a specific incident by its ID (e.g. INC-104332):
+    severity, region, affected device, timestamps, and customer impact.
+    Use this to establish the facts of the incident you are investigating.
+
+    Note: this does NOT return the root cause or resolution. You must
+    DERIVE the root cause yourself from logs, topology, metrics, and
+    similar historical incidents — this tool only gives you the case facts.
     """
-    return get_incident(incident_id)
+    # Strip the post-RCA answer fields. The agent must derive the root
+    # cause from evidence, not read it off the incident record. The raw
+    # get_incident() (used by the API/UI) still returns the full record.
+    _LEAKY_FIELDS = ("root_cause", "resolution")
+    record = get_incident(incident_id)
+    return {k: v for k, v in record.items() if k not in _LEAKY_FIELDS}
 
 
 @tool("find_similar_incidents")

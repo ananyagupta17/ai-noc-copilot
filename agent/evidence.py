@@ -303,4 +303,4 @@ if __name__ == "__main__":
     print(f"\nMissing evidence:")
     for m in breakdown.missing_evidence:
         print(f"  - {m}")
-    print(f"\nExplanation:\n  {breakdown.explanation}")
+    print(f"\nExplanation:\n  {breakdown.explanation}") 
