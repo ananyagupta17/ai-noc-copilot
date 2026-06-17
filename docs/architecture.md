@@ -643,12 +643,16 @@ signals is useful but shouldn't alone push confidence to 90%.
 **Normalisation:**
 
 ```python
-perfect_score = sum(MAX_WEIGHT_PER_TYPE.values())  # ~1.85
+# "unknown" is excluded — it is a catch-all bucket, not a signal a
+# thorough investigation would deliberately collect.
+perfect_score = sum(
+    cap for t, cap in MAX_WEIGHT_PER_TYPE.items() if t != "unknown"
+)  # ~1.75
 raw_score = sum(capped_weights.values())
 confidence = min(raw_score / perfect_score, 1.0)
 ```
 
-A "perfect investigation" would have strong evidence in all types.
+A "perfect investigation" would have strong evidence in all real types.
 Normalising against this theoretical maximum means confidence reflects
 how complete the investigation was, not just how many tool calls were made.
 
@@ -963,7 +967,7 @@ Here is the complete journey from an engineer's input to the dashboard:
 12. output_node runs:
     → enrich_rca_with_evidence():
       log: 0.55, historical: 0.45, runbook: 0.20, alert: 0.15, topology: 0.10
-      confidence = 1.45 / 1.85 = 0.78 → 78%
+      confidence = 1.45 / 1.75 = 0.83 → 83%
     → build_timeline():
       Parses timestamps from raw_alerts + raw_logs
       Sorts chronologically, deduplicates

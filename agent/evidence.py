@@ -119,10 +119,15 @@ def score_evidence(state: AgentState) -> tuple[float, EvidenceBreakdown]:
         cap = MAX_WEIGHT_PER_TYPE.get(t, 0.10)
         capped_weights[t] = min(w, cap)
 
-    # Step 3 — sum capped weights and normalise to 0-1
-    # We normalise against a "perfect investigation" score of ~1.30
-    # (all evidence types present at their caps)
-    perfect_score = sum(MAX_WEIGHT_PER_TYPE.values())  # ~1.85
+    # Step 3 — sum capped weights and normalise to 0-1.
+    # We normalise against a "perfect investigation" — every real evidence
+    # type present at its cap. "unknown" is excluded from this maximum: it is
+    # a catch-all for unclassified tool results, not a signal a thorough
+    # investigation would deliberately collect, so it should not raise the bar
+    # a complete investigation has to clear.
+    perfect_score = sum(
+        cap for t, cap in MAX_WEIGHT_PER_TYPE.items() if t != "unknown"
+    )  # ~1.75
     raw_score = sum(capped_weights.values())
     confidence = min(round(raw_score / perfect_score, 2), 1.0)
 
