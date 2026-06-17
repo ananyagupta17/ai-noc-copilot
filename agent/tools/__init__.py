@@ -2,10 +2,10 @@
 agent/tools/__init__.py
 
 Registers all MCP tools with LangGraph using the @tool decorator.
-The decorator gives each function a JSON schema so GPT-4o knows
+The decorator gives each function a JSON schema so Gemini knows
 exactly what parameters to pass when it decides to call a tool.
 
-The docstring of each tool is critical — GPT-4o reads it to decide
+The docstring of each tool is critical — Gemini reads it to decide
 WHEN to call a tool. Write them like instructions to the LLM.
 """
 

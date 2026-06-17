@@ -10,9 +10,9 @@ Graph structure:
     ↓
   [entry] — parse input, identify symptom/region/device
     ↓
-  [reason] — GPT-4o decides what to do next
+  [reason] — Gemini decides what to do next
     ↓
-  [tools]  — execute whatever tool GPT-4o selected
+  [tools]  — execute whatever tool Gemini selected
     ↓  ↑
   (loop back to reason until enough evidence OR max loops hit)
     ↓
@@ -147,7 +147,7 @@ TOOL_MAP = {t.name: t for t in ALL_TOOLS}
 
 # ─────────────────────────────────────────────
 # SYSTEM PROMPT
-# This is what GPT-4o reads at the start of every investigation.
+# This is what Gemini reads at the start of every investigation.
 # It sets the persona, goals, and investigation strategy.
 # ─────────────────────────────────────────────
 
@@ -197,7 +197,7 @@ def entry_node(state: AgentState) -> AgentState:
     tracer.start_investigation(state.incident_description)
     noc_logger.investigation_started("active", state.incident_description)
 
-    # Build the opening message — this is what GPT-4o first reads
+    # Build the opening message — this is what Gemini first reads
     opening = f"""
 New incident reported:
 
@@ -226,14 +226,14 @@ to gather evidence and determine the root cause.
 
 # ─────────────────────────────────────────────
 # NODE 2 — REASON
-# GPT-4o reads current state and decides what to do next.
+# Gemini reads current state and decides what to do next.
 # Either calls a tool or signals it's done investigating.
 # This node is the "thinking" step in the loop.
 # ─────────────────────────────────────────────
 
 def reason_node(state: AgentState) -> AgentState:
     """
-    GPT-4o decides what tool to call next, or signals completion.
+    Gemini decides what tool to call next, or signals completion.
     Reads the full message history including all previous tool results.
     """
     state.loop_count += 1
@@ -314,13 +314,13 @@ def should_continue(state: AgentState):
 
 # ─────────────────────────────────────────────
 # NODE 3 — TOOLS
-# Executes whichever tool GPT-4o selected.
+# Executes whichever tool Gemini selected.
 # Records timing, result, and evidence into state.
 # ─────────────────────────────────────────────
 
 def tools_node(state: AgentState) -> AgentState:
     """
-    Execute the tool(s) GPT-4o selected.
+    Execute the tool(s) Gemini selected.
     Adds results to message history and evidence list.
     """
     last_msg = state.messages[-1]
@@ -513,7 +513,7 @@ def _extract_state_fields(state: AgentState, tool_name: str, result):
 # ─────────────────────────────────────────────
 # NODE 4 — OUTPUT
 # Computes confidence score, builds timeline,
-# then asks GPT-4o to synthesise the final RCA.
+# then asks Gemini to synthesise the final RCA.
 # Runs once at the end of the investigation.
 # ─────────────────────────────────────────────
 
@@ -522,7 +522,7 @@ def output_node(state: AgentState) -> AgentState:
     Generate the final RCA output.
     1. Compute confidence score from evidence weights
     2. Build timeline from log/alert timestamps
-    3. Ask GPT-4o to synthesise final RCA using all collected evidence
+    3. Ask Gemini to synthesise final RCA using all collected evidence
     """
     print("[NOC Agent] Generating RCA output...")
     _emit("output", f"Scoring evidence ({len(state.evidence)} items) and building RCA...")
