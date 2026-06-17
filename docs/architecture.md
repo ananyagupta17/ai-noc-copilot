@@ -256,6 +256,33 @@ most similar chunks are returned as context.
 
 ![Chunking and Embedding](../diagrams/diagram_3_rag_chunking_embedding.png)
 
+### Storage in production
+
+SQLite and ChromaDB are used here to keep the system self-contained and
+dependency-free. They consolidate two storage roles — relational records and
+vector search — into local files that require no external services. A
+production deployment would not use a single store for all data; the data
+types involved have different shapes and access patterns, so each is placed in
+a store suited to it (polyglot persistence).
+
+| Data type | This system | Production | Rationale |
+|---|---|---|---|
+| Incidents | SQLite table | PostgreSQL, or the ITSM system of record (ServiceNow / PagerDuty / Jira) | Relational lifecycle records that require concurrency, durability, and joins |
+| Alerts / events | SQLite table | Kafka for transport, with a search store (Elasticsearch / OpenSearch) at rest | High-throughput stream that must be buffered, replayable, and searchable |
+| Metrics | Scalar `metric_value` | Time-series DB (Prometheus with Thanos/Mimir, or VictoriaMetrics) | Time-indexed series needing range queries, downsampling, and retention |
+| Logs | Flat `.log` files | Loki / Elasticsearch / Splunk | High-volume append with full-text search and label-based indexing |
+| Topology | `topology.json` | Graph DB (Neo4j) or a CMDB (ServiceNow CMDB / NetBox) | Dependency and blast-radius queries are graph traversals |
+| Runbooks (RAG) | ChromaDB | Managed vector store (Pinecone / Weaviate / Qdrant) or `pgvector` | Scale, persistence, metadata filtering, and high availability |
+| Agent traces | JSON trace files | LLM observability backend (LangSmith / Langfuse) or OpenTelemetry | Run volume requires queryable, aggregatable trace storage |
+
+Two principles govern the production design. First, **polyglot persistence** —
+each store is selected for its data model and query pattern rather than forcing
+all data into one engine; the cost is operational complexity, the benefit is
+that every query type is served efficiently. Second, **tiered retention** —
+data moves from fast queryable stores to cheaper object storage as it ages
+(for example downsampled metrics and archived logs in S3), with retention set
+per store rather than retaining everything indefinitely in one place.
+
 ---
 
 ## 4. Layer 2 — Alert Correlation Engine
