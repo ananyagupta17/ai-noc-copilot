@@ -100,7 +100,7 @@ FastAPI (REST + WebSocket) → Streamlit Dashboard
 |---|---|
 | LLM | Gemini 2.5 Flash (via LangChain) |
 | Agent framework | LangGraph |
-| RAG | ChromaDB + TF-IDF embeddings |
+| RAG | ChromaDB + all-MiniLM-L6-v2 embeddings |
 | Alert correlation | scikit-learn (agglomerative clustering, DBSCAN fallback) + NumPy |
 | Backend | FastAPI + WebSockets |
 | Frontend | Streamlit |

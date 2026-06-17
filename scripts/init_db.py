@@ -151,33 +151,17 @@ def init_chromadb():
 
     try:
         import chromadb
-        from chromadb import EmbeddingFunction, Embeddings
+        from chromadb.utils import embedding_functions
     except ImportError:
         print("  chromadb not installed. Run: pip install chromadb")
         return
 
-    import hashlib
-    import numpy as np
-    from typing import List
-
-    # Local hash-based embedding — no API key or model download needed.
-    # On your machine, swap this for OpenAI embeddings once you have a key
-    # (see rag/retriever.py). For init and dev this is fine.
-    class LocalHashEF(EmbeddingFunction):
-        def __init__(self): pass
-        def __call__(self, input: List[str]) -> Embeddings:
-            out = []
-            for text in input:
-                h = hashlib.sha256(text.encode()).digest()
-                arr = np.frombuffer(h, dtype=np.uint8).astype(np.float32)
-                arr = np.pad(arr, (0, 384 - len(arr)))
-                arr = arr / (np.linalg.norm(arr) + 1e-9)
-                out.append(arr)
-            return out
-
+    # Semantic embeddings via all-MiniLM-L6-v2 (ONNX, local, 384-dim, no API
+    # key or rate limit). The runbook retrieval tool (agent/tools/runbooks.py)
+    # must use the same embedding function so queries land in the same space.
     CHROMA_PATH.mkdir(parents=True, exist_ok=True)
     client = chromadb.PersistentClient(path=str(CHROMA_PATH))
-    ef = LocalHashEF()
+    ef = embedding_functions.DefaultEmbeddingFunction()
 
     # Delete collection if re-running so we start fresh
     try:
@@ -239,24 +223,14 @@ def verify():
 
     # ChromaDB check
     try:
-        import chromadb, hashlib, numpy as np
-        from chromadb import EmbeddingFunction, Embeddings
-        from typing import List
-
-        class LocalHashEF(EmbeddingFunction):
-            def __init__(self): pass
-            def __call__(self, input: List[str]) -> Embeddings:
-                out = []
-                for text in input:
-                    h = hashlib.sha256(text.encode()).digest()
-                    arr = np.frombuffer(h, dtype=np.uint8).astype(np.float32)
-                    arr = np.pad(arr, (0, 384 - len(arr)))
-                    arr = arr / (np.linalg.norm(arr) + 1e-9)
-                    out.append(arr)
-                return out
+        import chromadb
+        from chromadb.utils import embedding_functions
 
         client = chromadb.PersistentClient(path=str(CHROMA_PATH))
-        col = client.get_collection("runbooks", embedding_function=LocalHashEF())
+        col = client.get_collection(
+            "runbooks",
+            embedding_function=embedding_functions.DefaultEmbeddingFunction(),
+        )
         results = col.query(query_texts=["packet loss troubleshooting steps"], n_results=2)
         print(f"  ChromaDB → collection size: {col.count()} chunks")
         print(f"  Sample RAG query result sources: {[m['source'] for m in results['metadatas'][0]]}")

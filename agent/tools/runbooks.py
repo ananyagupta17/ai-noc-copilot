@@ -2,35 +2,25 @@
 Tool: Runbook retrieval
 Queries ChromaDB to find relevant runbook sections for a given symptom.
 This is the RAG retrieval step — the agent calls this to get grounding context.
+
+Retrieval is semantic: both the indexed runbook chunks and the incoming query
+are embedded with the all-MiniLM-L6-v2 sentence-transformer (384-dim), run
+locally via ONNX through ChromaDB's DefaultEmbeddingFunction — no API key and
+no rate limit. The same embedding function MUST be used here and in
+scripts/init_db.py so query vectors live in the same space as the chunks.
 """
 
-import hashlib
 import sys
 from pathlib import Path
-from typing import List
-
-import numpy as np
 
 sys.path.append(str(Path(__file__).parent.parent.parent))
 from config import CHROMA_PATH, RUNBOOKS_DIR, TOP_K_RETRIEVAL
 
 import chromadb
-from chromadb import EmbeddingFunction, Embeddings
+from chromadb.utils import embedding_functions
 
-
-# Same embedding function used in init_db.py
-# When you have an OpenAI key, swap this class for OpenAIEmbeddingFunction
-class LocalHashEF(EmbeddingFunction):
-    def __init__(self): pass
-    def __call__(self, input: List[str]) -> Embeddings:
-        out = []
-        for text in input:
-            h = hashlib.sha256(text.encode()).digest()
-            arr = np.frombuffer(h, dtype=np.uint8).astype(np.float32)
-            arr = np.pad(arr, (0, 384 - len(arr)))
-            arr = arr / (np.linalg.norm(arr) + 1e-9)
-            out.append(arr)
-        return out
+# all-MiniLM-L6-v2 via ONNX — local, semantic, 384-dim. Must match init_db.py.
+_EMBEDDING_FN = embedding_functions.DefaultEmbeddingFunction()
 
 
 # Load ChromaDB collection once
@@ -40,7 +30,7 @@ def _get_collection():
     global _collection
     if _collection is None:
         client = chromadb.PersistentClient(path=str(CHROMA_PATH))
-        _collection = client.get_collection("runbooks", embedding_function=LocalHashEF())
+        _collection = client.get_collection("runbooks", embedding_function=_EMBEDDING_FN)
     return _collection
 
 

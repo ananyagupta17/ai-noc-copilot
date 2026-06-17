@@ -226,8 +226,11 @@ in a single query.
 
 ### ChromaDB — vector store for RAG
 
-ChromaDB stores embedded runbook chunks. Each runbook is split into overlapping
-512-character chunks with 64-character overlap:
+ChromaDB stores embedded runbook chunks. Chunks and queries are embedded with
+the all-MiniLM-L6-v2 sentence-transformer (384-dim), run locally via ONNX
+through ChromaDB's default embedding function — semantic retrieval with no API
+key or rate limit. Each runbook is split into overlapping 512-character chunks
+with 64-character overlap:
 
 ```
 Chunk 0: chars 0-512
