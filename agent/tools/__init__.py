@@ -1,7 +1,7 @@
 """
 agent/tools/__init__.py
 
-Registers all MCP tools with LangGraph using the @tool decorator.
+Registers all agent tools with LangGraph using the @tool decorator.
 The decorator gives each function a JSON schema so Gemini knows
 exactly what parameters to pass when it decides to call a tool.
 

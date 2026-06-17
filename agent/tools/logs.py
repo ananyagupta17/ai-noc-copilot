@@ -1,5 +1,5 @@
 """
-MCP Tool: Log search
+Tool: Log search
 Reads raw syslog files from data/logs/.
 """
 

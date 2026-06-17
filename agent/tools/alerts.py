@@ -1,5 +1,5 @@
 """
-MCP Tool: Alert lookup
+Tool: Alert lookup
 Queries SQLite for alert records linked to incidents.
 """
 

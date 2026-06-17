@@ -1,5 +1,5 @@
 """
-MCP Tool: Runbook retrieval
+Tool: Runbook retrieval
 Queries ChromaDB to find relevant runbook sections for a given symptom.
 This is the RAG retrieval step — the agent calls this to get grounding context.
 """

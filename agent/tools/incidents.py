@@ -1,5 +1,5 @@
 """
-MCP Tool: Incident lookup
+Tool: Incident lookup
 Queries SQLite for incident records.
 """
 

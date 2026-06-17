@@ -1,5 +1,5 @@
 """
-MCP Tool: Topology queries
+Tool: Topology queries
 Reads topology.json and uses NetworkX for graph traversal.
 Helps agent understand device dependencies and blast radius.
 """

@@ -13,7 +13,7 @@
 3. [Layer 1 — Storage](#3-layer-1--storage)
 4. [Layer 2 — Alert Correlation Engine](#4-layer-2--alert-correlation-engine)
 5. [Layer 3 — LangGraph Agent](#5-layer-3--langgraph-agent)
-6. [Layer 4 — MCP Tool Layer + RAG](#6-layer-4--mcp-tool-layer--rag)
+6. [Layer 4 — Tool Layer + RAG](#6-layer-4--tool-layer--rag)
 7. [Layer 5 — RCA Engine](#7-layer-5--rca-engine)
 8. [Layer 6 — API + UI](#8-layer-6--api--ui)
 9. [AI Observability](#9-ai-observability)
@@ -536,10 +536,9 @@ AgentState(
 
 ## 6. Layer 4 — Tool Layer + RAG
 
-### MCP-inspired tool design
+### Tool design
 
-The tools are designed following Model Context Protocol principles:
-each tool has a single responsibility, a defined schema, and is
+Each tool has a single responsibility, a defined input schema, and is
 decoupled from the agent logic. The agent selects tools dynamically
 based on the incident context — the selection is not hardcoded.
 
@@ -895,17 +894,19 @@ items, the score is:
 - **Bounded** — more tool calls don't inflate it beyond what the evidence supports
 - **Auditable** — every contributing item is logged
 
-### Why not use real MCP?
+### Why in-process tools instead of a tool server?
 
-The Model Context Protocol (MCP) solves cross-application interoperability —
-how Claude Desktop talks to a Jira server it didn't build. In this project,
-the agent and all tools are in the same codebase. There is no interoperability
-problem to solve. Adding a JSON-RPC server layer would introduce network
-latency and debugging complexity with no architectural benefit.
+The tools are plain Python functions exposed to the LLM with LangChain's
+`@tool` decorator and called in-process — there is no separate tool-server
+process or RPC layer. This is a deliberate choice: the agent and all tools
+live in the same codebase, so there is no cross-application boundary to
+bridge. A separate server would add network latency and debugging complexity
+with no benefit here.
 
-The tools are designed following MCP principles (single responsibility,
-defined schema, decoupled from agent logic) and described as
-"MCP-inspired tool design" — which is accurate and defensible.
+The design still keeps the properties that matter — single responsibility,
+a defined input schema per tool, and tools decoupled from the agent logic —
+so the functions could later be exposed over a tool-server protocol if
+cross-application reuse ever became a requirement.
 
 ---
 

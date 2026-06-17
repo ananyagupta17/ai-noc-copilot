@@ -29,7 +29,7 @@ Alert Correlation Engine        ← TF-IDF embeddings + agglomerative clustering
         ↓                           groups noisy alerts into clean clusters
 LangGraph Agent                 ← Gemini 2.5 Flash orchestrated via LangGraph
         ↓  ↑  (investigation loop)
-   MCP Tools          RAG Pipeline
+   Agent Tools        RAG Pipeline
    ─────────          ────────────
    get_incident       ChromaDB vector store
    search_logs        8 hand-written runbooks
@@ -53,7 +53,7 @@ FastAPI (REST + WebSocket) → Streamlit Dashboard
 
 ### Core Agent
 - **LangGraph investigation loop** — multi-step agentic reasoning with up to 10 tool calls per investigation
-- **14 MCP-style tools** across 6 modules: incidents, alerts, logs, topology, metrics, runbooks
+- **14 tools** across 6 modules: incidents, alerts, logs, topology, metrics, runbooks
 - **Gemini 2.5 Flash** with API key rotation across 3 project quotas for uninterrupted operation
 
 ### Alert Correlation Engine
@@ -233,7 +233,7 @@ Select a region filter, keep alert correlation ON, and click Investigate.
 python test_run.py
 ```
 
-Runs 6 test suites: MCP tools, alert correlation, agent investigation,
+Runs 6 test suites: agent tools, alert correlation, agent investigation,
 evidence scoring, timeline reconstruction, and observability.
 
 ---

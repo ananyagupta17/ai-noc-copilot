@@ -6,7 +6,7 @@ Run from project root:
     python test_run.py
 
 Tests:
-  1. Individual MCP tools
+  1. Individual agent tools
   2. Alert correlation engine
   3. Full agent investigation (needs GOOGLE_API_KEY in .env)
   4. Evidence scoring module
@@ -26,10 +26,10 @@ print("=" * 60)
 
 
 # ─────────────────────────────────────────────
-# TEST 1 — MCP TOOLS
+# TEST 1 — AGENT TOOLS
 # ─────────────────────────────────────────────
 
-print("\n[1/6] Testing MCP tools...")
+print("\n[1/6] Testing agent tools...")
 
 from agent.tools.incidents import get_recent_incidents, find_similar_incidents
 from agent.tools.alerts import get_critical_alerts
@@ -65,7 +65,7 @@ print(f"  get_device_metrics       : CPU={metrics.get('cpu_utilization_pct')}% �
 rb = get_runbook("packet loss with CRC errors on edge router")
 print(f"  get_runbook              : {rb['chunks_retrieved']} chunks retrieved ✓")
 
-print("\n  All MCP tools OK ✓")
+print("\n  All agent tools OK ✓")
 
 
 # ─────────────────────────────────────────────
@@ -384,7 +384,7 @@ print("ALL TESTS PASSED ✓")
 print("=" * 60)
 print("""
 Modules verified:
-  ✓ MCP tools (14 tools across 6 modules)
+  ✓ Agent tools (14 tools across 6 modules)
   ✓ Alert correlation (TF-IDF + DBSCAN)
   ✓ Agent investigation loop (LangGraph + Gemini)
   ✓ Evidence scoring (weighted confidence)

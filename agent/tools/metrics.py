@@ -1,5 +1,5 @@
 """
-MCP Tool: Device metrics
+Tool: Device metrics
 Returns simulated real-time metrics for devices.
 In production this would call a real monitoring API (Prometheus, SolarWinds).
 For now we generate realistic values seeded by device name.

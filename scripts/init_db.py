@@ -23,7 +23,7 @@ from config import (
 # ─────────────────────────────────────────────
 # PART 1 — SQLite
 # Stores incidents and alerts as structured tables.
-# MCP tools will query these with simple SQL.
+# Agent tools will query these with simple SQL.
 # ─────────────────────────────────────────────
 
 def init_sqlite():
