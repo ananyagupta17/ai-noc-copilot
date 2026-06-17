@@ -114,6 +114,63 @@ to match the structure of real network engineering SOPs:
 7. `dns_outage_runbook.txt`
 8. `interface_down_runbook.txt`
 
+### Data layer — demo vs production
+
+It is worth being explicit about how this synthetic layer differs from a real
+deployment, because the differences shape the whole architecture.
+
+**How the demo generates data (top-down).** `scripts/generate_data.py` builds
+data in this order: topology → incidents → alerts → logs → runbooks. Crucially,
+**incidents are created first and alerts/logs are derived downward from them** —
+`generate_alerts(incidents)` stamps each child alert with its parent incident's
+`incident_id`, `device`, `region`, and `symptom`. So the demo starts with the
+answer (a fully-formed incident, root cause included) and manufactures the
+symptoms that incident would have produced.
+
+**Production is the inverse (bottom-up).** Raw alerts arrive first as an
+unbounded stream with no incident label; correlation groups them into a
+*candidate* incident; RCA then derives the root cause; and the incident record
+is only written at resolution time.
+
+```
+DEMO (top-down):       incident (root cause KNOWN) → spawn alerts/logs
+                       → correlate alerts → agent "re-discovers" the incident
+
+PRODUCTION (bottom-up): raw alert stream (unlabeled) → correlate into candidate
+                       → RCA derives root cause → incident record CREATED
+```
+
+| Aspect | This demo | Production |
+|---|---|---|
+| Input | Static JSON, pre-normalised, pre-labeled | Continuous stream of **unlabeled** raw events |
+| Sources | A `source` string ("Prometheus", "Nagios"…) on one unified schema | Genuinely different vendor formats needing a **normalisation layer** |
+| Metrics | A single scalar per alert (`metric_value`) | **Time-series** in Prometheus; an alert is the output of an Alertmanager rule |
+| Transport | A file read by `load_alerts()` | An **event bus** (Kafka / Pulsar) — durable, replayable, buffers storms |
+| Correlation | Batch over a static list | **Streaming / windowed**, keyed on time + topology, text as a tiebreaker |
+| `incident_id` on alerts | Present (artifact of generating top-down) | Does **not** exist at alert time — it is an output, not an input |
+
+**Two honest caveats about the synthetic data:**
+
+1. **`incident_id` on raw alerts is a leak of the answer into the input.** In
+   production that field is produced by correlation/RCA, not present on the raw
+   alert. The live correlation path here already respects this — it clusters by
+   description/recency and never reads `incident_id`; the field is best understood
+   as a **post-hoc ground-truth label** kept only so correlation quality can be
+   evaluated, not as a runtime feature.
+2. **`root_cause` is drawn independently of `symptom`** (`random.choice` for each),
+   and every downstream artifact — alerts, logs, metrics, description — is
+   generated from `symptom`, never from `root_cause`. So there is no learnable
+   signal connecting the evidence to the true root cause. The demo therefore
+   proves the **reasoning pipeline**, not RCA **accuracy** — to measure accuracy
+   you would need a generator where the root cause causally drives the symptoms
+   and log signatures.
+
+**What we would use in production:** Prometheus + Alertmanager (metrics and
+alert rules), Fluent Bit/Vector → Loki/Elasticsearch (logs), Kafka (the event
+bus), a stream processor (Kafka Streams / Flink) holding a time window for
+incremental correlation, and a CMDB / topology service to enrich each alert
+with its dependency neighbours.
+
 ---
 
 ## 3. Layer 1 — Storage
@@ -600,6 +657,42 @@ where the same fault appears in both the alert stream and the syslog.
 The timeline automatically inserts a `customer_impact` event at the
 timestamp of the first CRITICAL event. This marks when the SLA clock started —
 a concept that matters directly to enterprise customers and their account teams.
+
+### Feedback loop — currently open (future work)
+
+When an investigation finishes, the RCA result is written into `state.rca`
+(probable cause, recommended actions, escalation team, summary, timeline,
+impact), returned to the API/UI, and saved to a **trace file** for the audit
+trail. What it is **not** is persisted as a new incident: nothing performs an
+`INSERT` into the incident store outside the seeding scripts
+(`generate_data.py` / `init_db.py`). The historical corpus stays frozen at its
+seeded records.
+
+This means the loop is **open**: `find_similar_incidents` only ever retrieves
+from the pre-seeded incidents, so the system never learns from incidents it has
+itself resolved. Every investigation starts from the same fixed history.
+
+**Closing the loop in production:**
+
+```
+raw alerts → correlate → candidate incident → RCA → [human confirms] → WRITE incident
+                                                                          │
+                                          ┌───────────────────────────────┘
+                                          ▼
+            becomes future retrieval context for find_similar_incidents
+```
+
+After a human confirms the agent's diagnosis, the resolved incident would be
+written back to the store with its RCA-derived `root_cause`, the `resolution`,
+the computed `mttr_minutes` (resolved_at − detected_at), and the confirming
+engineer. That record then becomes retrieval context for future investigations,
+so correlation and RCA improve as the system accumulates resolved incidents.
+
+This is also the real-world origin of the `root_cause` field: it is an **RCA
+output written at resolution time**, not an input — exactly the record the
+synthetic generator fabricates up front. The human-in-the-loop confirmation
+step matters: an LLM-derived root cause should be reviewed before it is
+persisted as ground truth that future investigations will learn from.
 
 ---
 
