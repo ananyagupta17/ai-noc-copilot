@@ -44,7 +44,7 @@ from observability.logger import noc_logger
 # Note: We keep GOOGLE_API_KEY as a fallback default if your environment relies on it elsewhere
 from config import LLM_MODEL, MAX_TOOL_CALLS, GOOGLE_API_KEY
 from agent.state import (
-    AgentState, EvidenceItem, TimelineEvent,
+    AgentState, EvidenceItem,
     ToolCallRecord, ImpactAnalysis
 )
 from agent.tools import ALL_TOOLS
@@ -638,77 +638,6 @@ Return ONLY the JSON object, no other text.
     print(f"[NOC Agent] Probable cause: {state.rca.probable_cause}")
 
     return state
-
-
-def _build_timeline(state: AgentState) -> list[TimelineEvent]:
-    """
-    Build a chronological timeline from raw logs and alerts.
-    Parses timestamps and sorts all events.
-    """
-    events = []
-
-    # Events from raw alerts
-    for alert in state.raw_alerts[:10]:
-        ts = alert.get("timestamp", "")
-        if ts:
-            events.append(TimelineEvent(
-                timestamp=ts,
-                event_type="alert_fired",
-                device=alert.get("device"),
-                description=alert.get("message", "Alert fired"),
-                source="alerts"
-            ))
-
-    # Events from raw logs — extract timestamp from syslog format
-    # Syslog format: "Apr 09 18:08:03 DEVICE : %ERROR-CODE: message"
-    for log_entry in state.raw_logs[:15]:
-        line = log_entry.get("line", "")
-        if line:
-            parts = line.split()
-            if len(parts) >= 3:
-                # Approximate timestamp — syslog has no year
-                ts_str = f"{parts[0]} {parts[1]} {parts[2]}"
-                device = parts[3] if len(parts) > 3 else None
-                msg = " ".join(parts[5:]) if len(parts) > 5 else line
-                events.append(TimelineEvent(
-                    timestamp=ts_str,
-                    event_type=_classify_log_event(line),
-                    device=device,
-                    description=msg[:120],
-                    source="logs"
-                ))
-
-    # Add incident resolution event if we have incident data
-    if state.similar_incidents_found:
-        inc = state.similar_incidents_found[0]
-        if inc.get("resolved_at"):
-            events.append(TimelineEvent(
-                timestamp=inc["resolved_at"],
-                event_type="resolution",
-                device=inc.get("affected_device"),
-                description=inc.get("resolution", "Incident resolved"),
-                source="incident_record"
-            ))
-
-    # Sort by timestamp string (works for ISO format and syslog)
-    events.sort(key=lambda e: e.timestamp)
-    return events
-
-
-def _classify_log_event(line: str) -> str:
-    """Classify a syslog line into an event type."""
-    line_lower = line.lower()
-    if "bgp" in line_lower and ("down" in line_lower or "adjchange" in line_lower):
-        return "bgp_drop"
-    if "interface" in line_lower and "down" in line_lower:
-        return "interface_down"
-    if "crc" in line_lower:
-        return "log_error"
-    if "cpu" in line_lower:
-        return "log_error"
-    if "optical" in line_lower or "los" in line_lower:
-        return "log_error"
-    return "log_error"
 
 
 def _build_impact(state: AgentState) -> ImpactAnalysis:
