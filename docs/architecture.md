@@ -116,60 +116,68 @@ to match the structure of real network engineering SOPs:
 
 ### Data layer — demo vs production
 
-It is worth being explicit about how this synthetic layer differs from a real
-deployment, because the differences shape the whole architecture.
+The synthetic data layer is designed to give every downstream component
+(correlation, the agent, RAG, the RCA engine) a complete and internally
+consistent dataset to operate on, without depending on live infrastructure.
+This section documents how that data is constructed, why it is constructed that
+way, and how the equivalent data would be sourced in a production deployment.
 
-**How the demo generates data (top-down).** `scripts/generate_data.py` builds
-data in this order: topology → incidents → alerts → logs → runbooks. Crucially,
-**incidents are created first and alerts/logs are derived downward from them** —
-`generate_alerts(incidents)` stamps each child alert with its parent incident's
-`incident_id`, `device`, `region`, and `symptom`. So the demo starts with the
-answer (a fully-formed incident, root cause included) and manufactures the
-symptoms that incident would have produced.
+**Generation approach.** `scripts/generate_data.py` constructs data in the
+order topology → incidents → alerts → logs → runbooks. Incidents are generated
+first, and alerts and logs are then derived from each incident — `generate_alerts`
+links every alert to its parent incident and inherits the incident's device,
+region, and symptom. This top-down approach is a deliberate choice: it
+guarantees referential consistency across the layers (every alert, log line,
+and metric traces back to a well-formed incident), which is what allows the
+pipeline to be demonstrated end-to-end and the output to be checked against a
+known reference.
 
-**Production is the inverse (bottom-up).** Raw alerts arrive first as an
-unbounded stream with no incident label; correlation groups them into a
-*candidate* incident; RCA then derives the root cause; and the incident record
-is only written at resolution time.
+**Production sourcing.** In a live deployment the direction is reversed. There
+is no incident record at ingestion time; raw alerts arrive continuously from
+monitoring systems, correlation groups them into a candidate incident, the
+agent investigates, and the incident record — including its root cause — is
+produced as an output of that process rather than supplied as an input.
 
 ```
-DEMO (top-down):       incident (root cause KNOWN) → spawn alerts/logs
-                       → correlate alerts → agent "re-discovers" the incident
+Demo (generation):     incident defined first
+                       → alerts / logs / metrics derived from it
 
-PRODUCTION (bottom-up): raw alert stream (unlabeled) → correlate into candidate
-                       → RCA derives root cause → incident record CREATED
+Production (runtime):   raw alert stream ingested first
+                       → correlated into a candidate incident
+                       → investigated → incident record produced
 ```
 
 | Aspect | This demo | Production |
 |---|---|---|
-| Input | Static JSON, pre-normalised, pre-labeled | Continuous stream of **unlabeled** raw events |
-| Sources | A `source` string ("Prometheus", "Nagios"…) on one unified schema | Genuinely different vendor formats needing a **normalisation layer** |
-| Metrics | A single scalar per alert (`metric_value`) | **Time-series** in Prometheus; an alert is the output of an Alertmanager rule |
-| Transport | A file read by `load_alerts()` | An **event bus** (Kafka / Pulsar) — durable, replayable, buffers storms |
-| Correlation | Batch over a static list | **Streaming / windowed**, keyed on time + topology, text as a tiebreaker |
-| `incident_id` on alerts | Present (artifact of generating top-down) | Does **not** exist at alert time — it is an output, not an input |
+| Input | Static JSON, pre-normalised | Continuous stream of raw events |
+| Sources | A `source` field on a single unified schema | Multiple vendor formats reconciled by a normalisation layer |
+| Metrics | A single scalar per alert (`metric_value`) | Time-series in Prometheus; alerts produced by Alertmanager rules |
+| Transport | File read by `load_alerts()` | Event bus (Kafka / Pulsar) — durable, replayable, absorbs alert bursts |
+| Correlation | Batch over a static list | Streaming and windowed, keyed on time and topology |
+| Incident linkage | `incident_id` present on each alert | Assigned by correlation/RCA at runtime, not present on raw alerts |
 
-**Two honest caveats about the synthetic data:**
+Two properties of the synthetic data follow from the generation approach and
+are worth stating explicitly:
 
-1. **`incident_id` on raw alerts is a leak of the answer into the input.** In
-   production that field is produced by correlation/RCA, not present on the raw
-   alert. The live correlation path here already respects this — it clusters by
-   description/recency and never reads `incident_id`; the field is best understood
-   as a **post-hoc ground-truth label** kept only so correlation quality can be
-   evaluated, not as a runtime feature.
-2. **`root_cause` is drawn independently of `symptom`** (`random.choice` for each),
-   and every downstream artifact — alerts, logs, metrics, description — is
-   generated from `symptom`, never from `root_cause`. So there is no learnable
-   signal connecting the evidence to the true root cause. The demo therefore
-   proves the **reasoning pipeline**, not RCA **accuracy** — to measure accuracy
-   you would need a generator where the root cause causally drives the symptoms
-   and log signatures.
+1. **Alert-to-incident linkage.** Because incidents are generated first, each
+   alert carries an `incident_id`. This is used as a reference label for
+   validating correlation output, not as a runtime input — the live correlation
+   path groups alerts by content and recency and does not read `incident_id`.
+   In production this linkage is established by the correlation stage rather than
+   present on the incoming alert.
+2. **Root cause assignment.** Each incident's `root_cause` is assigned
+   independently of its `symptom`, and the derived alerts, logs, and metrics are
+   generated from the symptom. The dataset is therefore suited to exercising and
+   demonstrating the full investigation pipeline; evaluating RCA accuracy would
+   require a generator in which the root cause deterministically drives the
+   observable symptoms and log signatures.
 
-**What we would use in production:** Prometheus + Alertmanager (metrics and
-alert rules), Fluent Bit/Vector → Loki/Elasticsearch (logs), Kafka (the event
-bus), a stream processor (Kafka Streams / Flink) holding a time window for
-incremental correlation, and a CMDB / topology service to enrich each alert
-with its dependency neighbours.
+**Production data sources.** The equivalent inputs would be provided by
+Prometheus with Alertmanager (metrics and alerting rules), a log shipping
+pipeline such as Fluent Bit or Vector into Loki or Elasticsearch (logs), an
+event bus such as Kafka (alert transport), a stream processor such as Kafka
+Streams or Flink (windowed incremental correlation), and a CMDB or topology
+service (dependency enrichment).
 
 ---
 
@@ -658,41 +666,44 @@ The timeline automatically inserts a `customer_impact` event at the
 timestamp of the first CRITICAL event. This marks when the SLA clock started —
 a concept that matters directly to enterprise customers and their account teams.
 
-### Feedback loop — currently open (future work)
+### Persisting investigation results
 
-When an investigation finishes, the RCA result is written into `state.rca`
-(probable cause, recommended actions, escalation team, summary, timeline,
-impact), returned to the API/UI, and saved to a **trace file** for the audit
-trail. What it is **not** is persisted as a new incident: nothing performs an
-`INSERT` into the incident store outside the seeding scripts
-(`generate_data.py` / `init_db.py`). The historical corpus stays frozen at its
-seeded records.
+When an investigation completes, the RCA result — probable cause, recommended
+actions, escalation team, incident summary, timeline, and impact — is written
+into `state.rca`, returned to the API and UI, and saved to a trace file as part
+of the observability audit trail. The investigation output is therefore fully
+captured and inspectable.
 
-This means the loop is **open**: `find_similar_incidents` only ever retrieves
-from the pre-seeded incidents, so the system never learns from incidents it has
-itself resolved. Every investigation starts from the same fixed history.
+The current implementation does not write the result back into the incident
+store as a new record; the historical incident corpus is the seeded dataset.
+The retrieval tool `find_similar_incidents` consequently draws on that fixed
+corpus rather than on incidents the system has itself resolved.
 
-**Closing the loop in production:**
+**Production design.** A production deployment would close this loop by
+persisting each resolved incident back to the store, after engineer
+confirmation of the diagnosis:
 
 ```
-raw alerts → correlate → candidate incident → RCA → [human confirms] → WRITE incident
-                                                                          │
-                                          ┌───────────────────────────────┘
-                                          ▼
-            becomes future retrieval context for find_similar_incidents
+raw alerts → correlate → candidate incident → RCA → engineer confirmation
+                                                          │
+                                                          ▼
+                                                 incident written to store
+                                                          │
+                                                          ▼
+                                  retrieval context for future investigations
 ```
 
-After a human confirms the agent's diagnosis, the resolved incident would be
-written back to the store with its RCA-derived `root_cause`, the `resolution`,
-the computed `mttr_minutes` (resolved_at − detected_at), and the confirming
-engineer. That record then becomes retrieval context for future investigations,
-so correlation and RCA improve as the system accumulates resolved incidents.
+The persisted record would carry the confirmed root cause, the applied
+resolution, the computed `mttr_minutes` (resolved_at − detected_at), and the
+resolving engineer. Each newly resolved incident then becomes retrieval context
+for subsequent investigations, so the quality of historical grounding improves
+as the system accumulates resolved incidents.
 
-This is also the real-world origin of the `root_cause` field: it is an **RCA
-output written at resolution time**, not an input — exactly the record the
-synthetic generator fabricates up front. The human-in-the-loop confirmation
-step matters: an LLM-derived root cause should be reviewed before it is
-persisted as ground truth that future investigations will learn from.
+The engineer confirmation step is an intentional part of this design: an
+RCA-derived root cause is reviewed before it is persisted as the ground truth
+that future investigations rely on. This is also why `root_cause` is modelled
+as an output produced at resolution time rather than an input — the same record
+the synthetic generator supplies up front.
 
 ---
 
