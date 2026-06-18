@@ -38,6 +38,7 @@ from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage
 from langgraph.graph import StateGraph, START, END
 from agent.evidence import enrich_rca_with_evidence
 from agent.timeline import build_timeline
+from agent.escalation import resolve_escalation
 from observability.tracer import tracer
 from observability.logger import noc_logger
 
@@ -561,7 +562,6 @@ Based on your investigation, provide a final RCA in this exact JSON format:
     "action 2",
     "action 3"
   ],
-  "escalation_team": "which team to escalate to",
   "incident_summary": "2-3 sentence human-readable summary of what happened, impact, and resolution path"
 }}
 
@@ -608,7 +608,6 @@ Return ONLY the JSON object, no other text.
 
         state.rca.probable_cause   = rca_data.get("probable_cause")
         state.rca.recommended_actions = rca_data.get("recommended_actions", [])
-        state.rca.escalation_team  = rca_data.get("escalation_team")
         state.rca.incident_summary = rca_data.get("incident_summary")
 
     except json.JSONDecodeError:
@@ -616,7 +615,20 @@ Return ONLY the JSON object, no other text.
         state.rca.incident_summary = response.content
         state.rca.probable_cause   = "See incident summary"
         state.rca.recommended_actions = ["Manual investigation required"]
-        state.rca.escalation_team  = "L2 Network Engineering"
+
+    # ── Escalation team — deterministic policy lookup, not an LLM guess ──
+    # Resolve from the symptom (with a P1 senior-on-call bump) so the same
+    # symptom always routes to the same team.
+    esc_symptom = (
+        state.identified_symptom
+        or (state.alert_cluster or {}).get("dominant_symptom")
+        or (state.similar_incidents_found[0].get("symptom") if state.similar_incidents_found else None)
+    )
+    esc_severity = (
+        (state.similar_incidents_found[0].get("severity") if state.similar_incidents_found else None)
+        or (state.alert_cluster or {}).get("dominant_severity")
+    )
+    state.rca.escalation_team = resolve_escalation(esc_symptom, esc_severity)
 
     # ── Step 5: Attach alert correlation ──────
     if state.alert_cluster:
