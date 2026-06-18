@@ -1,6 +1,10 @@
-May 15 20:08:15 SYD-ER-02 : %SYS-5-CONFIG_I: Configured from console by admin
-May 15 20:14:15 SYD-ER-02 : %SYS-5-CONFIG_I: Configured from console by admin
-May 15 20:17:15 SYD-ER-02 : %SYS-5-CONFIG_I: Configured from console by admin
-May 15 20:18:15 SYD-ER-02 : %SYS-3-ERROR: Unknown error on SYD-ER-02
-May 15 20:25:15 SYD-ER-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
-May 15 20:25:15 SYD-ER-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Jun 08 06:10:10 DUB-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Jun 08 06:11:10 DUB-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Jun 08 06:16:10 DUB-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Jun 08 06:18:10 DUB-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Jun 08 06:19:10 DUB-ER-01 : %SYS-3-ERROR: Unknown error on DUB-ER-01
+Jun 08 06:20:10 DUB-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Jun 08 06:22:10 DUB-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Jun 08 06:23:10 DUB-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Jun 08 06:26:10 DUB-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Jun 08 06:34:10 DUB-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer

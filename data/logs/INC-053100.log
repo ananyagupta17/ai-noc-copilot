@@ -1,0 +1,14 @@
+Apr 19 18:18:53 MUM-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 19 18:18:53 MUM-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 19 18:20:53 MUM-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 19 18:22:53 MUM-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 19 18:23:53 MUM-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 19 18:24:53 MUM-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 19 18:25:53 MUM-ER-01 : %OPTICAL-3-RXPOWER_LOW: Rx power on MUM-ER-01 Gi0/1: -35 dBm (threshold: -23 dBm)
+Apr 19 18:26:29 MUM-ER-01 : %OPTICAL-4-SIGNAL_DEGRADED: Signal quality degraded on interface Gi0/1
+Apr 19 18:26:35 MUM-ER-01 : %OPTICAL-3-LOS: Loss of signal on Gi0/1
+Apr 19 18:26:53 MUM-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 19 18:29:53 MUM-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 19 18:36:53 MUM-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 19 18:37:53 MUM-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 19 18:40:53 MUM-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer

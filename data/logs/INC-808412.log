@@ -1,7 +1,13 @@
-May 13 04:08:40 SYD-PE-01 : %SYS-5-CONFIG_I: Configured from console by admin
-May 13 04:09:40 SYD-PE-01 : %SYS-5-CONFIG_I: Configured from console by admin
-May 13 04:10:40 SYD-PE-01 : %SYS-5-CONFIG_I: Configured from console by admin
-May 13 04:12:40 SYD-PE-01 : %SYS-5-CONFIG_I: Configured from console by admin
-May 13 04:18:40 SYD-PE-01 : %SYS-3-ERROR: Unknown error on SYD-PE-01
-May 13 04:20:40 SYD-PE-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
-May 13 04:24:40 SYD-PE-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Mar 27 06:04:24 SIN-ER-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Mar 27 06:05:24 SIN-ER-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Mar 27 06:07:24 SIN-ER-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Mar 27 06:10:24 SIN-ER-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Mar 27 06:10:24 SIN-ER-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Mar 27 06:13:24 SIN-ER-02 : %CPU-4-HIGH: CPU utilization: 97%; 5min: 84%
+Mar 27 06:13:58 SIN-ER-02 : %SYS-3-CPUHOG: Task ran for 4315ms
+Mar 27 06:14:18 SIN-ER-02 : Scheduler: process BGP Scanner at 75% CPU
+Mar 27 06:14:24 SIN-ER-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Mar 27 06:16:24 SIN-ER-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Mar 27 06:22:24 SIN-ER-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Mar 27 06:24:24 SIN-ER-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Mar 27 06:28:24 SIN-ER-02 : %SYS-5-RELOAD: Reload requested by NOC engineer

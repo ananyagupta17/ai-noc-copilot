@@ -1,0 +1,11 @@
+Jun 01 14:08:08 SYD-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Jun 01 14:10:08 SYD-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Jun 01 14:11:08 SYD-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Jun 01 14:15:08 SYD-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Jun 01 14:18:08 SYD-ER-01 : %ERRORS-3-RX_CRC: CRC errors on GigabitEthernet0/2: 2194 errors/min
+Jun 01 14:18:35 SYD-ER-01 : %PLATFORM-4-ELEMENT_WARNING: Interface Gi0/2 CRC error threshold exceeded
+Jun 01 14:18:46 SYD-ER-01 : %ERRORS-3-RX_CRC: CRC errors on GigabitEthernet0/2: 14614 errors/min
+Jun 01 14:19:08 SYD-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Jun 01 14:25:08 SYD-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Jun 01 14:28:08 SYD-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Jun 01 14:33:08 SYD-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer

@@ -1,0 +1,11 @@
+May 27 07:17:53 LON-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+May 27 07:22:53 LON-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+May 27 07:23:53 LON-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+May 27 07:24:53 LON-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+May 27 07:25:53 LON-ER-01 : %IP-4-DUPADDR: Duplicate address 10.87.32.210 on GigabitEthernet0/0
+May 27 07:26:15 LON-ER-01 : %MPLS-3-BADLABEL: Received bad label 937 on interface Gi0/1
+May 27 07:27:07 LON-ER-01 : QoS: drop tail on queue 3, packet loss rate: 13%
+May 27 07:36:53 LON-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 27 07:37:53 LON-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 27 07:38:53 LON-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 27 07:39:53 LON-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer

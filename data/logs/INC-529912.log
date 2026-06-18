@@ -1,9 +1,10 @@
-Mar 26 11:47:12 NEW-ER-05 : %SYS-5-CONFIG_I: Configured from console by admin
-Mar 26 11:47:12 NEW-ER-05 : %SYS-5-CONFIG_I: Configured from console by admin
-Mar 26 11:48:12 NEW-ER-05 : %SYS-5-CONFIG_I: Configured from console by admin
-Mar 26 11:53:12 NEW-ER-05 : %SYS-5-CONFIG_I: Configured from console by admin
-Mar 26 11:56:12 NEW-ER-05 : %IP-4-DUPADDR: Duplicate address 10.88.25.232 on GigabitEthernet0/0
-Mar 26 11:56:26 NEW-ER-05 : %MPLS-3-BADLABEL: Received bad label 414 on interface Gi0/1
-Mar 26 11:56:44 NEW-ER-05 : QoS: drop tail on queue 3, packet loss rate: 36%
-Mar 26 12:04:12 NEW-ER-05 : %SYS-5-RELOAD: Reload requested by NOC engineer
-Mar 26 12:06:12 NEW-ER-05 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 03 22:37:14 NEW-CR-02 : %SYS-5-CONFIG_I: Configured from console by admin
+May 03 22:38:14 NEW-CR-02 : %SYS-5-CONFIG_I: Configured from console by admin
+May 03 22:40:14 NEW-CR-02 : %SYS-5-CONFIG_I: Configured from console by admin
+May 03 22:41:14 NEW-CR-02 : %SYS-5-CONFIG_I: Configured from console by admin
+May 03 22:42:14 NEW-CR-02 : %SYS-5-CONFIG_I: Configured from console by admin
+May 03 22:43:14 NEW-CR-02 : %SYS-3-ERROR: Unknown error on NEW-CR-02
+May 03 22:44:14 NEW-CR-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 03 22:47:14 NEW-CR-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 03 22:56:14 NEW-CR-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 03 22:56:14 NEW-CR-02 : %SYS-5-RELOAD: Reload requested by NOC engineer

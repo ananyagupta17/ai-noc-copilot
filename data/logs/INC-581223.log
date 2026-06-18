@@ -1,10 +1,8 @@
-Apr 14 04:03:16 DUB-CR-05 : %SYS-5-CONFIG_I: Configured from console by admin
-Apr 14 04:06:16 DUB-CR-05 : %SYS-5-CONFIG_I: Configured from console by admin
-Apr 14 04:07:16 DUB-CR-05 : %SYS-5-CONFIG_I: Configured from console by admin
-Apr 14 04:07:16 DUB-CR-05 : %SYS-5-CONFIG_I: Configured from console by admin
-Apr 14 04:09:16 DUB-CR-05 : %SYS-5-CONFIG_I: Configured from console by admin
-Apr 14 04:12:16 DUB-CR-05 : %OPTICAL-3-RXPOWER_LOW: Rx power on DUB-CR-05 Gi0/1: -29 dBm (threshold: -23 dBm)
-Apr 14 04:12:38 DUB-CR-05 : %OPTICAL-4-SIGNAL_DEGRADED: Signal quality degraded on interface Gi0/1
-Apr 14 04:14:06 DUB-CR-05 : %OPTICAL-3-LOS: Loss of signal on Gi0/1
-Apr 14 04:25:16 DUB-CR-05 : %SYS-5-RELOAD: Reload requested by NOC engineer
-Apr 14 04:27:16 DUB-CR-05 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 16 00:34:38 NEW-ER-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 16 00:37:38 NEW-ER-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 16 00:40:38 NEW-ER-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 16 00:42:38 NEW-ER-02 : %SYS-3-ERROR: Unknown error on NEW-ER-02
+Apr 16 00:43:38 NEW-ER-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 16 00:47:38 NEW-ER-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 16 00:47:38 NEW-ER-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 16 00:51:38 NEW-ER-02 : %SYS-5-RELOAD: Reload requested by NOC engineer

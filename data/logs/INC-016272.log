@@ -1,0 +1,11 @@
+Apr 29 17:06:03 SYD-ER-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 29 17:07:03 SYD-ER-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 29 17:08:03 SYD-ER-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 29 17:12:03 SYD-ER-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 29 17:12:03 SYD-ER-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 29 17:13:03 SYD-ER-02 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 29 17:16:03 SYD-ER-02 : %IP-4-DUPADDR: Duplicate address 10.249.58.152 on GigabitEthernet0/0
+Apr 29 17:16:31 SYD-ER-02 : QoS: drop tail on queue 3, packet loss rate: 24%
+Apr 29 17:16:38 SYD-ER-02 : %MPLS-3-BADLABEL: Received bad label 710 on interface Gi0/1
+Apr 29 17:27:03 SYD-ER-02 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 29 17:30:03 SYD-ER-02 : %SYS-5-RELOAD: Reload requested by NOC engineer

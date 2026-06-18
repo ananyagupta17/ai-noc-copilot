@@ -1,0 +1,10 @@
+May 26 07:56:14 SIN-CR-01 : %SYS-5-CONFIG_I: Configured from console by admin
+May 26 07:56:14 SIN-CR-01 : %SYS-5-CONFIG_I: Configured from console by admin
+May 26 07:56:14 SIN-CR-01 : %SYS-5-CONFIG_I: Configured from console by admin
+May 26 07:57:14 SIN-CR-01 : %SYS-5-CONFIG_I: Configured from console by admin
+May 26 08:00:14 SIN-CR-01 : %SYS-5-CONFIG_I: Configured from console by admin
+May 26 08:03:14 SIN-CR-01 : %ERRORS-3-RX_CRC: CRC errors on GigabitEthernet0/2: 8249 errors/min
+May 26 08:03:57 SIN-CR-01 : %PLATFORM-4-ELEMENT_WARNING: Interface Gi0/2 CRC error threshold exceeded
+May 26 08:04:16 SIN-CR-01 : %ERRORS-3-RX_CRC: CRC errors on GigabitEthernet0/2: 28915 errors/min
+May 26 08:13:14 SIN-CR-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 26 08:18:14 SIN-CR-01 : %SYS-5-RELOAD: Reload requested by NOC engineer

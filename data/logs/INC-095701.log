@@ -1,0 +1,14 @@
+May 09 05:53:59 TOK-ER-03 : %SYS-5-CONFIG_I: Configured from console by admin
+May 09 05:58:59 TOK-ER-03 : %SYS-5-CONFIG_I: Configured from console by admin
+May 09 05:59:59 TOK-ER-03 : %SYS-5-CONFIG_I: Configured from console by admin
+May 09 06:00:59 TOK-ER-03 : %SYS-5-CONFIG_I: Configured from console by admin
+May 09 06:00:59 TOK-ER-03 : %SYS-5-CONFIG_I: Configured from console by admin
+May 09 06:00:59 TOK-ER-03 : %SYS-5-CONFIG_I: Configured from console by admin
+May 09 06:01:59 TOK-ER-03 : %CPU-4-HIGH: CPU utilization: 99%; 5min: 94%
+May 09 06:02:50 TOK-ER-03 : Scheduler: process BGP Scanner at 53% CPU
+May 09 06:03:49 TOK-ER-03 : %SYS-3-CPUHOG: Task ran for 3866ms
+May 09 06:04:59 TOK-ER-03 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 09 06:05:59 TOK-ER-03 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 09 06:05:59 TOK-ER-03 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 09 06:09:59 TOK-ER-03 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 09 06:15:59 TOK-ER-03 : %SYS-5-RELOAD: Reload requested by NOC engineer

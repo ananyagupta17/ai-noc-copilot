@@ -1,12 +1,10 @@
-Apr 16 22:59:41 MUM-AGG-01 : %SYS-5-CONFIG_I: Configured from console by admin
-Apr 16 23:02:41 MUM-AGG-01 : %SYS-5-CONFIG_I: Configured from console by admin
-Apr 16 23:03:41 MUM-AGG-01 : %SYS-5-CONFIG_I: Configured from console by admin
-Apr 16 23:04:41 MUM-AGG-01 : %SYS-5-CONFIG_I: Configured from console by admin
-Apr 16 23:04:41 MUM-AGG-01 : %SYS-5-CONFIG_I: Configured from console by admin
-Apr 16 23:09:41 MUM-AGG-01 : %IP-4-DUPADDR: Duplicate address 10.4.34.4 on GigabitEthernet0/0
-Apr 16 23:10:37 MUM-AGG-01 : %MPLS-3-BADLABEL: Received bad label 521 on interface Gi0/1
-Apr 16 23:10:37 MUM-AGG-01 : QoS: drop tail on queue 3, packet loss rate: 13%
-Apr 16 23:10:41 MUM-AGG-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
-Apr 16 23:10:41 MUM-AGG-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
-Apr 16 23:13:41 MUM-AGG-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
-Apr 16 23:19:41 MUM-AGG-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 22 16:24:36 MUM-ER-03 : %SYS-5-CONFIG_I: Configured from console by admin
+May 22 16:25:36 MUM-ER-03 : %SYS-5-CONFIG_I: Configured from console by admin
+May 22 16:32:36 MUM-ER-03 : %SYS-5-CONFIG_I: Configured from console by admin
+May 22 16:33:36 MUM-ER-03 : %ERRORS-3-RX_CRC: CRC errors on GigabitEthernet0/2: 1598 errors/min
+May 22 16:34:19 MUM-ER-03 : %PLATFORM-4-ELEMENT_WARNING: Interface Gi0/2 CRC error threshold exceeded
+May 22 16:34:36 MUM-ER-03 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 22 16:35:34 MUM-ER-03 : %ERRORS-3-RX_CRC: CRC errors on GigabitEthernet0/2: 40105 errors/min
+May 22 16:38:36 MUM-ER-03 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 22 16:43:36 MUM-ER-03 : %SYS-5-RELOAD: Reload requested by NOC engineer
+May 22 16:46:36 MUM-ER-03 : %SYS-5-RELOAD: Reload requested by NOC engineer

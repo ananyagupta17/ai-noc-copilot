@@ -1,8 +1,0 @@
-Mar 30 11:51:55 MUM-AGG-08 : %SYS-5-CONFIG_I: Configured from console by admin
-Mar 30 11:53:55 MUM-AGG-08 : %SYS-5-CONFIG_I: Configured from console by admin
-Mar 30 11:53:55 MUM-AGG-08 : %SYS-5-CONFIG_I: Configured from console by admin
-Mar 30 11:54:55 MUM-AGG-08 : %OPTICAL-3-RXPOWER_LOW: Rx power on MUM-AGG-08 Gi0/1: -25 dBm (threshold: -23 dBm)
-Mar 30 11:55:20 MUM-AGG-08 : %OPTICAL-4-SIGNAL_DEGRADED: Signal quality degraded on interface Gi0/1
-Mar 30 11:55:39 MUM-AGG-08 : %OPTICAL-3-LOS: Loss of signal on Gi0/1
-Mar 30 11:56:55 MUM-AGG-08 : %SYS-5-RELOAD: Reload requested by NOC engineer
-Mar 30 12:03:55 MUM-AGG-08 : %SYS-5-RELOAD: Reload requested by NOC engineer

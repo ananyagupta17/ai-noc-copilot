@@ -33,6 +33,12 @@ def init_sqlite():
     conn = sqlite3.connect(SQLITE_PATH)
     cur = conn.cursor()
 
+    # Drop existing tables so a re-init fully replaces the data. Without this,
+    # alerts (whose IDs are random UUIDs) accumulate across runs instead of
+    # being replaced, leaving stale rows that reference old device names.
+    cur.execute("DROP TABLE IF EXISTS alerts")
+    cur.execute("DROP TABLE IF EXISTS incidents")
+
     # --- Incidents table ---
     cur.execute("""
         CREATE TABLE IF NOT EXISTS incidents (

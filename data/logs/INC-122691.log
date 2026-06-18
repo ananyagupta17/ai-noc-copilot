@@ -1,11 +1,7 @@
-May 14 14:35:42 FRA-PE-05 : %SYS-5-CONFIG_I: Configured from console by admin
-May 14 14:35:42 FRA-PE-05 : %SYS-5-CONFIG_I: Configured from console by admin
-May 14 14:36:42 FRA-PE-05 : %SYS-5-CONFIG_I: Configured from console by admin
-May 14 14:40:42 FRA-PE-05 : %SYS-5-CONFIG_I: Configured from console by admin
-May 14 14:40:42 FRA-PE-05 : %SYS-5-CONFIG_I: Configured from console by admin
-May 14 14:44:42 FRA-PE-05 : %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to down
-May 14 14:45:03 FRA-PE-05 : %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to down
-May 14 14:45:22 FRA-PE-05 : %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up
-May 14 14:47:42 FRA-PE-05 : %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to down
-May 14 14:52:42 FRA-PE-05 : %SYS-5-RELOAD: Reload requested by NOC engineer
-May 14 14:53:42 FRA-PE-05 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 05 01:08:20 TOK-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 05 01:13:20 TOK-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 05 01:14:20 TOK-ER-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Apr 05 01:17:20 TOK-ER-01 : %SYS-3-ERROR: Unknown error on TOK-ER-01
+Apr 05 01:20:20 TOK-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 05 01:21:20 TOK-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Apr 05 01:26:20 TOK-ER-01 : %SYS-5-RELOAD: Reload requested by NOC engineer

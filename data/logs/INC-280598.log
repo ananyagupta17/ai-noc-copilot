@@ -1,12 +1,11 @@
-Apr 30 14:24:08 NEW-ER-04 : %SYS-5-CONFIG_I: Configured from console by admin
-Apr 30 14:26:08 NEW-ER-04 : %SYS-5-CONFIG_I: Configured from console by admin
-Apr 30 14:26:08 NEW-ER-04 : %SYS-5-CONFIG_I: Configured from console by admin
-Apr 30 14:26:08 NEW-ER-04 : %SYS-5-CONFIG_I: Configured from console by admin
-Apr 30 14:29:08 NEW-ER-04 : %SYS-5-CONFIG_I: Configured from console by admin
-Apr 30 14:30:08 NEW-ER-04 : %SYS-5-CONFIG_I: Configured from console by admin
-Apr 30 14:33:08 NEW-ER-04 : %SYS-3-ERROR: Unknown error on NEW-ER-04
-Apr 30 14:36:08 NEW-ER-04 : %SYS-5-RELOAD: Reload requested by NOC engineer
-Apr 30 14:40:08 NEW-ER-04 : %SYS-5-RELOAD: Reload requested by NOC engineer
-Apr 30 14:41:08 NEW-ER-04 : %SYS-5-RELOAD: Reload requested by NOC engineer
-Apr 30 14:42:08 NEW-ER-04 : %SYS-5-RELOAD: Reload requested by NOC engineer
-Apr 30 14:43:08 NEW-ER-04 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Jun 05 21:32:29 MUM-CR-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Jun 05 21:33:29 MUM-CR-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Jun 05 21:35:29 MUM-CR-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Jun 05 21:36:29 MUM-CR-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Jun 05 21:36:29 MUM-CR-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Jun 05 21:39:29 MUM-CR-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Jun 05 21:40:29 MUM-CR-01 : %ERRORS-3-RX_CRC: CRC errors on GigabitEthernet0/2: 8711 errors/min
+Jun 05 21:41:14 MUM-CR-01 : %PLATFORM-4-ELEMENT_WARNING: Interface Gi0/2 CRC error threshold exceeded
+Jun 05 21:42:25 MUM-CR-01 : %ERRORS-3-RX_CRC: CRC errors on GigabitEthernet0/2: 43044 errors/min
+Jun 05 21:52:29 MUM-CR-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Jun 05 21:52:29 MUM-CR-01 : %SYS-5-RELOAD: Reload requested by NOC engineer

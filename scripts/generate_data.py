@@ -158,7 +158,16 @@ def generate_topology():
 # Each incident is a full lifecycle:
 # detected → investigating → resolved, with timestamps, RCA, resolution
 
-def generate_incidents(n=80):
+def generate_incidents(n=80, region_devices=None):
+    """
+    Generate incident records.
+
+    region_devices: optional {region: [device_id, ...]} map built from the
+    topology graph. When provided, each incident's affected_device is drawn
+    from devices that actually exist in the topology, so downstream tools
+    (get_blast_radius, get_device_metrics, get_neighbors) can resolve it.
+    Falls back to a synthesized name only if a region has no topology nodes.
+    """
     incidents = []
 
     for _ in range(n):
@@ -166,7 +175,10 @@ def generate_incidents(n=80):
         severity = random.choices(SEVERITIES, weights=SEVERITY_WEIGHTS)[0]
         symptom = random.choice(SYMPTOM_TYPES)
         root_cause = random.choice(ROOT_CAUSES)
-        device = random_device(region)
+        if region_devices and region_devices.get(region):
+            device = random.choice(region_devices[region])
+        else:
+            device = random_device(region)
         detected_at = random_timestamp()
         ttd = timedelta(minutes=random.randint(2, 30))       # time to detect
         ttr = timedelta(minutes=random.randint(15, 240))     # time to resolve
@@ -924,10 +936,17 @@ def main():
     print("\n=== AI NOC Copilot — Synthetic Data Generator ===\n")
 
     print("[1/5] Generating network topology...")
-    generate_topology()
+    topology = generate_topology()
+
+    # Build a region -> device-ids map from the topology so incidents (and the
+    # alerts/logs derived from them) reference devices that actually exist in
+    # the graph. This lets the topology/metrics tools resolve the device.
+    region_devices = {}
+    for node in topology["nodes"]:
+        region_devices.setdefault(node["region"], []).append(node["id"])
 
     print("[2/5] Generating incidents...")
-    incidents = generate_incidents(n=80)
+    incidents = generate_incidents(n=80, region_devices=region_devices)
 
     print("[3/5] Generating alerts...")
     generate_alerts(incidents)

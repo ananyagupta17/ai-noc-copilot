@@ -1,0 +1,12 @@
+Jun 04 04:01:55 DUB-CR-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Jun 04 04:02:55 DUB-CR-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Jun 04 04:03:55 DUB-CR-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Jun 04 04:03:55 DUB-CR-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Jun 04 04:06:55 DUB-CR-01 : %SYS-5-CONFIG_I: Configured from console by admin
+Jun 04 04:10:55 DUB-CR-01 : %BGP-5-ADJCHANGE: neighbor 10.242.134.38 Down BGP Notification sent
+Jun 04 04:11:34 DUB-CR-01 : %BGP-3-NOTIFICATION: sent to neighbor 10.222.6.74 6/7 (Cease/connection collision resolution)
+Jun 04 04:12:53 DUB-CR-01 : %BGP-5-ADJCHANGE: neighbor 10.229.195.174 Up
+Jun 04 04:13:34 DUB-CR-01 : %BGP-5-ADJCHANGE: neighbor 10.161.21.25 Down Hold Timer Expired
+Jun 04 04:20:55 DUB-CR-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Jun 04 04:21:55 DUB-CR-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
+Jun 04 04:22:55 DUB-CR-01 : %SYS-5-RELOAD: Reload requested by NOC engineer
