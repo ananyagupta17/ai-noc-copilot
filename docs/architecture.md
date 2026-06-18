@@ -742,18 +742,17 @@ the synthetic generator supplies up front.
 
 ## 8. Layer 6 — API + UI
 
-### FastAPI — 18 endpoints
+### FastAPI — 10 endpoints
 
-The API has seven endpoint groups (17 REST endpoints + 1 WebSocket):
+The agent invokes its tools in-process, so the API only exposes what external
+clients actually consume — the UI, the streaming interface, and health probes —
+rather than a REST endpoint per tool. Four endpoint groups (9 REST + 1 WebSocket):
 
 | Group | Endpoints | Purpose |
 |---|---|---|
 | Health | `/`, `/health` | Service status |
-| Incidents | `/incidents`, `/incidents/{id}`, `/incidents/{id}/alerts`, `/incidents/similar/search` | SQLite queries |
-| Alerts | `/alerts`, `/alerts/ingest` | Alert data + correlation trigger |
-| Topology | `/topology/region/{region}`, `/topology/blast-radius/{id}` | Graph queries |
-| Metrics | `/metrics/{device_id}` | Device health |
-| Investigation | `/investigate`, `/ws/investigate` | Agent trigger |
+| Incidents | `/incidents` | List recent incidents (SQLite) |
+| Investigation | `/investigate`, `/ws/investigate` | Agent trigger (synchronous + streaming) |
 | Observability | `/status/events`, `/observability/summary`, `/observability/trace`, `/observability/logs`, `/observability/confidence` | Live events + trace data |
 
 The `/ws/investigate` WebSocket endpoint is the most important — it streams
