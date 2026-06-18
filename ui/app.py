@@ -14,7 +14,6 @@ Layout:
   Tab 4     — Observability (confidence evolution, RAG quality, logs)
 """
 
-import json
 import sys
 import time
 import threading
@@ -30,7 +29,6 @@ sys.path.append(str(Path(__file__).parent.parent))
 # ─────────────────────────────────────────────
 
 API_BASE = "http://localhost:8000"
-WS_BASE  = "ws://localhost:8000"
 
 st.set_page_config(
     page_title="AI NOC Copilot",
@@ -52,6 +50,11 @@ st.markdown("""
 html, body, [class*="css"] {
     font-family: 'Inter', sans-serif;
 }
+
+/* Tighten Streamlit's large default top padding so the header sits near the top */
+.block-container { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+/* Hide the empty Streamlit toolbar band when not needed */
+[data-testid="stToolbar"] { right: 8px; }
 
 /* Header */
 .noc-header {
@@ -314,17 +317,25 @@ def api_get(path: str, params: dict = None):
         return None
 
 
-def api_post(path: str, payload: dict):
-    """POST request to FastAPI."""
+def api_post(path: str, payload: dict, silent: bool = False):
+    """
+    POST request to FastAPI.
+
+    silent=True suppresses st.* calls — used when called from a background
+    thread, where touching Streamlit's API is unsupported. The caller inspects
+    the return value (None on failure) instead.
+    """
     try:
         r = requests.post(f"{API_BASE}{path}", json=payload, timeout=120)
         r.raise_for_status()
         return r.json()
     except requests.exceptions.ConnectionError:
-        st.error("Cannot connect to API.")
+        if not silent:
+            st.error("Cannot connect to API.")
         return None
     except Exception as e:
-        st.error(f"API error: {e}")
+        if not silent:
+            st.error(f"API error: {e}")
         return None
 
 
@@ -424,26 +435,6 @@ with st.sidebar:
 
     st.divider()
 
-    # Recent incidents
-    st.markdown('<div class="sidebar-label">Recent Incidents</div>', unsafe_allow_html=True)
-    recent = api_get("/incidents", params={"limit": 8})
-    if recent:
-        for inc in recent:
-            sev   = inc.get("severity", "P3")
-            reg   = inc.get("region", "")
-            sym   = inc.get("symptom", "").replace("_", " ")
-            iid   = inc.get("incident_id", "")
-            color = {"P1":"#ff5050","P2":"#ffb400","P3":"#4da6ff","P4":"#64748b"}.get(sev,"#4da6ff")
-            st.markdown(f"""
-            <div style="padding:8px 0;border-bottom:1px solid #1e2d40;font-size:12px">
-                <span style="color:{color};font-family:'JetBrains Mono',monospace;font-weight:600">{sev}</span>
-                <span style="color:#94a3b8;margin-left:8px">{iid}</span><br>
-                <span style="color:#4a6fa5;font-size:11px">{reg} · {sym}</span>
-            </div>
-            """, unsafe_allow_html=True)
-
-    st.divider()
-
     # Alert cluster display
     if st.session_state.cluster:
         c = st.session_state.cluster
@@ -453,7 +444,7 @@ with st.sidebar:
             <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#4da6ff">{c.get('cluster_id','')}</div>
             <div style="font-size:13px;color:#e2e8f0;margin-top:6px">{c.get('dominant_symptom','').replace('_',' ').title()}</div>
             <div style="font-size:11px;color:#4a6fa5;margin-top:4px">
-                {c.get('total_alert_count',0)} alerts · {c.get('noise_reduced',0)} noise filtered
+                {c.get('total_alert_count',0)} alerts correlated
             </div>
             <div style="font-size:11px;color:#94a3b8;margin-top:4px">{', '.join(c.get('affected_regions',[]))}</div>
         </div>
@@ -499,9 +490,12 @@ if investigate_btn and incident_input.strip():
         "run_correlation": run_correlation,
     }
     def _run():
-        r = api_post("/investigate", payload)
+        # silent=True: never call st.* from this background thread
+        r = api_post("/investigate", payload, silent=True)
         if r:
             result_dict.update(r)
+        else:
+            result_dict["_error"] = "Investigation request failed — is the API running on :8000?"
     thread = threading.Thread(target=_run, daemon=True)
     thread.start()
     st.session_state._inv_thread  = thread
@@ -531,7 +525,9 @@ if st.session_state.investigating:
     else:
         # Thread finished — pull results
         inv_result = st.session_state._inv_result
-        if inv_result:
+        if inv_result and inv_result.get("_error"):
+            st.error(inv_result["_error"])
+        elif inv_result:
             st.session_state.rca_result   = inv_result.copy()
             st.session_state.cluster      = inv_result.get("alert_cluster")
             st.session_state.trace_result = api_get("/observability/trace")
@@ -747,7 +743,7 @@ with tab2:
         else:
             # Import display helper
             sys.path.append(str(Path(__file__).parent.parent))
-            from agent.timeline import timeline_to_display, TimelineEvent
+            from agent.timeline import timeline_to_display
 
             # Convert to display format
             if timeline and isinstance(timeline[0], dict):
