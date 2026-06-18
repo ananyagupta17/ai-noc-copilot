@@ -134,7 +134,7 @@ noc_copilot/
 │   ├── tracer.py          # Runtime tool call + RAG tracing
 │   └── logger.py          # Persistent JSONL audit log
 ├── api/
-│   └── main.py            # FastAPI — 21 endpoints + WebSocket
+│   └── main.py            # FastAPI — 17 REST endpoints + WebSocket
 ├── ui/
 │   └── app.py             # Streamlit dashboard — 4 panels
 ├── scripts/
