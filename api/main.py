@@ -4,7 +4,7 @@ api/main.py
 FastAPI backend for the AI NOC Copilot.
 
 Two types of endpoints:
-  REST   — query incidents, alerts, topology directly
+  REST      — list incidents, trigger investigations, expose observability
   WebSocket — stream the agent investigation in real time
 
 The WebSocket endpoint is the important one.
@@ -17,16 +17,23 @@ it receives updates as each node completes:
 
 This is how production AI systems surface intermediate results.
 Engineers see the investigation happening live, not a spinner.
+
+Scope note: the agent itself does NOT call this API — it invokes its tools
+in-process — so there is no need to expose a REST endpoint per tool. The
+endpoints here are the ones the system consumes: the Streamlit UI, the
+streaming interface, and observability. Per-device/topology/alert data-browse
+endpoints were removed because nothing consumed them; the underlying tool
+functions still exist for the agent's use and can be re-exposed if a future UI
+needs them.
 """
 
 import json
-import os
 import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException, Query
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -40,11 +47,8 @@ from alert_correlation.clusterer import correlate_alerts
 from observability.tracer import tracer
 from observability.logger import noc_logger
 
-# Data query tools — used by REST endpoints
-from agent.tools.incidents import get_recent_incidents, find_similar_incidents, get_incident
-from agent.tools.alerts import get_critical_alerts, get_alerts_for_incident
-from agent.tools.topology import get_region_devices, get_blast_radius
-from agent.tools.metrics import get_device_metrics
+# Data query tool — used by the /incidents REST endpoint
+from agent.tools.incidents import get_recent_incidents
 
 
 # ─────────────────────────────────────────────
@@ -74,14 +78,6 @@ class InvestigationRequest(BaseModel):
     incident_description: str
     region: Optional[str] = None
     run_correlation: bool = True
-
-
-class AlertInput(BaseModel):
-    device: str
-    event: str
-    severity: str
-    region: Optional[str] = None
-    metric_value: Optional[float] = None
 
 
 # ─────────────────────────────────────────────
@@ -115,100 +111,6 @@ def list_incidents(
 ):
     """List recent incidents, optionally filtered by region or severity."""
     return get_recent_incidents(region=region, severity=severity, limit=limit)
-
-
-@app.get("/incidents/{incident_id}")
-def get_incident_by_id(incident_id: str):
-    """Get full details of a specific incident."""
-    result = get_incident(incident_id)
-    if "error" in result:
-        raise HTTPException(status_code=404, detail=result["error"])
-    return result
-
-
-@app.get("/incidents/{incident_id}/alerts")
-def get_incident_alerts(incident_id: str):
-    """Get all alerts linked to a specific incident."""
-    return get_alerts_for_incident(incident_id)
-
-
-@app.get("/incidents/similar/search")
-def search_similar(
-    symptom:    Optional[str] = Query(None),
-    region:     Optional[str] = Query(None),
-    root_cause: Optional[str] = Query(None),
-    limit:      int           = Query(5),
-):
-    """Find historical incidents similar to current symptoms."""
-    return find_similar_incidents(
-        symptom=symptom, region=region,
-        root_cause=root_cause, limit=limit
-    )
-
-
-# ─────────────────────────────────────────────
-# REST — ALERTS
-# ─────────────────────────────────────────────
-
-@app.get("/alerts")
-def list_alerts(
-    region: Optional[str] = Query(None),
-    limit:  int           = Query(20, le=100),
-):
-    """Get recent critical alerts, optionally filtered by region."""
-    return get_critical_alerts(region=region, limit=limit)
-
-
-@app.post("/alerts/ingest")
-def ingest_alert(alert: AlertInput):
-    """
-    Ingest a structured alert and run correlation.
-    Converts the alert to a natural language description
-    and returns the correlation cluster.
-    Returns the cluster — the UI can use this to trigger an investigation.
-    """
-    description = (
-        f"{alert.severity} alert on {alert.device}: "
-        f"{alert.event} detected"
-        + (f" in {alert.region}" if alert.region else "")
-        + (f". Metric value: {alert.metric_value}" if alert.metric_value else "")
-    )
-    cluster = correlate_alerts(description=description, region=alert.region)
-    return {
-        "alert_received": True,
-        "description":    description,
-        "cluster":        cluster,
-        "suggested_action": "Run /investigate with the description above",
-    }
-
-
-# ─────────────────────────────────────────────
-# REST — TOPOLOGY
-# ─────────────────────────────────────────────
-
-@app.get("/topology/region/{region}")
-def topology_by_region(region: str):
-    """Get all devices in a region."""
-    return get_region_devices(region)
-
-
-@app.get("/topology/blast-radius/{device_id}")
-def blast_radius(device_id: str, hops: int = Query(2, le=4)):
-    """Get blast radius for a device."""
-    return get_blast_radius(device_id=device_id, hops=hops)
-
-
-# ─────────────────────────────────────────────
-# REST — METRICS
-# ─────────────────────────────────────────────
-
-@app.get("/metrics/{device_id}")
-def device_metrics(device_id: str):
-    """Get current metrics for a device."""
-    result = get_device_metrics(device_id)
-    if "error" in result:
-        raise HTTPException(status_code=404, detail=result["error"])
-    return result
 
 
 # ─────────────────────────────────────────────
